@@ -1,0 +1,22 @@
+{
+  "name": "gso",
+  "version": "1.1",
+  "authors": [
+    "Lenbo Ma <mlongbo@gmail.com>"
+  ],
+  "description": "gso app",
+  "license": "GPL V2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.0.3",
+    "todc-bootstrap": "*",
+    "jquery": "1.9.0"
+  }
+}
