@@ -281,7 +281,7 @@ img {border:0;}
 }
 .s_r .title em{
     color:#dd4b39;
-    /*font-weight:normal;*/
+    font-style:normal;
 }
 .s_r .visible_url{
     font-size: 13px;
@@ -290,6 +290,7 @@ img {border:0;}
 }
 .s_r .visible_url em{
    font-weight: bold;
+    font-style: normal;
 }
 
 .s_r .min_content{
