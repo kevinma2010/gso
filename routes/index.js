@@ -20,7 +20,7 @@ router.get('/search', function (req, res) {
 
         var num = [];
         var s,end,index = 0;
-        if (i-5 < 0) {
+        if (i-5 <= 0) {
             s = 0;
             end = 10;
         } else {
