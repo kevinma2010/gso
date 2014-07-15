@@ -3,5 +3,6 @@
  */
 module.exports = {
     port: 5555,
-    g_url: 'https://www.google.com'
+    language: 'en',
+    g_url: 'https://www.google.com.hk'
 };
