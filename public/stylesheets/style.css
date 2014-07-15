@@ -1,6 +1,14 @@
 body { margin:0; padding:0; }
 img {border:0;}
 
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 .wrapper{
     min-height: 100%;
     position: relative;
@@ -290,7 +298,11 @@ img {border:0;}
 }
 .s_r .visible_url em{
    font-weight: bold;
-    font-style: normal;
+   font-style: normal;
+}
+
+.s_r .visible_url a{
+    color:#006621;
 }
 
 .s_r .min_content{
