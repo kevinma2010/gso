@@ -113,22 +113,23 @@
 
 
   </div>
+  <script src="/bower_components/jquery/jquery.min.js"></script>
   <script type="application/javascript">
       (function () {
           var urls = document.getElementsByName("r_url");
           for ( var i = 0, total = urls.length; i < total; i++) {
-              var url = urls[i];
-              url.innerHTML = url.innerText;
+              var url = $(urls[i]);
+              url.html(url.text());
           }
 
           var cites = document.getElementsByClassName("visible_url");
           for ( var i = 0, total = cites.length; i < total; i++) {
-              var cite = cites[i];
-              cite.innerHTML = cite.innerText;
+              var cite = $(cites[i]);
+              cite.html(cite.text());
           }
 
-          var resultStats = document.getElementById("result_stats");
-          resultStats.innerHTML = resultStats.innerText;
+          var resultStats = $("#result_stats");
+          resultStats.html(resultStats.text());
       })();
   </script>
   </body>
