@@ -64,60 +64,39 @@
                       <tbody>
                       <tr valign="top">
                           <td class="b navend">
+                          <%if (result.start > 0) {%>
+                              <a class="pn" href="/search?q=<%= result.q%>&start=<%= page.pre%>" id="pnnext" style="text-decoration:none;text-align:left">
+                                  <span class="csb" style="background:url(/images/nav_logo.png) no-repeat;background-position:0 0;width:53px;"></span>
+                                  <span class="txt" style="display:block;">上一页</span>
+                              </a>
+                          <%} else {%>
                               <span class="csb gbil" style="background:url(/images/nav_logo.png) no-repeat;background-position:-24px 0;background-size:167px;width:28px"></span>
+                          <%}%>
                           </td>
-                          <td class="fl cur">
-                              <a class="fl cur" href="/search?q=你好">
-                                  <span class="csb gbil" style="background:url(/images/nav_logo.png) no-repeat;background-position:-53px 0;background-size:167px;width:20px"></span>1
-                              </a>
+                          <% for (var i = page.start,index=0, total = page.end; i <total; i++) {%>
+                              <%if (result.start == i*10) {%>
+                                  <td class="fl cur">
+                                      <a class="fl cur">
+                                          <span class="csb gbil" style="background:url(/images/nav_logo.png) no-repeat;background-position:-53px 0;background-size:167px;width:20px"></span>
+                                          <%= page.num[index++]/10+1%>
+                                      </a>
+                                  <td>
+                              <%} else {%>
+                                  <td>
+                                      <a class="fl" href="/search?q=<%= result.q%>&start=<%= page.num[index]%>">
+                                          <span class="csb" style="background:url(/images/nav_logo.png) no-repeat;background-position:-74px 0;background-size:167px;width:20px"></span>
+                                          <%= page.num[index++]/10+1%>
+                                      </a>
+                                  </td>
+                              <%}%>
                           </td>
-                          <td>
-                              <a class="fl" href="/search?q=你好&start=10">
-                                  <span class="csb" style="background:url(/images/nav_logo.png) no-repeat;background-position:-74px 0;background-size:167px;width:20px"></span>2
-                              </a>
-                          </td>
-                          <td>
-                              <a class="fl" href="/search?q=你好&start=20">
-                                  <span class="csb" style="background:url(/images/nav_logo.png) no-repeat;background-position:-74px 0;background-size:167px;width:20px"></span>3
-                              </a>
-                          </td>
-                          <td>
-                              <a class="fl" href="/search?q=你好&start=30">
-                                  <span class="csb" style="background:url(/images/nav_logo.png) no-repeat;background-position:-74px 0;background-size:167px;width:20px"></span>4
-                              </a>
-                          </td>
-                          <td>
-                              <a class="fl" href="/search?q=你好&start=40">
-                                  <span class="csb" style="background:url(/images/nav_logo.png) no-repeat;background-position:-74px 0;background-size:167px;width:20px"></span>5
-                              </a>
-                          </td>
-                          <td>
-                              <a class="fl" href="/search?q=你好&start=50">
-                                  <span class="csb" style="background:url(/images/nav_logo.png) no-repeat;background-position:-74px 0;background-size:167px;width:20px"></span>6
-                              </a>
-                          </td>
-                          <td>
-                              <a class="fl" href="/search?q=你好&start=60">
-                                  <span class="csb" style="background:url(/images/nav_logo.png) no-repeat;background-position:-74px 0;background-size:167px;width:20px"></span>7
-                              </a>
-                          </td>
-                          <td>
-                              <a class="fl" href="/search?q=你好&start=70">
-                                  <span class="csb" style="background:url(/images/nav_logo.png) no-repeat;background-position:-74px 0;background-size:167px;width:20px"></span>8
-                              </a>
-                          </td>
-                          <td>
-                              <a class="fl" href="/search?q=你好&start=80">
-                                  <span class="csb" style="background:url(/images/nav_logo.png) no-repeat;background-position:-74px 0;background-size:167px;width:20px"></span>9
-                              </a>
-                          </td>
-                          <td>
-                              <a class="fl" href="/search?q=你好&start=90">
-                                  <span class="csb" style="background:url(/images/nav_logo.png) no-repeat;background-position:-74px 0;background-size:167px;width:20px"></span>10
-                              </a>
-                          </td>
+                          <%}%>
                           <td class="b navend">
-                              <a class="pn" href="/search?q=你好&start=10" id="pnnext" style="text-decoration:none;text-align:left"><span class="csb" style="background:url(/images/nav_logo.png) no-repeat;background-position:-96px 0;background-size:167px;width:71px"></span>
+                              <a class="pn" href="/search?q=<%= result.q%>&start=<%= page.next%>" id="pnnext"
+                                 style="text-decoration:none;text-align:left">
+                                  <span class="csb" style="background:url(/images/nav_logo.png) no-repeat;background-position:-96px 0;background-size:167px;width:71px">
+
+                                  </span>
                                   <span class="txt" style="display:block;margin-left:53px">下一页</span>
                               </a>
                           </td>
