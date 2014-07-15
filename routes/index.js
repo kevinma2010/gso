@@ -9,10 +9,24 @@ router.get('/', function(req, res) {
 
 router.get('/search', function (req, res) {
     var q = req.query.q;
-    gsearch(q,0, function (arr) {
-        res.setHeader('content-type','application/json; charset=UTF-8');//响应编码，如果是html,写在head中也可以
-        res.json(arr);
+    var userAgent = req.headers['user-agent'];
+    console.log(userAgent);
+    gsearch(q,0, userAgent,function (result) {
+        res.render('result', {
+            title: q + ' - Google Search',
+            result: result
+        });
     });
+});
+
+router.get('/url', function (req,res,next) {
+    var url = req.query.to;
+    if (!url) {
+        next();
+        return;
+    }
+
+    res.redirect(url);
 });
 
 router.get('/result', function (req, res) {
