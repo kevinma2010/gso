@@ -5,7 +5,7 @@
       <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
       <link rel="bookmark" type="image/x-icon"  href="/images/favicon.ico" />
       <link rel="icon" href="/images/favicon.ico">
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel='stylesheet' href='/stylesheets/style.css'/>
       <meta charset="utf-8"/>
   </head>
@@ -27,34 +27,15 @@
 
 
           <div class="content">
-              <!--<div class="content_header">
-                  <div class="link">
-                      <a class="active" href="#">网页</a>
-                      <a href="#">图片</a>
-                  </div>
-              </div>-->
               <div class="result_stats" id="result_stats">
-                  <%= result.resultStats%>
+                  <%- result.resultStats%>
               </div>
-
-              <!--<div class="notice">
-                  <h1>GoogleStable渴望您的捐助</h1>
-                  <p>本站开发之初只为作者个人使用，但后来经过大量传播，导致服务器难承负荷。
-                      因为本站并不盈利，作者又无其他收入来源。所以在此希望各位朋友能够慷慨解囊。
-                      只为让更多的人获取知识，认识世界。
-                  </p>
-                  <p>
-                      <a href="http://www.py46.com/googlestable/">捐助</a>&nbsp;&nbsp;&nbsp;
-                      <a href="/imabetterman/">不再显示</a>
-                  </p>
-              </div>-->
-
 
               <div class="search_result">
                    <%for (var i = 0, total = result.data.length; i < total; i++) {%>
                   <div class="s_r">
-                      <a target="_blank" class="title" href="http://<%= result.data[i].url%>" name="r_url"><%= result.data[i].title%></a>
-                      <div class="visible_url"><%= result.data[i].cite%></div>
+                      <a target="_blank" class="title" href="http://<%= result.data[i].url%>" name="r_url"><%- result.data[i].title%></a>
+                      <div class="visible_url"><%- result.data[i].cite%></div>
                       <div class="min_content"><%= result.data[i].content%></div>
                   </div>
                   <%}%>
@@ -106,31 +87,7 @@
                   </table>
               </div>
           </div>
-
-
-
       </div>
-
-
   </div>
-  <script src="/bower_components/jquery/jquery.min.js"></script>
-  <script type="application/javascript">
-      (function () {
-          var urls = document.getElementsByName("r_url");
-          for ( var i = 0, total = urls.length; i < total; i++) {
-              var url = $(urls[i]);
-              url.html(url.text());
-          }
-
-          var cites = document.getElementsByClassName("visible_url");
-          for ( var i = 0, total = cites.length; i < total; i++) {
-              var cite = $(cites[i]);
-              cite.html(cite.text());
-          }
-
-          var resultStats = $("#result_stats");
-          resultStats.html(resultStats.text());
-      })();
-  </script>
   </body>
 </html>
