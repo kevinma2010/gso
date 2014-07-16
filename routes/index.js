@@ -59,10 +59,4 @@ router.get('/url', function (req,res,next) {
     res.redirect(url);
 });
 
-router.get('/result', function (req, res) {
-
-    res.render('result', {
-        title: "aa"
-    });
-});
 module.exports = router;
