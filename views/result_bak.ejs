@@ -1,470 +1,263 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
+<head>
     <title><%= title %></title>
-      <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
-      <link rel="bookmark" type="image/x-icon"  href="/images/favicon.ico" />
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-      <!--<link rel='stylesheet' href='/stylesheets/style.css' />-->
-      <style>
-      body {
-          padding: 50px;
-          font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-      }
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="bookmark" type="image/x-icon"  href="/images/favicon.ico" />
+    <link rel="icon" href="/images/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link rel='stylesheet' href='/stylesheets/style.css'/>-->
+    <meta charset="utf-8"/>
+    <style>
+        body {
+            margin:0;
+            padding:0;
+            background: none repeat scroll 0 0 #f1f1f1;;
+        }
+        img {border:0;}
 
-      a {
-          color: #00B7FF;
-      }
+        a {
+            text-decoration: none;
+        }
 
-      .footer {
-          color:#777;
-          text-align:center;
-          padding:30px 0;
-          margin-top:70px;
-          border-top:1px solid #e5e5e5;
-          background-color:#f5f5f5
-      }
-      .footer a {
-          color:#777
-      }
-
-
-      .form-search {
-          max-width: 480px;
-          /*padding: 19px 29px 29px;*/
-          margin: 0 auto 20px;
-          /*background-color: #fff;*/
-          /*border: 1px solid #e5e5e5;*/
-          /*-webkit-border-radius: 5px;*/
-          /*-moz-border-radius: 5px;*/
-          /*border-radius: 5px;*/
-          /*-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);*/
-          /*-moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);*/
-          /*box-shadow: 0 1px 2px rgba(0,0,0,.05);*/
-      }
-      .form-search .form-search,
-      .form-search .checkbox {
-          margin-bottom: 10px;
-      }
-      .form-search input[type="text"],
-      .form-search input[type="password"] {
-          font-size: 14px;
-          height: auto;
-          margin-bottom: 15px;
-          padding: 7px 9px;
-      }
-
-      body { margin:0; padding:0; }
-      img {border:0;}
-
-      .wrapper{
-          min-height: 100%;
-          position: relative;
-      }
-
-      .s_text{
-          float: left;
-          font-size: 15px;
-          width: 520px;
-          background-color: #FFFFFF;
-          border-color: #C0C0C0 #D9D9D9 #D9D9D9;
-          border-style: solid;
-          border-width: 1px;
-          color: #333333;
-          display: inline-block;
-          height: 28px;
-          line-height: 13px;
-          line-height: 28px;
-          line-height: 28px;
-          padding-left: 8px;
-          vertical-align: bottom;
-          -moz-border-bottom-colors: none;
-          -moz-border-image: none;
-          -moz-border-left-colors: none;
-          -moz-border-right-colors: none;
-          -moz-border-top-colors: none;
-      }
-      .s_text:hover {
-          -moz-border-bottom-colors: none;
-          -moz-border-image: none;
-          -moz-border-left-colors: none;
-          -moz-border-right-colors: none;
-          -moz-border-top-colors: none;
-          border-color: #A0A0A0 #B9B9B9 #B9B9B9;
-          border-style: solid;
-          border-width: 1px;
-          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
-      }
-      .s_text:focus {
-          /*border: 1px solid #4D90FE;
-          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset;*/
-          outline: medium none;
-      }
+        a:hover {
+            text-decoration: underline;
+        }
 
 
 
-      .m-button {
-          display: inline-block;
-          width: 85px;
-          text-align: center;
-          vertical-align: middle;
-          font-size: 13px;
-          font-weight: bold;
-          height: 30px;
-          padding: 0 8px;
-          margin: 0;
-          line-height: 30px;
-          -webkit-border-radius: 2px;
-          -moz-border-radius: 2px;
-          border-radius: 2px;
-          -webkit-transition: all 0.218s;
-          -moz-transition: all 0.218s;
-          -ms-transition: all 0.218s;
-          -o-transition: all 0.218s;
-          transition: all 0.218s;
-          border: 1px solid rgba(0,0,0,0.1);
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          user-select: none;
-          cursor: default;
-          margin-right: 10px;
-          border: 1px solid #3079ed;
-          color: #fff;
-          text-shadow: 0 1px rgba(0,0,0,0.1);
-          background-color: #4d90fe;
-          background-image: -webkit-gradient(linear,left top,left bottom,from(#4d90fe),to(#4787ed));  /* blue */
-          background-image: -webkit-linear-gradient(top,#4d90fe,#4787ed);
-          background-image: -moz-linear-gradient(top,#4d90fe,#4787ed);
-          background-image: -ms-linear-gradient(top,#4d90fe,#4787ed);
-          background-image: -o-linear-gradient(top,#4d90fe,#4787ed);
-          background-image: linear-gradient(top,#4d90fe,#4787ed);
-      }
-      .m-button:hover {
-          text-decoration: none;
-          -webkit-transition: all 0.0s;
-          -moz-transition: all 0.0s;
-          -ms-transition: all 0.0s;
-          -o-transition: all 0.0s;
-          transition: all 0.0s;
-          -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-          -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-          box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-          border: 1px solid #2f5bb7;
-          color: #fff;
-          text-shadow: 0 1px rgba(0,0,0,0.3);
-          background-color: #357ae8;
-          background-image: -webkit-gradient(linear,left top,left bottom,from(#4d90fe),to(#357ae8));
-          background-image: -webkit-linear-gradient(top,#4d90fe,#357ae8);
-          background-image: -moz-linear-gradient(top,#4d90fe,#357ae8);
-          background-image: -ms-linear-gradient(top,#4d90fe,#357ae8);
-          background-image: -o-linear-gradient(top,#4d90fe,#357ae8);
-          background-image: linear-gradient(top,#4d90fe,#357ae8);
-      }
-      .m-button:active {
-          background-image: -webkit-linear-gradient(top,#f6f6f6,#f1f1f1);
-          background-image: -moz-linear-gradient(top,#f6f6f6,#f1f1f1);
-          background-image: -ms-linear-gradient(top,#f6f6f6,#f1f1f1);
-          background-image: -o-linear-gradient(top,#f6f6f6,#f1f1f1);
-          background-image: linear-gradient(top,#f6f6f6,#f1f1f1);
-          -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
-          -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
-          box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
-      }
+        .m-button {
+            display: inline-block;
+            width: 85px;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 14px;
+            font-weight: bold;
+            height: 30px;
+            padding: 0 8px;
+            margin: 0;
+            line-height: 30px;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            border-radius: 2px;
+            -webkit-transition: all 0.218s;
+            -moz-transition: all 0.218s;
+            -ms-transition: all 0.218s;
+            -o-transition: all 0.218s;
+            transition: all 0.218s;
+            border: 1px solid rgba(0,0,0,0.1);
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            cursor: default;
+            margin-right: 10px;
+            border: 1px solid #3079ed;
+            color: #fff;
+            text-shadow: 0 1px rgba(0,0,0,0.1);
+            background-color: #4d90fe;
+            background-image: -webkit-gradient(linear,left top,left bottom,from(#4d90fe),to(#4787ed));  /* blue */
+            background-image: -webkit-linear-gradient(top,#4d90fe,#4787ed);
+            background-image: -moz-linear-gradient(top,#4d90fe,#4787ed);
+            background-image: -ms-linear-gradient(top,#4d90fe,#4787ed);
+            background-image: -o-linear-gradient(top,#4d90fe,#4787ed);
+            background-image: linear-gradient(top,#4d90fe,#4787ed);
+        }
+        .m-button:hover {
+            text-decoration: none;
+            -webkit-transition: all 0.0s;
+            -moz-transition: all 0.0s;
+            -ms-transition: all 0.0s;
+            -o-transition: all 0.0s;
+            transition: all 0.0s;
+            -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            border: 1px solid #2f5bb7;
+            color: #fff;
+            text-shadow: 0 1px rgba(0,0,0,0.3);
+            background-color: #357ae8;
+            background-image: -webkit-gradient(linear,left top,left bottom,from(#4d90fe),to(#357ae8));
+            background-image: -webkit-linear-gradient(top,#4d90fe,#357ae8);
+            background-image: -moz-linear-gradient(top,#4d90fe,#357ae8);
+            background-image: -ms-linear-gradient(top,#4d90fe,#357ae8);
+            background-image: -o-linear-gradient(top,#4d90fe,#357ae8);
+            background-image: linear-gradient(top,#4d90fe,#357ae8);
+        }
+        .m-button:active {
+            background-image: -webkit-linear-gradient(top,#f6f6f6,#f1f1f1);
+            background-image: -moz-linear-gradient(top,#f6f6f6,#f1f1f1);
+            background-image: -ms-linear-gradient(top,#f6f6f6,#f1f1f1);
+            background-image: -o-linear-gradient(top,#f6f6f6,#f1f1f1);
+            background-image: linear-gradient(top,#f6f6f6,#f1f1f1);
+            -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+            -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
+        }
 
-      .search-result{
-      }
-      .header-bar{
-          position: relative;
-          background: none repeat scroll 0 0 #f1f1f1;;
-          background-image: -webkit-gradient(radial,100 36,0,100 -40,120,from(#fafafa),to(#f1f1f1));
-          border-bottom: 1px solid #e5e5e5;
-          height: 72px;
-          padding-top:17px;
-          /*padding-bottom:17px;*/
-      }
-      .logo{
-          display:inline-block;
-          padding-left:16px;
-          padding-right:12px;
-          float: left;
-      }
-      .logo a{
-          display: block;
-          height: 37px;
-          margin: 0;
-          overflow: hidden;
-          position: relative;
-          width: 95px;
-      }
-      .logo img{
-          left: 0;
-          position: absolute;
-          top: -41px;
-      }
-      .form_box{
-          display:inline-block;
-          margin-top: 5px;
-      }
+        .s_submit,
+        .s_submit:hover {
+            margin-left: 10px;
+            width: 80px;
+            background-image: url("/images/search-white.png");
+            _background-image: url("/images/search-white.jpg");
+            background-repeat: no-repeat;
+            background-position: 29px 5px;
+        }
 
-      .content{
-      }
-      .content .content_header{
-          height:40px;
-          border-bottom:1px solid #ebebeb;
-          line-height: 35px;
-      }
-      .link{
-          padding-left:120px;
-      }
-      .content_header a{
-          display: inline-block;
-          font-size: small;
-          height: 35px;
-          margin: 2px 3px 0;
-          padding: 0 8px;
-          text-decoration:none;
-          color:#777;
-      }
-      .content_header a:hover{
-          color:#555;
-      }
-      .content_header a.active,
-      .content_header a.active:hover{
-          border-bottom:3px solid #dd4b39;
-          font-weight:bold;
-          color:#dd4b39;
-      }
-      .result_stats{
-          color:#808080;
-          margin-left:132px;
-          font-size:small;
-          line-height: 35px;
-          margin-bottom:10px;
-          margin-top: 5px;
-      }
+        .wrapper{
+            min-height: 100%;
+            position: relative;
+        }
 
-      .search_result{
-          margin-left:135px;
-          font-family: arial,sans-serif;
-          width:600px;
-      }
-      .notice{
-          float:right;
-          background-color: #ffffd9;
-          border:1px solid #f3f3f3;
-          color:#333;
-          width:400px;
-          height:150px;
-          padding:10px;
-          font-size:13px;
-          margin-right:10px;
-          line-height:20px;
-      }
-      .hidden{
-          display:none;
-      }
-      .notice h1{
-          font-family: arial,sans-serif;
-      }
-      .notice a{
-          color:#1a0dab;
+        .header-bar{
+            position: relative;
+            background-color: white;
+            /*background-image: -webkit-gradient(radial,100 36,0,100 -40,120,from(#fafafa),to(#f1f1f1));*/
+            border-bottom: 1px solid #e5e5e5;
+            height: 50px;
+            padding-top:10px;
+            /*padding-bottom:17px;*/
+        }
 
-      }
-      .search_result .s_r{
-          margin-bottom:23px;
-      }
-      .s_r .title{
-          color: #1A0DAB;
-          font-size: 18px;
-          text-decoration: none;
-      }
-      .s_r .title:hover{
-          text-decoration: underline;
-      }
-      .s_r .title b{
-          color:#dd4b39;
-          font-weight:normal;
-      }
-      .s_r .visible_url{
-          font-size: 13px;
-          color:#006621;
-          margin-bottom: 2px;
-      }
-      .s_r .min_content{
-          line-height: 1.4;
-          word-wrap: break-word;
-          color: #545454;
-          font-size:13px;
-      }
-      .s_r .min_content b{
-          color: #dd4b39;
-          font-style: normal;
-          font-weight: normal;
-      }
+        .form_box{
+            display:inline-block;
+            /*margin-top: 5px;*/
+            margin-left: 4px;
+        }
+        .form_box .s_text{
+            padding: 4px 6px;
+            border-spacing: 2px;
+            color: #222;
+            height:22px;
+            width:210px;
+            font: 17px arial,sans-serif;
+        }
 
-      .navcnt{
-          border-top:1px solid #ededed;
-          margin-left: 138px;
-          width: 600px;
-          font-family: arial,sans-serif;
-          margin-bottom: 50px;
-      }
-      .tr{
+        .form_box .s_text:hover{
+            box-shadow: none;
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            border:1px solid gray;
+        }
+        .form_box .s_text:active,
+        .form_box .s_text:focus{
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            border: 1px solid #4D90FE;
+        }
+        .form_box .s_submit{
+            margin-left: 0px;
+            width:70px;
+            /*background-position: 25px 5px;*/
+        }
 
-      }
-      .td{
-          text-align: center;
-      }
-      a.cur{
-          font-weight: bold;
-          color:#222;
-      }
-      a.cur:hover{
-          text-decoration:none;
-      }
-      .csb{
-          height: 40px;
-          display: block;
-          overflow: hidden;
-          white-space: nowrap;
-          color: #1a0dab;
-      }
-      .fl{
-          text-decoration: none;
-          display: block;
-          color: #1a0dab;
-          font-size: small;
-          text-align: center;
-      }
-      .fl:hover{
-          text-decoration: underline;
-      }
-      .pn{
-          color:#1a0dab;      /* #609 */
-          font-size:small;
-          font-weight:bold;
-      }
-      .pn .txt:hover{
-          text-decoration:underline;
-      }
+        .content {
+            margin: 5px;
+        }
 
-      </style>
-      <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
-      <link rel="stylesheet" href="/bower_components/todc-bootstrap/dist/css/todc-bootstrap.min.css"/>
-  </head>
-  <body>
-  <div>
-      <div class="search-result">
-          <div class="header-bar">
-              <div class="logo">
-                  <a href="/"><img width="167" height="373" src="/images/nav_logo.png"></a>
-              </div>
-              <div class="form_box">
-                  <form action="/search">
-                      <div class="form-group">
-                          <input class="form-control" type="text" name="q" value="java">
-                      </div>
-                      <button type="submit" class="btn btn-primary">搜索</button>
-                  </form>
-              </div>
-          </div>
+        .s_r {
+            background-color: white;
+            margin-top: 6px;
+        }
+        .s_r .title{
+            color: #1A0DAB;
+            font-size: 18px;
+            text-decoration: none;
+        }
+        .s_r .title:hover{
+            text-decoration: underline;
+        }
+        .s_r .title em{
+            color:#dd4b39;
+            font-style:normal;
+        }
+        .s_r .visible_url{
+            font-size: 13px;
+            color:#006621;
+            margin-bottom: 2px;
+        }
+        .s_r .visible_url em{
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        .s_r .visible_url a{
+            color:#006621;
+        }
+
+        .s_r .min_content{
+            line-height: 1.4;
+            word-wrap: break-word;
+            color: #545454;
+            font-size:13px;
+        }
+        .s_r .min_content b{
+            color: #dd4b39;
+            font-style: normal;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div>
+        <div class="header-bar">
+            <div class="form_box">
+                <form action="/search" onsubmit="return document.getElementById('search_txt_id').value==''?false:true;">
+                    <input id="search_txt_id" class="s_text" type="text" name="q" value="pure">
+                    <input class="s_submit m-button" value="" type="submit">
+                </form>
+            </div>
+        </div>
 
 
-          <div class="content">
-              <div class="content_header">
-                  <div class="link">
-                      <!--<a class="active" href="#">网页</a>-->
-                      <!--<a href="#">图片</a>-->
-                  </div>
-              </div>
-              <div class="result_stats">
-                  找到约 61,000,000 条结果 （用时 0.36 秒）
-              </div>
-              <div class="search_result">
-                  <div class="s_r">
-                      <a target="_blank" class="title" href="https://java.com/download">Download Free <b>Java</b> Software</a>
-                      <div class="visible_url">java.com</div>
-                      <div class="min_content">This page is your source to download or update your existing <b>Java</b> Runtime
-                          Environment (JRE, <b>Java</b> Runtime), also known as the <b>Java</b> plug-in (plugin), <b>Java</b>
-                          &nbsp;...</div>
-                  </div>
+        <div class="content">
+            <div class="search_result">
 
-                  <div class="s_r">
-                      <a target="_blank" class="title" href="http://www.java.com/cn"><b>java</b>.com: <b>Java</b> 与您</a>
-                      <div class="visible_url">www.java.com</div>
-                      <div class="min_content">立即下载适用于您的桌面计算机的<b>Java</b> 软件！ ... <b>Java</b> 与您, 立即下载. 免费<b>Java</b>
-                          下载. » 什么是<b>Java</b>？ » 我有<b>Java</b> 吗？ » 是否需要帮助？ 所有<b>Java</b> 下载&nbsp;...</div>
-                  </div>
+                <div class="s_r">
+                    <a target="_blank" class="title" href="http://purecss.io/" name="r_url"><em>Pure</em></a>
+                    <div class="visible_url"><b>pure</b>css.io/</div>
+                    <div class="min_content">CSS with a minimal footprint. Pure is ridiculously tiny. The entire set of modules clocks in at 4.4KB* minified and gzipped. Crafted with mobile devices in mind, ...</div>
+                </div>
 
-                  <div class="s_r">
-                      <a target="_blank" class="title" href="http://code.google.com/p/gstreamer-java/">gstreamer-<b>java</b> - <b>Java</b> interface to the gstreamer framework - Google <b>...</b></a>
-                      <div class="visible_url">code.google.com</div>
-                      <div class="min_content">An unofficial/alternative set of <b>java</b> bindings for the gstreamer multimedia
-                          framework. Please use the gstreamer-<b>java</b> google group to discuss using&nbsp;...</div>
-                  </div>
+                <div class="s_r">
+                    <a target="_blank" class="title" href="http://www.pure.com/" name="r_url"><em>Pure</em>.com: Digital Radios, Internet Radios</a>
+                    <div class="visible_url">www.<b>pure</b>.com/</div>
+                    <div class="min_content">Pure produces award-winning DAB digital radios, internet radios and music streaming devices, including portable, hi-fi and in-car models.</div>
+                </div>
 
-                  <div class="s_r">
-                      <a target="_blank" class="title" href="http://zh.wikipedia.org/zh/Java"><b>Java</b> - 维基百科，自由的百科全书</a>
-                      <div class="visible_url">zh.wikipedia.org</div>
-                      <div class="min_content"><b>Java</b>编程语言的风格十分接近C++语言。继承了C++语言面向对象技术的核心，<b>Java</b>
-                          舍弃了C++语言中容易引起错误的指針，改以引用取代，同時移除原C++與原來&nbsp;...</div>
-                  </div>
+                <div class="s_r">
+                    <a target="_blank" class="title" href="http://pure-site.ap01.aws.af.cm/" name="r_url"><em>Pure</em>中文版– <em>Pure</em></a>
+                    <div class="visible_url"><b>pure</b>-site.ap01.aws.af.cm/</div>
+                    <div class="min_content">Pure中文版. 一个你可以应用到所有web项目的小巧的、响应式的CSS模块集. &lt;link rel=&quot;stylesheet&quot; href=&quot;http://yui.yahooapis.com/pure/0.3.0/pure-min.css&quot;&gt;.</div>
+                </div>
 
-                  <div class="s_r">
-                      <a target="_blank" class="title" href="http://code.google.com/p/gstreamer-java/wiki/GettingHelp">GettingHelp - gstreamer-<b>java</b> - Getting help, asking questions <b>...</b></a>
-                      <div class="visible_url">code.google.com</div>
-                      <div class="min_content">Oct 16, 2011 <b>...</b> Gstreamer <b>java</b> is merely a wrapper <b>Java</b> library around the gstreamer native C
-                          binaries - you must be able to use the Gstreamer binaries&nbsp;...</div>
-                  </div>
+                <div class="s_r">
+                    <a target="_blank" class="title" href="http://www.iciba.com/pure/" name="r_url"><em>pure</em>是什么意思_<em>pure</em>的翻译_音标_读音_用法_例句_爱词霸 <b>...</b></a>
+                    <div class="visible_url">www.iciba.com/<b>pure</b>/</div>
+                    <div class="min_content">爱词霸权威在线词典,为您提供pure的中文意思,pure的用法讲解,pure的读音,pure的同义词,pure的反义词,pure的例句等英语服务。</div>
+                </div>
+            </div>
 
-                  <div class="s_r">
-                      <a target="_blank" class="title" href="http://www.oracle.com/technetwork/java/javase/downloads/index.html?ssSourceSiteId=otnjp"><b>Java</b> SE - Downloads | Oracle Technology Network | Oracle</a>
-                      <div class="visible_url">www.oracle.com</div>
-                      <div class="min_content">Runs <b>Java</b> applets and JavaBeans using <b>Java</b> Runtime Environment, instead of
-                          the web browser&#39;s default virtual machine. Free. Browser plugin is part of the&nbsp;...</div>
-                  </div>
+            <div class="navcnt">
+                <span>
 
-                  <div class="s_r">
-                      <a target="_blank" class="title" href="http://code.google.com/p/gstreamer-java/wiki/GstreamerOnMacOSX">GstreamerOnMacOSX - gstreamer-<b>java</b> - Build instructions for <b>...</b></a>
-                      <div class="visible_url">code.google.com</div>
-                      <div class="min_content">Introduction. Although macports comes with a version of gstreamer, it is
-                          somewhat old and incomplete - you won&#39;t be able to play most useful files (e.g.
-                          XviD or&nbsp;...</div>
-                  </div>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--这是我自己的网站统计   http://gso.mlongbo.com    请替换掉-->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-                  <div class="s_r">
-                      <a target="_blank" class="title" href="http://zh.wikipedia.org/zh/Java%E5%B9%B3%E8%87%BA"><b>Java</b>平臺- 维基百科，自由的百科全书</a>
-                      <div class="visible_url">zh.wikipedia.org</div>
-                      <div class="min_content"><b>Java</b>平台即由<b>Java</b>程式語言所撰寫的軟體賴以執行的平台，是<b>Java</b>軟體和電腦系統
-                          的中介，最初被設計用在 Applet 等桌面端程式，不過後來逐漸轉移到伺服端的運用&nbsp;...</div>
-                  </div>
+    ga('create', 'UA-42596364-2', 'auto');
+    ga('send', 'pageview');
 
-                  <div class="s_r">
-                      <a target="_blank" class="title" href="https://blogs.oracle.com/java/entry/virtual_developer_day_java_2014"><b>Java</b> Virtual Developer Day (The <b>Java</b> Source)</a>
-                      <div class="visible_url">blogs.oracle.com</div>
-                      <div class="min_content">Mar 31, 2014 <b>...</b> Want all the the advantages of attending a great <b>Java</b> conference without all the
-                          hassles of traveling? Join us for Oracle&#39;s <b>Java</b> Virtual&nbsp;...</div>
-                  </div>
-
-                  <div class="s_r">
-                      <a target="_blank" class="title" href="http://nighthacking.com/nighthacking-java-8-tour/">NightHacking <b>Java</b> 8 Tour | NightHacking</a>
-                      <div class="visible_url">nighthacking.com</div>
-                      <div class="min_content">The NightHacking <b>Java</b> 8 Tour is the inaugural leg of the <b>Java</b> 8 Tour event
-                          where the evangelism team will be crossing the globe to speak at conferences
-                          and&nbsp;...</div>
-                  </div>
-              </div>
-      </div>
-
-
-  </div> <!-- /container -->
-
-  <!-- FOOTER
-    <footer class="footer ">
-        <p>Powered By Lenbo Ma</p>
-    </footer>-->
-
-
-    <!--<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
-  </body>
+</script>
+</body>
 </html>

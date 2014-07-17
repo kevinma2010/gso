@@ -18,6 +18,7 @@
   "dependencies": {
     "bootstrap": "~3.0.3",
     "todc-bootstrap": "*",
-    "jquery": "1.9.0"
+    "jquery": "1.9.0",
+    "pure": "~0.5.0"
   }
 }

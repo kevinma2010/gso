@@ -59,4 +59,8 @@ router.get('/url', function (req,res,next) {
     res.redirect(url);
 });
 
+router.get('/test', function (req, res) {
+   res.render
+});
+
 module.exports = router;
