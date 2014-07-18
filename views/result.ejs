@@ -8,7 +8,9 @@
     <link rel="icon" href="/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <% if(result.mobile) {%>
     <link rel="stylesheet" href="/stylesheets/style-responsive.css"/>
+    <%}%>
 </head>
 <body>
 <div class="wrapper">
@@ -43,12 +45,14 @@
             </div>
 
             <div class="navcnt">
+                <% if(result.mobile) {%>
                 <div id="mobile_next_page" class="next_page shadow">
                     <img src="/images/ajax-loader.gif" alt="" class="hidden"/>
                     <span>
                         下一页
                     </span>
                 </div>
+                <%}else{%>
                 <table style="border-collapse:collapse;text-align:left;margin:30px auto 30px">
                     <tbody>
                     <tr valign="top">
@@ -92,6 +96,7 @@
                     </tr>
                     </tbody>
                 </table>
+                <%}%>
             </div>
         </div>
     </div>
