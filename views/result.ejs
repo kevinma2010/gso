@@ -14,14 +14,14 @@
 <div class="wrapper">
 
     <div class="search-result">
-        <div class="header-bar">
+        <div class="header-bar shadow">
             <div class="logo">
                 <a href="/"><img width="167" height="373" src="/images/nav_logo.png"></a>
             </div>
             <div class="form_box">
                 <form action="/search" onsubmit="return document.getElementById('search_txt_id').value==''?false:true;">
                     <input id="search_txt_id" class="s_text" type="text" name="q" value="<%= result.q%>">
-                    <input class="s_submit m-button" value="搜&nbsp;&nbsp;索" type="submit">
+                    <input class="s_submit m-button" value="搜&nbsp;索" type="submit">
                 </form>
             </div>
         </div>
@@ -32,9 +32,9 @@
                 <%- result.resultStats%>
             </div>
 
-            <div class="search_result">
+            <div class="search_result" id="search_result">
                 <%for (var i = 0, total = result.data.length; i < total; i++) {%>
-                <div class="s_r">
+                <div class="s_r shadow">
                     <a target="_blank" class="title" href="http://<%= result.data[i].url%>" name="r_url"><%- result.data[i].title%></a>
                     <div class="visible_url"><%- result.data[i].cite%></div>
                     <div class="min_content"><%= result.data[i].content%></div>
@@ -43,6 +43,12 @@
             </div>
 
             <div class="navcnt">
+                <div id="mobile_next_page" class="next_page shadow">
+                    <img src="/images/ajax-loader.gif" alt="" class="hidden"/>
+                    <span>
+                        下一页
+                    </span>
+                </div>
                 <table style="border-collapse:collapse;text-align:left;margin:30px auto 30px">
                     <tbody>
                     <tr valign="top">
@@ -90,6 +96,33 @@
         </div>
     </div>
 </div>
+<% if(result.mobile) {%>
+<script src="/bower_components/zepto/zepto.min.js"></script>
+<script type="application/javascript">
+    (function () {
+        var start = 0;
+        var q = $("#search_txt_id").val();
+        var isLoad = false;
+        $("#mobile_next_page").click(function () {
+            if (isLoad) {
+                return false;
+            }
+            var self = $(this);
+            start+=10;
+            self.find('img').show();
+            self.find('span').hide();
+            $.ajax({
+                url: '/search?mobile=1&q='+q+'&start='+start,
+                success: function (res) {
+                    $('#search_result').append(res);
+                    self.find('img').hide();
+                    self.find('span').show();
+                }
+            });
+        });
+    })();
+</script>
+<%}%>
 <!--这是我自己的网站统计   http://gso.mlongbo.com    请替换掉-->
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

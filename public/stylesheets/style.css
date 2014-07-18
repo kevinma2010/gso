@@ -362,3 +362,7 @@ a.cur:hover{
 .pn .txt:hover{
     text-decoration:underline;
 }
+
+.next_page {
+    display: none;
+}

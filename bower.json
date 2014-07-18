@@ -19,6 +19,8 @@
     "bootstrap": "~3.0.3",
     "todc-bootstrap": "*",
     "jquery": "1.9.0",
-    "pure": "~0.5.0"
+    "pure": "~0.5.0",
+    "zepto": "~1.1.4",
+    "ejs": "~1.0.0"
   }
 }

@@ -1,6 +1,8 @@
 var express = require('express');
 var gsearch = require('../lib/gsearch');
 var router = express.Router();
+var ejs = require('ejs')
+    , fs = require('fs');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -10,11 +12,19 @@ router.get('/', function(req, res) {
 router.get('/search', function (req, res) {
     var q = req.query.q;
     var start = req.query.start || 0;
+    var mobile = req.query.mobile || 0;
     var userAgent = req.headers['user-agent'];
-    console.log(userAgent);
+//    console.log(userAgent);
     start = parseInt(start);
+    mobile = parseInt(mobile);
     gsearch(q,start, userAgent,function (result) {
-        console.log(result);
+        if (mobile === 1) {
+            var tmpl = fs.readFileSync(__dirname + '/../views/results.ejs', 'utf8');
+            var html = ejs.render(tmpl, {result: result});
+            res.end(html);
+            return;
+        }
+//        console.log(result);
 
         var i = start/10+1;
 
@@ -40,7 +50,7 @@ router.get('/search', function (req, res) {
             end: end
         };
 
-        console.log(num);
+//        console.log(num);
         res.render('result', {
             title: q + ' - Google Search',
             result: result,
