@@ -7,6 +7,7 @@ gso
 `cd gso & npm install & bower install`
 
 Run:
+
 `cd gso & ./bin/run`
 
 todo：
