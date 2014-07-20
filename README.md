@@ -6,6 +6,9 @@ gso
 
 `cd gso & npm install & bower install`
 
+Run:
+`cd gso & ./bin/run`
+
 todo：
 
 1. 增加“相关搜索”功能；
