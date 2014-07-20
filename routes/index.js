@@ -17,45 +17,52 @@ router.get('/search', function (req, res) {
 //    console.log(userAgent);
     start = parseInt(start);
     mobile = parseInt(mobile);
-    gsearch(q,start, userAgent,function (result) {
+    gsearch({
+        q: q,
+        start: start,
+        userAgent: userAgent
+    },function (result) {
         if (mobile === 1) {
-            var tmpl = fs.readFileSync(__dirname + '/../views/results.ejs', 'utf8');
+            var tmpl = fs.readFileSync(__dirname + '/../views/result_list.ejs', 'utf8');
             var html = ejs.render(tmpl, {result: result});
             res.end(html);
             return;
         }
 //        console.log(result);
-
-        var i = start/10+1;
-
-        var num = [];
-        var s,end,index = 0;
-        if (i-5 <= 0) {
-            s = 0;
-            end = 10;
-        } else {
-            s = i-6;
-            end=s+10;
-        }
-
-        for (var j = s, total = end; j < total; j++) {
-            num[index++] = j*10;
-        }
-
-        var page = {
-            pre: start-10,
-            num: num,
-            next: start+10,
-            start: s,
-            end: end
+        var renderResult = {
+            title: q + ' - Google Search',
+            result: result
         };
 
-//        console.log(num);
-        res.render('result', {
-            title: q + ' - Google Search',
-            result: result,
-            page: page
-        });
+        if (!result.mobile) {
+            var i = start/10+1;
+
+            var num = [];
+            var s,end,index = 0;
+            if (i-5 <= 0) {
+                s = 0;
+                end = 10;
+            } else {
+                s = i-6;
+                end=s+10;
+            }
+
+            for (var j = s, total = end; j < total; j++) {
+                num[index++] = j*10;
+            }
+
+            var page = {
+                pre: start-10,
+                num: num,
+                next: start+10,
+                start: s,
+                end: end
+            };
+
+            renderResult.page = page;
+        }
+
+        res.render('result', renderResult);
     });
 });
 
@@ -69,8 +76,5 @@ router.get('/url', function (req,res,next) {
     res.redirect(url);
 });
 
-router.get('/test', function (req, res) {
-   res.render
-});
 
 module.exports = router;
