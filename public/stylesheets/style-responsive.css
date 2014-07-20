@@ -50,6 +50,18 @@ only screen and (max-width: 760px) {
         padding: 4px;
     }
 
+    .s_r .title{
+        line-height: 1.4;
+    }
+
+    .s_r .visible_url{
+        line-height: 1.5;
+    }
+
+    .s_r .min_content{
+        line-height: 1.7;
+    }
+
     .search_result{
         margin-left:0px;
         width:100%;
@@ -78,6 +90,7 @@ only screen and (max-width: 760px) {
         word-wrap: break-word;
         color: #545454;
         font-size:16px;
+        margin-bottom: 12px;
     }
 
     .shadow {

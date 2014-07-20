@@ -283,6 +283,7 @@ a:hover {
     color: #1A0DAB;
     font-size: 18px;
     text-decoration: none;
+    line-height: 1.3;
 }
 .s_r .title:hover{
     text-decoration: underline;
@@ -295,6 +296,7 @@ a:hover {
     font-size: 13px;
     color:#006621;
     margin-bottom: 2px;
+    line-height: 1.3;
 }
 .s_r .visible_url em{
    font-weight: bold;
@@ -306,7 +308,7 @@ a:hover {
 }
 
 .s_r .min_content{
-    line-height: 1.4;
+    line-height: 1.7;
     word-wrap: break-word;
     color: #545454;
     font-size:13px;
