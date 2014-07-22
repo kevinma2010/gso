@@ -14,6 +14,9 @@ router.get('/search', function (req, res) {
     var start = req.query.start || 0;
     var mobile = req.query.mobile || 0;
     var userAgent = req.headers['user-agent'];
+    if (!q) {
+        res.redirect("/");
+    }
 //    console.log(userAgent);
     start = parseInt(start);
     mobile = parseInt(mobile);
