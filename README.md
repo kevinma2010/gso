@@ -5,8 +5,11 @@ gso
 安装：
 
 `git clone https://github.com/lenbo-ma/gso.git`
+
 `cd gso`
+
 `npm install & bower install`
+
 
 Run:
 
@@ -14,7 +17,8 @@ Run:
 
 或使用[forever](https://github.com/nodejitsu/forever)启动(推荐在生产环境中使用forever管理)
 
-`forever start -e err.log -o output.log ./bin/run
+`forever start -e err.log -o output.log ./bin/run`
+
 
 todo：
 
