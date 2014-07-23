@@ -4,11 +4,17 @@ gso
 
 安装：
 
-`cd gso & npm install & bower install`
+`git clone https://github.com/lenbo-ma/gso.git`
+`cd gso`
+`npm install & bower install`
 
 Run:
 
-`cd gso & ./bin/run`
+` ./bin/run`
+
+或使用[forever](https://github.com/nodejitsu/forever)启动(推荐在生产环境中使用forever管理)
+
+`forever start -e err.log -o output.log ./bin/run
 
 todo：
 
