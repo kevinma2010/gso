@@ -21,10 +21,11 @@ a:hover {
     padding-right: 10px;
 }
 .search-box .glogo{
-    background: url("/images/g_logo.png") no-repeat;
-    height: 95px;
-    width: 269px;
-    margin: 0 auto;
+    background:url(/images/logo11w.png) no-repeat;
+    background-size:269px 95px;
+    height:95px;
+    width:269px;
+    margin:0 auto;
 }
 .search-box .s_box {
     padding: 50px 35px;
