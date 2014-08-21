@@ -7,32 +7,30 @@
       <link rel="bookmark" type="image/x-icon"  href="/images/favicon.ico" />
       <link rel="icon" href="/images/favicon.ico">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel='stylesheet' href='/stylesheets/style.css' />
-      <link rel='stylesheet' href='/stylesheets/style-responsive.css' />
+      <link rel='stylesheet' href='/stylesheets/index.css' />
+      <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+      <link rel="stylesheet" href="/bower_components/todc-bootstrap/dist/css/todc-bootstrap.min.css"/>
   </head>
   <body>
-      <div class="wrapper">
-          <div class="search-box">
-              <div style="background:url(/images/logo11w.png) no-repeat;background-size:269px 95px;height:95px;width:269px;margin:0 auto;">
-                <div nowrap="" style="color:#777;font-size:16px;font-weight:bold;position:relative;left:218px;top:70px">gusou</div>
-              </div>
-              <form class="s_box" method="get" action="/search" onsubmit="return document.getElementById('id_s_text').value==''?false:true;">
-                  <input id="id_s_text" class="s_text" name="q" type="text" />
-                  <input class="s_submit m-button" value="搜索一下" type="submit" />
-              </form>
+  <div class="container">
+      <form class="form-search" method="get" action="/search" onsubmit="return document.getElementById('search_txt_id').value==''?false:true;">
+          <h2 class="form-search-heading">
+              <img src="/images/google-doodle-2014-7-14.gif"
+                      alt="" class="img-responsive"/>
+          </h2>
+          <div class="form-group">
+              <input type="text" id="search_txt_id" class="form-control" placeholder="" name="q" autofocus>
+              <button class="btn btn-default center-block" type="submit">Google&nbsp;搜索</button>
           </div>
-      </div>
+      </form>
+
+  </div> <!-- /container -->
 
   <!-- FOOTER
     <footer class="footer ">
         <p>Powered By Lenbo Ma</p>
     </footer>-->
 
-    <script type="text/javascript">
-    (function () {
-       document.getElementsByTagName('input')[0].focus();
-    })();
-    </script>
 
     <!--<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
   <!--这是我自己的网站统计   http://gso.mlongbo.com    请替换或注释掉-->
