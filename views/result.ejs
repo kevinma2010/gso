@@ -13,12 +13,22 @@
     <% if(result.mobile) {%>
     <link rel="stylesheet" href="/stylesheets/style-responsive.css"/>
     <%}%>
+     <style>
+        .headroom {
+            transition: transform 200ms linear;
+        }
+        .headroom--pinned {
+            transform: translateY(0%);
+        }
+        .headroom--unpinned {
+            transform: translateY(-100%);
+        }
+</style>
 </head>
 <body>
 <div class="wrapper">
-
     <div class="search-result">
-        <div class="header-bar shadow">
+        <div class="header-bar shadow"  id="header_bar">
             <div class="logo">
                 <a href="/"><img width="167" height="373" src="/images/nav_logo.png"></a>
             </div>
@@ -103,6 +113,18 @@
         </div>
     </div>
 </div>
+
+    <script src="//cdn.bootcss.com/headroom/0.5.0/headroom.min.js"></script>
+   <script type="text/javascript">
+        (function (Headroom) {
+            var myElement = document.querySelector("#header_bar");
+            // 创建 Headroom 对象，将页面元素传递进去
+            var headroom  = new Headroom(myElement);
+            // 初始化
+            headroom.init(); 
+        })(Headroom);
+   </script>
+
 <% if(result.mobile) {%>
 <script src="/bower_components/zepto/zepto.min.js"></script>
 <script type="application/javascript">

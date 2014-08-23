@@ -66,8 +66,8 @@ a:hover {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
 }
 .s_text:focus {
-    /*border: 1px solid #4D90FE;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset;*/
+    border: 1px solid #4D90FE;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset;
     outline: medium none;
 }
 
@@ -154,7 +154,11 @@ a:hover {
 .search-result{
 }
 .header-bar{
-    position: relative;
+    position: fixed;
+    /*z-index: 0;*/
+    right: 0;
+    left: 0;
+    top: 0;
     background: none repeat scroll 0 0 #f1f1f1;;
     background-image: -webkit-gradient(radial,100 36,0,100 -40,120,from(#fafafa),to(#f1f1f1));
     border-bottom: 1px solid #e5e5e5;
@@ -186,27 +190,44 @@ a:hover {
     margin-top: 5px;
 }
 .form_box .s_text{
-    padding: 4px 6px;
-    border-spacing: 2px;
-    color: #222;
-    height:20px;
-    width:529px;
-    font: 17px arial,sans-serif;
+    float: left;
+    font-size: 15px;
+    width: 520px;
+    background-color: #FFFFFF;
+    border-color: #C0C0C0 #D9D9D9 #D9D9D9;
+    border-style: solid;
+    border-width: 1px;
+    color: #333333;
+    display: inline-block;
+    height: 28px;
+    line-height: 13px;
+    line-height: 28px;
+    line-height: 28px;
+    padding-left: 8px;
+    vertical-align: bottom;
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+}
+.form_box .s_text:hover {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #A0A0A0 #B9B9B9 #B9B9B9;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+}
+.form_box .s_text:focus {
+    border: 1px solid #4D90FE;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) inset;
+    outline: medium none;
 }
 
-.form_box .s_text:hover{
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    border:1px solid gray;
-}
-.form_box .s_text:active,
-.form_box .s_text:focus{
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    border: 1px solid #4D90FE;
-}
 .form_box .s_submit{
     margin-left: 16px;
     width:72px;
@@ -214,6 +235,7 @@ a:hover {
 }
 
 .content{
+    margin-top: 80px;
 }
 .content .content_header{
     height:40px;
