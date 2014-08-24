@@ -5,13 +5,13 @@
     <meta charset="utf-8"/>
     <meta name="description" content="Google Search"/>
     <meta name="keywords" content="Google Search"/>
-    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
-    <link rel="bookmark" type="image/x-icon"  href="/images/favicon.ico" />
-    <link rel="icon" href="/images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="<%= r_prefix %>/images/favicon.ico" />
+    <link rel="bookmark" type="image/x-icon"  href="<%= r_prefix %>/images/favicon.ico" />
+    <link rel="icon" href="<%= r_prefix %>/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='<%= r_prefix %>/stylesheets/style.css'/>
     <% if(result.mobile) {%>
-    <link rel="stylesheet" href="/stylesheets/style-responsive.css"/>
+    <link rel="stylesheet" href="<%= r_prefix %>/stylesheets/style-responsive.css"/>
     <%}%>
      <style>
         .headroom {
@@ -30,7 +30,7 @@
     <div class="search-result">
         <div class="header-bar shadow"  id="header_bar">
             <div class="logo">
-                <a href="/"><img width="167" height="373" src="/images/nav_logo.png"></a>
+                <a href="/"><img width="167" height="373" src="<%= r_prefix %>/images/nav_logo.png"></a>
             </div>
             <div class="form_box">
                 <form action="/search" onsubmit="return document.getElementById('search_txt_id').value==''?false:true;">
@@ -59,7 +59,7 @@
             <div class="navcnt">
                 <% if(result.mobile) {%>
                 <div id="mobile_next_page" class="next_page shadow">
-                    <img src="/images/ajax-loader.gif" alt="" class="hidden"/>
+                    <img src="<%= r_prefix %>/images/ajax-loader.gif" alt="" class="hidden"/>
                     <span>
                         下一页
                     </span>
@@ -71,25 +71,25 @@
                         <td class="b navend">
                             <%if (result.start > 0) {%>
                             <a class="pn" href="/search?q=<%= result.q%>&start=<%= page.pre%>" id="pnnext" style="text-decoration:none;text-align:left">
-                                <span class="csb" style="background:url(/images/nav_logo.png) no-repeat;background-position:0 0;width:53px;"></span>
+                                <span class="csb" style="background:url(<%= r_prefix %>/images/nav_logo.png) no-repeat;background-position:0 0;width:53px;"></span>
                                 <span class="txt" style="display:block;">上一页</span>
                             </a>
                             <%} else {%>
-                            <span class="csb gbil" style="background:url(/images/nav_logo.png) no-repeat;background-position:-24px 0;background-size:167px;width:28px"></span>
+                            <span class="csb gbil" style="background:url(<%= r_prefix %>/images/nav_logo.png) no-repeat;background-position:-24px 0;background-size:167px;width:28px"></span>
                             <%}%>
                         </td>
                         <% for (var i = page.start,index=0, total = page.end; i <total; i++) {%>
                         <%if (result.start == i*10) {%>
                         <td class="fl cur">
                             <a class="fl cur">
-                                <span class="csb gbil" style="background:url(/images/nav_logo.png) no-repeat;background-position:-53px 0;background-size:167px;width:20px"></span>
+                                <span class="csb gbil" style="background:url(<%= r_prefix %>/images/nav_logo.png) no-repeat;background-position:-53px 0;background-size:167px;width:20px"></span>
                                 <%= page.num[index++]/10+1%>
                             </a>
                         <td>
                             <%} else {%>
                         <td>
                             <a class="fl" href="/search?q=<%= result.q%>&start=<%= page.num[index]%>">
-                                <span class="csb" style="background:url(/images/nav_logo.png) no-repeat;background-position:-74px 0;background-size:167px;width:20px"></span>
+                                <span class="csb" style="background:url(<%= r_prefix %>/images/nav_logo.png) no-repeat;background-position:-74px 0;background-size:167px;width:20px"></span>
                                 <%= page.num[index++]/10+1%>
                             </a>
                         </td>
@@ -99,7 +99,7 @@
                         <td class="b navend">
                             <a class="pn" href="/search?q=<%= result.q%>&start=<%= page.next%>" id="pnnext"
                                style="text-decoration:none;text-align:left">
-                                  <span class="csb" style="background:url(/images/nav_logo.png) no-repeat;background-position:-96px 0;background-size:167px;width:71px">
+                                  <span class="csb" style="background:url(<%= r_prefix %>/images/nav_logo.png) no-repeat;background-position:-96px 0;background-size:167px;width:71px">
 
                                   </span>
                                 <span class="txt" style="display:block;margin-left:53px">下一页</span>
