@@ -16,14 +16,35 @@
      <style>
         .headroom {
             transition: transform 200ms linear;
+            -moz-transition: transform 200ms linear;/* Firefox 4 */
+            -webkit-transition: transform 200ms linear;/* Safari 和 Chrome */
+            -o-transition: transform 200ms linear; /* Opera */
         }
-        .headroom--pinned {
+        .headroom-pinned {
             transform: translateY(0%);
+            -ms-transform: translateY(0%);     /* IE 9 */
+            -moz-transform: translateY(0%);   /* Firefox */
+            -webkit-transform: translateY(0%); /* Safari 和 Chrome */
+            -o-transform: translateY(0%); /* Opera */
         }
-        .headroom--unpinned {
+        .headroom-unpinned {
             transform: translateY(-100%);
+            -ms-transform: translateY(-100%);     /* IE 9 */
+            -moz-transform: translateY(-100%);   /* Firefox */
+            -webkit-transform: translateY(-100%); /* Safari 和 Chrome */
+            -o-transform: translateY(-100%); /* Opera */
         }
-</style>
+    </style>
+    <!--[if lt IE 9]>
+             <style>
+                .headroom-pinned {
+                    top: 0;
+                }
+                .headroom-unpinned {
+                    top: -100px;
+                }
+        </style>
+    <![endif]-->
 </head>
 <body>
 <div class="wrapper">
@@ -119,7 +140,12 @@
         (function (Headroom) {
             var myElement = document.querySelector("#header_bar");
             // 创建 Headroom 对象，将页面元素传递进去
-            var headroom  = new Headroom(myElement);
+            var headroom  = new Headroom(myElement, {
+                classes : {
+                  pinned : 'headroom-pinned',
+                  unpinned : 'headroom-unpinned'
+                }
+            });
             // 初始化
             headroom.init(); 
         })(Headroom);
