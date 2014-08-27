@@ -55,7 +55,7 @@
             </div>
             <div class="form_box">
                 <form action="/search" onsubmit="return document.getElementById('search_txt_id').value==''?false:true;">
-                    <input id="search_txt_id" class="s_text" type="text" name="q" value="<%= result.q%>">
+                    <input id="search_txt_id" class="s_text" type="text" name="q" value="<%= result.q%>" autocomplete="off"/>
                     <input class="s_submit m-button" value="搜&nbsp;索" type="submit">
                 </form>
             </div>
