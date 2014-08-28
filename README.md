@@ -19,11 +19,13 @@ Run:
 
 `forever start -e err.log -o output.log ./bin/run`
 
+最近新增:
+
+1. 增加“相关搜索”功能；
 
 todo：
 
-1. 增加“相关搜索”功能；
-2. 实现https功能(关键词加密);
-3. 增加在线代理功能(代理搜索结果中出现的部分被屏蔽的网站)；
+1. 实现https功能(关键词加密);
+2. 增加在线代理功能(代理搜索结果中出现的部分被屏蔽的网站)；
 
 [可用服务列表](https://github.com/lenbo-ma/gso/wiki/%E5%8F%AF%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%88%97%E8%A1%A8)
