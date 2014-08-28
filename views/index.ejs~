@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <title>Google Search</title>
+      <meta charset="utf-8"/>
+      <meta name="description" content="Google Search" />
+      <meta name="keywords" content="Google Search" />
+      <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GuSou" />
+      <link rel="shortcut icon" type="image/x-icon" href="<%= r_prefix %>/images/favicon.ico" />
+      <link rel="bookmark" type="image/x-icon"  href="<%= r_prefix %>/images/favicon.ico" />
+      <link rel="icon" href="<%= r_prefix %>/images/favicon.ico">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel='stylesheet' href='<%= r_prefix %>/stylesheets/style.css' />
+      <link rel='stylesheet' href='<%= r_prefix %>/stylesheets/style-responsive.css' />
+  </head>
+  <body>
+      <div class="wrapper">
+          <div class="search-box">
+              <div class="glogo">
+                <div nowrap="" style="color:#777;font-size:16px;font-weight:bold;position:relative;left:218px;top:70px">gusou</div>
+              </div>
+              <form class="s_box" method="get" action="/search" onsubmit="return document.getElementById('id_s_text').value==''?false:true;">
+                  <input id="id_s_text" class="s_text" name="q" type="text"  autocomplete="off"/>
+                  <input class="s_submit m-button" value="搜索一下" type="submit" />
+              </form>
+          </div>
+      </div>
+
+  <!-- FOOTER
+    <footer class="footer ">
+        <p>Powered By Lenbo Ma</p>
+    </footer>-->
+
+    <script type="text/javascript">
+    (function () {
+       document.getElementsByTagName('input')[0].focus();
+    })();
+    </script>
+
+    <!--<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
+  <!--这是我自己的网站统计   http://gso.mlongbo.com    请替换或注释掉-->
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-42596364-2', 'auto');
+      ga('send', 'pageview');
+
+  </script>
+  </body>
+</html>

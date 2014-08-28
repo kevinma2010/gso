@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title><%= title %></title>
+    <meta charset="utf-8"/>
+    <meta name="description" content="Google Search"/>
+    <meta name="keywords" content="Google Search"/>
+      <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GuSou" />
+    <link rel="shortcut icon" type="image/x-icon" href="<%= r_prefix %>/images/favicon.ico" />
+    <link rel="bookmark" type="image/x-icon"  href="<%= r_prefix %>/images/favicon.ico" />
+    <link rel="icon" href="<%= r_prefix %>/images/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel='stylesheet' href='<%= r_prefix %>/stylesheets/style.css'/>
+    <% if(result.mobile) {%>
+    <link rel="stylesheet" href="<%= r_prefix %>/stylesheets/style-responsive.css"/>
+    <%}%>
+     <style>
+        .headroom {
+            transition: transform 200ms linear;
+            -moz-transition: transform 200ms linear;/* Firefox 4 */
+            -webkit-transition: transform 200ms linear;/* Safari 和 Chrome */
+            -o-transition: transform 200ms linear; /* Opera */
+        }
+        .headroom-pinned {
+            transform: translateY(0%);
+            -ms-transform: translateY(0%);     /* IE 9 */
+            -moz-transform: translateY(0%);   /* Firefox */
+            -webkit-transform: translateY(0%); /* Safari 和 Chrome */
+            -o-transform: translateY(0%); /* Opera */
+        }
+        .headroom-unpinned {
+            transform: translateY(-100%);
+            -ms-transform: translateY(-100%);     /* IE 9 */
+            -moz-transform: translateY(-100%);   /* Firefox */
+            -webkit-transform: translateY(-100%); /* Safari 和 Chrome */
+            -o-transform: translateY(-100%); /* Opera */
+        }
+    </style>
+    <!--[if lt IE 9]>
+             <style>
+                .headroom-pinned {
+                    top: 0;
+                }
+                .headroom-unpinned {
+                    top: -100px;
+                }
+        </style>
+    <![endif]-->
+</head>
+<body>
+<div class="wrapper">
+    <div class="search-result">
+        <div class="header-bar shadow"  id="header_bar">
+            <div class="logo">
+                <a href="/"><img width="167" height="373" src="<%= r_prefix %>/images/nav_logo.png"></a>
+            </div>
+            <div class="form_box">
+                <form action="/search" onsubmit="return document.getElementById('search_txt_id').value==''?false:true;">
+                    <input id="search_txt_id" class="s_text" type="text" name="q" value="<%= result.q%>" autocomplete="off"/>
+                    <input class="s_submit m-button" value="搜&nbsp;索" type="submit">
+                </form>
+            </div>
+        </div>
+
+
+        <div class="content">
+            <div class="result_stats" id="result_stats">
+                <%- result.resultStats%>
+            </div>
+
+            <div class="search_result" id="search_result">
+                <%for (var i = 0, total = result.data.length; i < total; i++) {%>
+                <div class="s_r shadow">
+                    <a target="_blank" class="title" href="<%= result.data[i].url%>" name="r_url"><%- result.data[i].title%></a>
+                    <div class="visible_url"><%- result.data[i].cite%></div>
+                    <div class="min_content"><%= result.data[i].content%></div>
+                </div>
+                <%}%>
+            </div>
+
+            <div class="navcnt">
+                <% if(result.mobile) {%>
+                <div id="mobile_next_page" class="next_page shadow">
+                    <img src="<%= r_prefix %>/images/ajax-loader.gif" alt="" class="hidden"/>
+                    <span>
+                        下一页
+                    </span>
+                </div>
+                <%}else{%>
+                <table style="border-collapse:collapse;text-align:left;margin:30px auto 30px">
+                    <tbody>
+                    <tr valign="top">
+                        <td class="b navend">
+                            <%if (result.start > 0) {%>
+                            <a class="pn" href="/search?q=<%= result.q%>&start=<%= page.pre%>" id="pnnext" style="text-decoration:none;text-align:left">
+                                <span class="csb" style="background:url(<%= r_prefix %>/images/nav_logo.png) no-repeat;background-position:0 0;width:53px;"></span>
+                                <span class="txt" style="display:block;">上一页</span>
+                            </a>
+                            <%} else {%>
+                            <span class="csb gbil" style="background:url(<%= r_prefix %>/images/nav_logo.png) no-repeat;background-position:-24px 0;background-size:167px;width:28px"></span>
+                            <%}%>
+                        </td>
+                        <% for (var i = page.start,index=0, total = page.end; i <total; i++) {%>
+                        <%if (result.start == i*10) {%>
+                        <td class="fl cur">
+                            <a class="fl cur">
+                                <span class="csb gbil" style="background:url(<%= r_prefix %>/images/nav_logo.png) no-repeat;background-position:-53px 0;background-size:167px;width:20px"></span>
+                                <%= page.num[index++]/10+1%>
+                            </a>
+                        <td>
+                            <%} else {%>
+                        <td>
+                            <a class="fl" href="/search?q=<%= result.q%>&start=<%= page.num[index]%>">
+                                <span class="csb" style="background:url(<%= r_prefix %>/images/nav_logo.png) no-repeat;background-position:-74px 0;background-size:167px;width:20px"></span>
+                                <%= page.num[index++]/10+1%>
+                            </a>
+                        </td>
+                        <%}%>
+                        </td>
+                        <%}%>
+                        <td class="b navend">
+                            <a class="pn" href="/search?q=<%= result.q%>&start=<%= page.next%>" id="pnnext"
+                               style="text-decoration:none;text-align:left">
+                                  <span class="csb" style="background:url(<%= r_prefix %>/images/nav_logo.png) no-repeat;background-position:-96px 0;background-size:167px;width:71px">
+
+                                  </span>
+                                <span class="txt" style="display:block;margin-left:53px">下一页</span>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <%}%>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="//cdn.bootcss.com/headroom/0.5.0/headroom.min.js"></script>
+   <script type="text/javascript">
+        (function (Headroom) {
+            var myElement = document.querySelector("#header_bar");
+            // 创建 Headroom 对象，将页面元素传递进去
+            var headroom  = new Headroom(myElement, {
+                classes : {
+                  pinned : 'headroom-pinned',
+                  unpinned : 'headroom-unpinned'
+                }
+            });
+            // 初始化
+            headroom.init(); 
+        })(Headroom);
+   </script>
+
+<% if(result.mobile) {%>
+<script src="//cdn.bootcss.com/zepto/1.1.4/zepto.min.js"></script>
+<script type="application/javascript">
+    (function () {
+        var start = 0;
+        var q = $("#search_txt_id").val();
+        var isLoad = false;
+        $("#mobile_next_page").click(function () {
+            if (isLoad) {
+                return false;
+            }
+            var self = $(this);
+            start+=10;
+            self.find('img').show();
+            self.find('span').hide();
+            $.ajax({
+                url: '/search?mobile=1&q='+q+'&start='+start,
+                success: function (res) {
+                    $('#search_result').append(res);
+                    self.find('img').hide();
+                    self.find('span').show();
+                }
+            });
+        });
+    })();
+</script>
+<%}%>
+<!--这是我自己的网站统计   http://gso.mlongbo.com    请替换掉-->
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-42596364-2', 'auto');
+    ga('send', 'pageview');
+
+</script>
+</body>
+</html>
