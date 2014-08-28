@@ -10,9 +10,9 @@
     <link rel="bookmark" type="image/x-icon"  href="<%= r_prefix %>/images/favicon.ico" />
     <link rel="icon" href="<%= r_prefix %>/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel='stylesheet' href='<%= r_prefix %>/stylesheets/style.css'/>
+    <link rel='stylesheet' href='<%= r_prefix %>/stylesheets/style.css?=v'/>
     <% if(result.mobile) {%>
-    <link rel="stylesheet" href="<%= r_prefix %>/stylesheets/style-responsive.css"/>
+    <link rel="stylesheet" href="<%= r_prefix %>/stylesheets/style-responsive.css?=v'"/>
     <%}%>
      <style>
         .headroom {
@@ -77,6 +77,7 @@
                 </div>
                 <%}%>
             </div>
+            <% if(!result.mobile && result.extrares.has) {%>
             <div id="extrares" style="padding:0 8px">
                 <div style="clear:both;overflow:hidden" id="brs">
                     <h3 class="med" style="text-align:left">
@@ -87,7 +88,7 @@
                         <div class="brs_col">
                         <%for (var j = 0, total2 = result.extrares.arr[i].length; j < total2; j++) {%>
                             <p class="_e4b">
-                            <a href="<%= result.extrares.arr[i][j]['url']%>"><%= result.extrares.arr[i][j]['content']%></a>
+                            <a href="<%= result.extrares.arr[i][j]['url']%>"><%- result.extrares.arr[i][j]['content']%></a>
                             </p>
                         <%}%>
                         </div>
@@ -95,6 +96,7 @@
                     </div>
                 </div>
             </div>
+            <%}%>
             <div class="navcnt">
                 <% if(result.mobile) {%>
                 <div id="mobile_next_page" class="next_page shadow">
