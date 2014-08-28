@@ -16,7 +16,6 @@
     "morgan": "~1.0.0",
     "request": "^2.37.0",
     "static-favicon": "~1.0.0",
-    "xmlhttprequest": "^1.6.0"/*,
-    "zlib": "^1.0.5"*/
+    "xmlhttprequest": "^1.6.0"
   }
 }
