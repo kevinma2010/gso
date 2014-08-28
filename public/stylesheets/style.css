@@ -391,3 +391,49 @@ a.cur:hover{
 .next_page {
     display: none;
 }
+
+/*相关搜索区域样式*/
+#extrares{
+    margin-left:135px;
+    font-family: arial,sans-serif;
+    width:600px;
+}
+#brs {}
+#brs {
+    margin-bottom:16px
+}
+#brs .med {
+    color:#808080;
+    font-style:normal;
+    font-size: 18px;
+    line-height: 1.3;
+    /*height:auto;*/
+    /*padding-bottom:7px*/
+}
+.med em{
+    color:#dd4b39;
+    font-style:normal;
+}
+
+._e4b a{
+    color: #1A0DAB;
+    font-size: 14px;
+    text-decoration: none;
+    line-height: 1.3;
+}
+._e4b a:hover{
+    text-decoration: underline;
+}
+#brs ._e4b {
+    margin:0;
+    padding-top:5px;
+}
+.brs_col {
+    display:inline-block;
+    font-size:15px;
+    margin-top:-1px;
+    padding-bottom:1px;
+    float:left;
+    padding-right:16px;
+    line-height:20px
+}

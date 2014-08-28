@@ -128,4 +128,8 @@ only screen and (max-width: 760px) {
         -webkit-box-shadow: 1px 1px 2px #aaaaaa;
         box-shadow: 1px 1px 2px #aaaaaa;
     }
+    /*相关搜索隐藏*/
+    #extrares {
+        display: none;
+    }
 }
