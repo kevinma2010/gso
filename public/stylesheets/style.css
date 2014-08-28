@@ -397,6 +397,7 @@ a.cur:hover{
     margin-left:135px;
     font-family: arial,sans-serif;
     width:600px;
+    border-top:1px solid #ededed;
 }
 #brs {}
 #brs {
