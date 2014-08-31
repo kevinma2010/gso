@@ -66,6 +66,7 @@ router.get('/search', function (req, res) {
         }
 
         res.render('result', renderResult);
+        res.flush();
     });
 });
 
