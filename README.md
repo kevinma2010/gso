@@ -19,9 +19,16 @@ Run:
 
 `forever start -e err.log -o output.log ./bin/run`
 
+或使用[pm2](https://github.com/Unitech/pm2)启动
+
+`pm2 start ./bin/run -i max`
+
 最近新增:
 
 1. 增加“相关搜索”功能；
+2. opensearch, 支持Firefox,Chrome设置为默认搜索引擎；
+3. 简单的敏感词检测，否则连接会被qiang重置；
+4. html代码压缩，使用html-minifier模块进行压缩已渲染好的html代码；
 
 todo：
 
