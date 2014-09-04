@@ -8,7 +8,7 @@ gso
 
 `cd gso`
 
-`npm install & bower install`
+`npm install`
 
 
 Run:
