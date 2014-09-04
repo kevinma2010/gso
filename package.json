@@ -12,6 +12,7 @@
     "debug": "~0.7.4",
     "ejs": "~0.8.5",
     "express": "~4.2.0",
+    "html-minifier": "^0.6.8",
     "jQuery": "^1.7.4",
     "jsdom": "^0.11.1",
     "morgan": "~1.0.0",

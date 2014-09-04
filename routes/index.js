@@ -1,13 +1,42 @@
 var express = require('express');
+var minify = require('html-minifier').minify;
 var gsearch = require('../lib/gsearch');
 var router = express.Router();
 var ejs = require('ejs')
-    , fs = require('fs');
+    , fs = require('fs')
+    ,config = require('../config');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+    fs.readFile(__dirname + '/../views/index.ejs', 'utf8', function (err,tmpl) {
+        if (err) {
+            console.error("read index.ejs failed......")
+            res.status(500);
+            res.render('500');
+        } else {
+            var html = ejs.render(tmpl, { title: 'Google Search', r_prefix: config.r_prefix});
+            html = minify(html,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true});
+            res.end(html);
+            res.flush();
+        }
+    });  // res.render('index', { title: 'Google Search' });
 });
+
+/* GET sensitive word page. */
+router.get('/warn', function(req, res) {
+    fs.readFile(__dirname + '/../views/sensitivity.ejs', 'utf8', function (err,tmpl) {
+        if (err) {
+            console.error("read sensitivity.ejs failed......")
+            res.status(500);
+            res.render('500');
+        } else {
+            var html = ejs.render(tmpl, { title: 'Google Search', r_prefix: config.r_prefix});
+            html = minify(html,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true});
+            res.end(html);
+            res.flush();
+        }
+    });  // res.render('sensitivity', { title: 'Google Search' });
+  });
 
 router.get('/search', function (req, res) {
     var q = req.query.q;
@@ -65,8 +94,19 @@ router.get('/search', function (req, res) {
             renderResult.page = page;
         }
 
-        res.render('result', renderResult);
-        res.flush();
+        fs.readFile(__dirname + '/../views/result.ejs', 'utf8', function (err,tmpl) {
+            if (err) {
+                console.error("read result.ejs failed......")
+                res.status(500);
+                res.render('500');
+            } else {
+                renderResult.r_prefix = config.r_prefix;
+                var html = ejs.render(tmpl, renderResult);
+                html = minify(html,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true});
+                res.end(html);
+                res.flush();
+            }
+        });  // res.render('result', renderResult);
     });
 });
 
