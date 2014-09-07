@@ -7,7 +7,7 @@ module.exports = function (grunt) {
 				files: [
 					{
 						expand: true, 
-						src: ['bin/**', 'lib/**', 'routers/**', 'views/**', 'public/images/**','app.js','LICENSE','README.md','package.json'], 
+						src: ['bin/**', 'lib/**', 'routers/**', 'public/images/**','app.js','LICENSE','README.md','package.json'], 
 						dest: 'build/'
 					},
 					{
@@ -16,6 +16,16 @@ module.exports = function (grunt) {
 						filter: 'isFile'
 					}
 				]
+			},
+			views: {
+				expand: true,
+				src: ['views/**'],
+				dest: 'build/',
+				options: {
+					process: function (content, srcpath) {
+						return content.replace(/\/\/www.google-analytics.com/g, '<%= r_prefix %>\/javascripts');
+					}
+				}
 			},
 			config: {
 				src: 'config.js',
