@@ -36,7 +36,7 @@
   <div class="_dQc _E2" id="fbar">
     <div class="fbar">
         <span id="fsr">
-            <a class="_eA" href="javascript:void(0)" onclick="setAsDefault()" target="_blank">
+            <a class="_eA" href="javascript:void(0);" onclick="setAsDefault()">
                 设置为默认搜索引擎
             </a>
             <!-- <a class="_Gs" href="">
@@ -70,13 +70,14 @@
     <script type="text/javascript">
     (function () {
        document.getElementsByTagName('input')[0].focus();
+
        this.setAsDefault = function () {
-          if (window.external && ('AddSearchProvider' in window.external)) {
-                window.external.AddSearchProvider ("<%= r_prefix %>/opensearch.xml");
-          }
-          else {
+          if (("ActiveXObject" in window) && window.external && ('AddSearchProvider' in window.external)) {
+              window.external.AddSearchProvider('<%= r_prefix %>/opensearch.xml');
+          } else {
               window.open('http://mlongbo.com/set_as_default_search_engine/');
           }
+          return false;
        };
     })();
     </script>
