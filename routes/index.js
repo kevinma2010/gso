@@ -22,6 +22,38 @@ router.get('/', function(req, res) {
     });  // res.render('index', { title: 'Google Search' });
 });
 
+/* GET 404 page */
+router.get('/notfound', function (req, res) {
+    fs.readFile(__dirname + '/../views/404.ejs', 'utf8', function (err,tmpl) {
+        if (err) {
+            console.error("read 404.ejs failed......")
+            res.status(500);
+            res.render('500');
+        } else {
+            var html = ejs.render(tmpl, {});
+            html = minify(html,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true});
+            res.end(html);
+            res.flush();
+        }
+    }); 
+});
+
+/* GET 500 page */
+router.get('/error', function (req, res) {
+    fs.readFile(__dirname + '/../views/500.ejs', 'utf8', function (err,tmpl) {
+        if (err) {
+            console.error("read 500.ejs failed......")
+            res.status(500);
+            res.render('500');
+        } else {
+            var html = ejs.render(tmpl, {});
+            html = minify(html,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true});
+            res.end(html);
+            res.flush();
+        }
+    }); 
+});
+
 /* GET sensitive word page. */
 router.get('/warn', function(req, res) {
     fs.readFile(__dirname + '/../views/sensitivity.ejs', 'utf8', function (err,tmpl) {
