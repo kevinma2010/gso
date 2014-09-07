@@ -600,7 +600,7 @@
 	  	return false;
 	  }
 	  if (sensitivity[hex_md5(searchItem)]) {
-	    location.href="/warn";
+	    location.href="/error";
 	    return false;
 	  }
 	}
