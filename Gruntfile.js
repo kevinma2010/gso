@@ -23,7 +23,10 @@ module.exports = function (grunt) {
 				dest: 'build/',
 				options: {
 					process: function (content, srcpath) {
-						return content.replace(/\/\/www.google-analytics.com/g, '<%= r_prefix %>\/javascripts');
+						content = content.replace(/\/\/www.google-analytics.com/g, '<%= r_prefix %>\/javascripts');
+						content = content.replace(/<!--\/\/gascript/g, ' ');
+						content = content.replace(/\/\/gascript-->/g, ' ');
+						return content;
 					}
 				}
 			},
