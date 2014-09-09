@@ -22,6 +22,22 @@ router.get('/', function(req, res) {
     });  // res.render('index', { title: 'Google Search' });
 });
 
+/* GET Feedback page. */
+router.get('/feedback', function(req, res) {
+    fs.readFile(__dirname + '/../views/feedback.ejs', 'utf8', function (err,tmpl) {
+        if (err) {
+            console.error("read feedback.ejs failed......")
+            res.status(500);
+            res.render('500');
+        } else {
+            var html = ejs.render(tmpl, { r_prefix: config.r_prefix});
+            html = minify(html,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true});
+            res.end(html);
+            res.flush();
+        }
+    });  // res.render('index', { title: 'Google Search' });
+});
+
 /* GET 404 page */
 router.get('/notfound', function (req, res) {
     fs.readFile(__dirname + '/../views/404.ejs', 'utf8', function (err,tmpl) {
