@@ -111,7 +111,7 @@
                     <tr valign="top">
                         <td class="b navend">
                             <%if (result.start > 0) {%>
-                            <a class="pn" href="/search?q=<%= result.q%>&start=<%= page.pre%>" id="pnnext" style="text-decoration:none;text-align:left">
+                            <a class="pn" href="/search?q=<%= result.encodeQ%>&start=<%= page.pre%>" id="pnnext" style="text-decoration:none;text-align:left">
                                 <span class="csb" style="background:url(<%= r_prefix %>/images/nav_logo.png) no-repeat;background-position:0 0;width:53px;"></span>
                                 <span class="txt" style="display:block;">上一页</span>
                             </a>
@@ -129,8 +129,8 @@
                         <td>
                             <%} else {%>
                         <td>
-                            <a class="fl" href="/search?q=<%= result.q%>&start=<%= page.num[index]%>">
-                                <span class="csb" style="background:url(<%= r_prefix %>/images/nav_logo.png) no-repeat;background-position:-74px 0;background-size:167px;width:20px"></span>
+                            <a class="fl" href="/search?q=<%= result.encodeQ%>&start=<%= page.num[index]%>">
+                                <span class="csb" style="background:url(<%= r_prefix %>/images/nav_logo.png) no-repeat;background-position:-74px 0;background-size:167px;width:20px"></span> <!--分页数字-->
                                 <%= page.num[index++]/10+1%>
                             </a>
                         </td>
@@ -138,7 +138,7 @@
                         </td>
                         <%}%>
                         <td class="b navend">
-                            <a class="pn" href="/search?q=<%= result.q%>&start=<%= page.next%>" id="pnnext"
+                            <a class="pn" href="/search?q=<%= result.encodeQ%>&start=<%= page.next%>" id="pnnext"
                                style="text-decoration:none;text-align:left">
                                   <span class="csb" style="background:url(<%= r_prefix %>/images/nav_logo.png) no-repeat;background-position:-96px 0;background-size:167px;width:71px">
 
