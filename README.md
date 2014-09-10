@@ -8,7 +8,7 @@ gso
 
 `cd gso`
 
-`npm install`
+`npm install --production`(注意是两个-)
 
 
 Run:
