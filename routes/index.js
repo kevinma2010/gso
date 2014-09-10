@@ -39,6 +39,9 @@ router.get('/search', function (req, res) {
     if (!q) {
         res.redirect("/");
     }
+    // console.log(q);
+    q = decodeURI(q);
+    // console.log(decodeURIComponent(q));
 //    console.log(userAgent);
     start = parseInt(start);
     mobile = parseInt(mobile);
