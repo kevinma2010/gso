@@ -8,83 +8,28 @@ var ejs = require('ejs')
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    fs.readFile(__dirname + '/../views/index.ejs', 'utf8', function (err,tmpl) {
-        if (err) {
-            console.error("read index.ejs failed......")
-            res.status(500);
-            res.render('500');
-        } else {
-            var html = ejs.render(tmpl, { title: 'Google Search', r_prefix: config.r_prefix});
-            html = minify(html,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true});
-            res.end(html);
-            res.flush();
-        }
-    });  // res.render('index', { title: 'Google Search' });
+    render(res,'index', { title: 'Google Search', r_prefix: config.r_prefix});  // res.render('index', { title: 'Google Search' });
 });
 
 /* GET Feedback page. */
 router.get('/feedback', function(req, res) {
-    fs.readFile(__dirname + '/../views/feedback.ejs', 'utf8', function (err,tmpl) {
-        if (err) {
-            console.error("read feedback.ejs failed......")
-            res.status(500);
-            res.render('500');
-        } else {
-            var html = ejs.render(tmpl, { r_prefix: config.r_prefix});
-            html = minify(html,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true});
-            res.end(html);
-            res.flush();
-        }
-    });  // res.render('index', { title: 'Google Search' });
+    render(res,'feedback', { r_prefix: config.r_prefix}); // res.render('index', { title: 'Google Search' });
 });
 
 /* GET 404 page */
 router.get('/notfound', function (req, res) {
-    fs.readFile(__dirname + '/../views/404.ejs', 'utf8', function (err,tmpl) {
-        if (err) {
-            console.error("read 404.ejs failed......")
-            res.status(500);
-            res.render('500');
-        } else {
-            var html = ejs.render(tmpl, {});
-            html = minify(html,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true});
-            res.end(html);
-            res.flush();
-        }
-    }); 
+    render(res,'404',{});
 });
 
 /* GET 500 page */
 router.get('/error', function (req, res) {
-    fs.readFile(__dirname + '/../views/500.ejs', 'utf8', function (err,tmpl) {
-        if (err) {
-            console.error("read 500.ejs failed......")
-            res.status(500);
-            res.render('500');
-        } else {
-            var html = ejs.render(tmpl, {});
-            html = minify(html,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true});
-            res.end(html);
-            res.flush();
-        }
-    }); 
+    render(res,'500',{});
 });
 
 /* GET sensitive word page. */
 router.get('/warn', function(req, res) {
-    fs.readFile(__dirname + '/../views/sensitivity.ejs', 'utf8', function (err,tmpl) {
-        if (err) {
-            console.error("read sensitivity.ejs failed......")
-            res.status(500);
-            res.render('500');
-        } else {
-            var html = ejs.render(tmpl, { title: 'Google Search', r_prefix: config.r_prefix});
-            html = minify(html,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true});
-            res.end(html);
-            res.flush();
-        }
-    });  // res.render('sensitivity', { title: 'Google Search' });
-  });
+    render(res,'sensitivity', { title: 'Google Search', r_prefix: config.r_prefix}); // res.render('sensitivity', { title: 'Google Search' });
+});
 
 router.get('/search', function (req, res) {
     var q = req.query.q;
@@ -103,9 +48,7 @@ router.get('/search', function (req, res) {
         userAgent: userAgent
     },function (result) {
         if (mobile === 1) {
-            var tmpl = fs.readFileSync(__dirname + '/../views/result_list.ejs', 'utf8');
-            var html = ejs.render(tmpl, {result: result});
-            res.end(html);
+            render(res,"result_list", {result: result});
             return;
         }
 //        console.log(result);
@@ -142,19 +85,8 @@ router.get('/search', function (req, res) {
             renderResult.page = page;
         }
 
-        fs.readFile(__dirname + '/../views/result.ejs', 'utf8', function (err,tmpl) {
-            if (err) {
-                console.error("read result.ejs failed......")
-                res.status(500);
-                res.render('500');
-            } else {
-                renderResult.r_prefix = config.r_prefix;
-                var html = ejs.render(tmpl, renderResult);
-                html = minify(html,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true});
-                res.end(html);
-                res.flush();
-            }
-        });  // res.render('result', renderResult);
+        renderResult.r_prefix = config.r_prefix;   
+        render(res,'result',renderResult); // res.render('result', renderResult);
     });
 });
 
@@ -168,5 +100,19 @@ router.get('/url', function (req,res,next) {
     res.redirect(url);
 });
 
+function render (res,view,data) {
+    fs.readFile(__dirname + '/../views/'+view+'.ejs', 'utf8', function (err,tmpl) {
+        if (err) {
+            console.error("read "+view+".ejs failed......")
+            res.status(500);
+            res.render('500');
+        } else {
+            var html = ejs.render(tmpl, data);
+            html = minify(html,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true});
+            res.end(html);
+            res.flush();
+        }
+    }); 
+}
 
 module.exports = router;
