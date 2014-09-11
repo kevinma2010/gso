@@ -341,7 +341,10 @@ a:hover {
     font-style: normal;
     font-weight: normal;
 }
-
+.s_r .min_content em{
+    color:#dd4b39;
+    font-style:normal;
+}
 .navcnt{
     border-top:1px solid #ededed;
     margin-left: 138px;
