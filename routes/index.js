@@ -16,6 +16,11 @@ router.get('/feedback', function(req, res) {
     render(res,'feedback', { r_prefix: config.r_prefix}); // res.render('index', { title: 'Google Search' });
 });
 
+/* GET Feedback page. */
+router.get('/issues', function(req, res) {
+    render(res,'issues', { r_prefix: config.r_prefix});
+});
+
 /* GET 404 page */
 router.get('/notfound', function (req, res) {
     render(res,'404',{});
