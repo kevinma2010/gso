@@ -26,7 +26,7 @@ Run:
 最近新增:
 
 1. 增加“相关搜索”功能；
-2. opensearch, 支持Firefox,Chrome设置为默认搜索引擎；
+2. opensearch, 支持IE,Firefox,Chrome设置为默认搜索引擎；
 3. 简单的敏感词检测，否则连接会被qiang重置；
 4. html代码压缩，使用html-minifier模块进行压缩已渲染好的html代码；
 5. headroom功能(当页面向下滚动时，搜索区消失，当页面向上滚动时，搜索区又出现了。个人觉得这个体验对小屏幕笔记本及pad比较好，尤其是手机终端); 
