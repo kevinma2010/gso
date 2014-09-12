@@ -117,6 +117,7 @@ function render (res,view,data) {
         } else {
             var html = ejs.render(tmpl, data);
             html = minify(html,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true});
+            res.set('Content-Type','text/html; charset=utf-8');
             res.end(html);
             res.flush();
         }
