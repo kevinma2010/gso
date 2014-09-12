@@ -36,7 +36,7 @@ module.exports = function (grunt) {
 				options: {
 					process: function (content, srcpath) {
 						content = content.replace(/r_prefix: ""/g, 'r_prefix: "//gusou.qiniudn.com"');
-						content = content.replace(/'en',/g, '\'zh-CN\'');
+						content = content.replace(/'en'/g, '\'zh-CN\'');
 						content = content.replace(/'https:\/\/www.google.com.hk'/g, '\'http:\/\/74.125.235.68\'');
 						return content;
 					}
