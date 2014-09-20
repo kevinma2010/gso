@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <title>Google Search</title>
+      <title>谷搜客 - 基于Google的实时搜索服务</title>
       <meta charset="utf-8"/>
-      <meta name="description" content="谷搜,Google搜索" />
-      <meta name="keywords" content="谷搜,Google搜索" />
-      <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GuSou" />
+      <meta name="description" content="谷搜客基于Google搜索,为喜爱谷歌搜索的朋友们免费提供高速稳定的搜索服务。搜索结果通过Google.com实时抓取，欢迎您在日常生活学习中使用谷搜客查询资料。" />
+      <meta name="keywords" content="谷歌 谷搜客 google 谷歌不能访问 gusouk" />
+      <link rel="search" type="application/opensearchdescription+xml" href="<%= r_prefix %>/opensearch.xml" title="谷搜客" />
       <link rel="shortcut icon" type="image/x-icon" href="<%= r_prefix %>/images/favicon.ico" />
       <link rel="bookmark" type="image/x-icon"  href="<%= r_prefix %>/images/favicon.ico" />
       <link rel="icon" href="<%= r_prefix %>/images/favicon.ico">
@@ -17,11 +17,11 @@
       <div class="wrapper">
           <div class="search-box">
               <div class="glogo">
-                <div nowrap="" style="color:#777;font-size:16px;font-weight:bold;position:relative;left:218px;top:70px">谷搜</div>
+                <div nowrap="" style="color:#777;font-size:16px;font-weight:bold;position:relative;left:218px;top:70px">谷搜客</div>
               </div>
               <form class="s_box" method="get" action="/search" onsubmit="return document.getElementById('id_s_text').value==''?false:true;">
-                  <input id="id_s_text" class="s_text" name="q" type="text"  autocomplete="off"/>
-                  <input class="s_submit m-button" value="搜索一下" type="submit" />
+                  <input id="id_s_text" class="s_text" name="q" type="text"  autocomplete="off" placeholder="世界因你而美好, 加油~"/>
+                  <input class="s_submit m-button" value="搜一下" type="submit" />
               </form>
           </div>
       </div>
@@ -41,8 +41,7 @@
     <div class="fbar">
         <span id="fsr">
             <a class="_Gs unline">
-                &copy; 2014 GuSou All rights reserved &nbsp;
-                Power by Longbo Ma&nbsp;
+                Copyright&nbsp;&copy;&nbsp;GuSouK.com
             </a>
             <a class="_eA" href="javascript:void(0);" onclick="setAsDefault()">
                 <strong>设置为默认搜索引擎</strong>
@@ -52,26 +51,17 @@
             </a> -->
         </span>
         <span id="fsl">
-            <a class="_eA" href="http://mlongbo.com/aboutgso/" target="_blank">
+            <a class="_eA" href="http://mlongbo.com/aboutgso/" target="_blank" title="我需要你的帮助">
                 <strong>捐助</strong>
-            </a><!-- 
-            <a class="_Gs" href="https://github.com/lenbo-ma/gso/issues" target="_blank">
-                GitHub Issues
-            </a> -->
-            <a class="_Gs" href="mailto:mlongbo@gmail.com?subject=[GuSou]-" target="_blank">
+            </a>
+            <a class="_Gs" href="mailto:mlongbo@gmail.com?subject=[GuSou]-" target="_blank" title="快给我写信提建议啦">
                 <strong>给我发邮件</strong>
             </a>
             <a class="_Gs" href="/feedback" target="_blank" title="踊跃发言啦">
                 <strong>提建议</strong>
             </a>
-            <a class="_Gs" href="/issues" target="_blank" title="在这里提交遇见的问题">
-                <strong>提Bug</strong>
-            </a>
             <a class="_Gs" href="http://www.zhihu.com/question/20161362" target="_blank">
                 如何用好Google搜索引擎
-            </a>
-            <a class="_Gs" href="http://www.zhihu.com/question/25150310" target="_blank">
-                如何看待[封锁Google第一案]的开庭审理
             </a>
         </span>
     </div>
@@ -110,5 +100,10 @@
     ga('create', 'UA-42596364-3', 'auto');
     ga('send', 'pageview');
   </script> //gascript-->
+  <script type="text/javascript">
+      console.info("谷搜客基于Google搜索,为喜爱谷歌搜索的朋友们免费提供高速稳定的搜索服务。搜索结果通过Google.com实时抓取，欢迎您在日常生活学习中使用谷搜客查询资料。");
+      console.info("如果你觉得谷搜客对你有帮助，请资助(支付宝账号: mlongbo@gmail.com)我一下，资金将用于支持我开发及购买服务器资源。^_^");
+      console.info("希望能够让更多的获取知识，各自加油！");
+    </script>
   </body>
 </html>
