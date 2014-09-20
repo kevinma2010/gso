@@ -61,7 +61,7 @@ router.get('/search', function (req, res) {
         }
 //        console.log(result);
         var renderResult = {
-            title: q + ' - Google Search',
+            title: q,
             result: result
         };
 
