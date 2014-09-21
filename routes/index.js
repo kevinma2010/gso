@@ -11,6 +11,10 @@ router.get('/', function(req, res) {
     render(res,'index', { title: 'Google Search', r_prefix: config.r_prefix});  // res.render('index', { title: 'Google Search' });
 });
 
+router.get('/refactor', function(req, res) {
+    render(res,'/test/style_refactor', { title: 'Google Search', r_prefix: config.r_prefix});  // res.render('index', { title: 'Google Search' });
+});
+
 /* GET Feedback page. */
 router.get('/feedback', function(req, res) {
     render(res,'feedback', { r_prefix: config.r_prefix}); // res.render('index', { title: 'Google Search' });
