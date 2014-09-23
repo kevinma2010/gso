@@ -351,10 +351,10 @@ a:hover {
 /*下一页区域*/
 .navcnt{
     border-top:1px solid #ededed;
-    margin-left: 138px;
+    margin-left: 105px;
     width: 600px;
     font-family: arial,sans-serif;
-    margin-bottom: 50px;
+    margin-bottom: 80px;
 }
 
 .navcnt table{
@@ -414,7 +414,7 @@ a.cur:hover{
 
 /*相关搜索区域样式*/
 #extrares {
-    margin-left:135px;
+    margin-left:130px;
     font-family: arial,sans-serif;
     width:600px;
     border-top:1px solid #ededed;
@@ -530,7 +530,7 @@ a.cur:hover{
 }
 
 ._nW {
-    margin-left: 135px
+    margin-left: 98px
 }
 
 #fbar {
