@@ -356,6 +356,13 @@ a:hover {
     font-family: arial,sans-serif;
     margin-bottom: 50px;
 }
+
+.navcnt table{
+	border-collapse:collapse;
+	text-align:left;
+	margin:30px auto 30px
+}
+
 .tr{
 
 }
@@ -376,6 +383,11 @@ a.cur:hover{
     white-space: nowrap;
     color: #1a0dab;
     background:url(/images/nav_logo.png) no-repeat;
+}
+.csb.pcommon{
+	background-position:-74px 0;
+	background-size:167px;
+	width:20px
 }
 .fl{
     text-decoration: none;

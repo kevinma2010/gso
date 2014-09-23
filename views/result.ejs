@@ -84,7 +84,7 @@
                     </span>
                 </div>
                 <%}else{%>
-                <table style="border-collapse:collapse;text-align:left;margin:30px auto 30px">
+                <table>
                     <tbody>
                     <tr valign="top">
                         <td class="b navend">
@@ -94,21 +94,21 @@
                                 <span class="txt" style="display:block;">上一页</span>
                             </a>
                             <%} else {%>
-                            <span class="csb gbil" style="background-position:-24px 0;background-size:167px;width:28px"></span>
+                            <span class="csb" style="background-position:-24px 0;background-size:167px;width:28px"></span>
                             <%}%>
                         </td>
                         <% for (var i = page.start,index=0, total = page.end; i <total; i++) {%>
                         <%if (result.start == i*10) {%>
                         <td class="fl cur">
                             <a class="fl cur">
-                                <span class="csb gbil" style="background-position:-53px 0;background-size:167px;width:20px"></span>
+                                <span class="csb" style="background-position:-53px 0;background-size:167px;width:20px"></span>
                                 <%= page.num[index++]/10+1%>
                             </a>
                         <td>
                             <%} else {%>
                         <td>
                             <a class="fl" href="/search?q=<%= result.encodeQ%>&start=<%= page.num[index]%>">
-                                <span class="csb" style="background-position:-74px 0;background-size:167px;width:20px"></span>
+                                <span class="csb pcommon"></span>
                                 <%= page.num[index++]/10+1%>
                             </a>
                         </td>
