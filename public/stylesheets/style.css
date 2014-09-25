@@ -513,7 +513,7 @@ a.cur:hover{
     margin: 0!important
 }
 
-#fbarcnt {
+.fbarcnt {
     display: block;
     position:relative;
     visibility:visible;

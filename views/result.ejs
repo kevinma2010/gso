@@ -133,9 +133,8 @@
     </div>
 </div>
 <% if(!result.mobile) {%>
-    <div id="footcnt">
-        <div id="fbarcnt">
-        <div class="_dQc _E2" id="fbar"> 
+    <div id="footcnt" class="<%= result.data.length>0?'fbarcnt':''%>">
+        <div class="_dQc _E2" id="fbar">
                 <div class="fbar">
                     <span class="_nW">
                         <span id="fsr">
@@ -166,7 +165,6 @@
                     </span>
                 </div>
             </div>
-        </div>
     </div>
 <%}%>
     <script src="//cdn.bootcss.com/headroom/0.5.0/headroom.min.js"></script>
