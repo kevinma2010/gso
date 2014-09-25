@@ -40,68 +40,6 @@ router.get('/warn', function(req, res) {
     render(res,'sensitivity', { title: 'Google Search', r_prefix: config.r_prefix}); // res.render('sensitivity', { title: 'Google Search' });
 });
 
-router.get('/search2', function (req, res) {
-    var q = req.query.q;
-    var start = req.query.start || 0;
-    var mobile = req.query.mobile || 0;
-    var userAgent = req.headers['user-agent'];
-    if (!q) {
-        res.redirect("/");
-    }
-    // console.log(q);
-    q = decodeURI(q);
-    // console.log(decodeURIComponent(q));
-//    console.log(userAgent);
-    start = parseInt(start);
-    mobile = parseInt(mobile);
-    gsearch({
-        q: q,
-        start: start,
-        userAgent: userAgent
-    },function (result) {
-        if (mobile === 1) {
-            render(res,"result_list", {result: result});
-            return;
-        }
-//        console.log(result);
-        var renderResult = {
-            title: q,
-            result: result
-        };
-
-        if (!result.mobile) {
-            var i = start/10+1;
-
-            var num = [];
-            var s,end,index = 0;
-            if (i-5 <= 0) {
-                s = 0;
-                end = 10;
-            } else {
-                s = i-6;
-                end=s+10;
-            }
-
-            for (var j = s, total = end; j < total; j++) {
-                num[index++] = j*10;
-            }
-
-            var page = {
-                pre: start-10,
-                num: num,
-                next: start+10,
-                start: s,
-                end: end
-            };
-
-            renderResult.page = page;
-        }
-
-        renderResult.r_prefix = config.r_prefix;   
-        render(res,'result',renderResult); // res.render('result', renderResult);
-    });
-});
-
 router.get('/url', function (req,res,next) {
     var url = req.query.to;
     if (!url) {
