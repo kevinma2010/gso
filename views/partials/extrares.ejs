@@ -1,0 +1,17 @@
+<div id="extrares" style="padding:0 8px">
+    <div style="clear:both;overflow:hidden" id="brs">
+        <h3 class="med" style="text-align:left">
+        <%- result.extrares.title%>
+        </h3>
+    <div>
+<%for (var i = 0, total = result.extrares.arr.length; i < total; i++) {%>
+    <div class="brs_col">
+    <%for (var j = 0, total2 = result.extrares.arr[i].length; j < total2; j++) {%>
+        <p class="_e4b">
+            <a href="<%= result.extrares.arr[i][j]['url']%>"><%- result.extrares.arr[i][j]['content']%></a>
+        </p>
+    <%}%>
+    </div>
+<%}%>
+    </div>
+</div>
