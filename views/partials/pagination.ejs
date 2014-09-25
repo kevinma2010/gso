@@ -1,0 +1,51 @@
+<div class="navcnt">
+<% if(state.isMobile) {%>
+    <div id="mobile_next_page" class="next_page shadow">
+        <img src="<%= r_prefix %>/images/ajax-loader.gif" alt="" class="hidden"/>
+        <span>
+        下一页
+        </span>
+    </div>
+<%}else{%> 
+    <table>
+        <tbody>
+            <tr valign="top">
+                <td class="b navend">
+                <%if (qs.start > 0) {%>
+                    <a class="pn" href="/search?q=<%= qs.encodeQ%>&start=<%= page.pre%>" id="pnnext" style="text-decoration:none;text-align:left">
+                        <span class="csb" style="background-position:0 0;width:53px;"></span>
+                        <span class="txt" style="display:block;">上一页</span>
+                    </a>
+                <%} else {%>
+                    <span class="csb" style="background-position:-24px 0;background-size:167px;width:28px"></span>
+                <%}%>
+                </td>
+                <% for (var i = page.start,index=0, total = page.end; i <total; i++) {%>
+                    <%if (qs.start == i*10) {%>
+                <td class="fl cur">
+                    <a class="fl cur">
+                        <span class="csb" style="background-position:-53px 0;background-size:167px;width:20px"></span>
+                        <%= page.num[index++]/10+1%>
+                    </a>
+                <td>
+                    <%} else {%>
+                <td>
+                    <a class="fl" href="/search?q=<%= qs.encodeQ%>&start=<%= page.num[index]%>">
+                        <span class="csb pcommon"></span>
+                        <%= page.num[index++]/10+1%>
+                    </a>
+                </td>
+                    <%}%>
+                <%}%>
+                <td class="b navend">
+                    <a class="pn" href="/search?q=<%= qs.encodeQ%>&start=<%= page.next%>" id="pnnext"
+                    style="text-decoration:none;text-align:left">
+                        <span class="csb" style="background-position:-96px 0;background-size:167px;width:71px"></span>
+                        <span class="txt" style="display:block;margin-left:53px">下一页</span>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+<%}%>
+</div>
