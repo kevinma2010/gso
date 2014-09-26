@@ -8,21 +8,21 @@ var ejs = require('ejs')
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    render(res,'index', { title: 'Google Search', r_prefix: config.r_prefix});  // res.render('index', { title: 'Google Search' });
+    render(res,'index', {});  // res.render('index', { title: 'Google Search' });
 });
 
 router.get('/refactor', function(req, res) {
-    render(res,'/test/style_refactor', { title: 'Google Search', r_prefix: config.r_prefix});  // res.render('index', { title: 'Google Search' });
+    render(res,'/test/style_refactor', {});  // res.render('index', { title: 'Google Search' });
 });
 
 /* GET Feedback page. */
 router.get('/feedback', function(req, res) {
-    render(res,'feedback', { r_prefix: config.r_prefix}); // res.render('index', { title: 'Google Search' });
+    render(res,'feedback', {}); // res.render('index', { title: 'Google Search' });
 });
 
 /* GET Feedback page. */
 router.get('/issues', function(req, res) {
-    render(res,'issues', { r_prefix: config.r_prefix});
+    render(res,'issues', {});
 });
 
 /* GET 404 page */
@@ -37,7 +37,7 @@ router.get('/error', function (req, res) {
 
 /* GET sensitive word page. */
 router.get('/warn', function(req, res) {
-    render(res,'sensitivity', { title: 'Google Search', r_prefix: config.r_prefix}); // res.render('sensitivity', { title: 'Google Search' });
+    render(res,'sensitivity', {}); // res.render('sensitivity', { title: 'Google Search' });
 });
 
 router.get('/url', function (req,res,next) {
@@ -194,7 +194,7 @@ function render (res,view,data) {
            renderErr(view);
         } else {
             var html = ejs.render(tmpl, data);
-            // html = minify(html,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true});
+            html = minify(html,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true});
             res.set('Content-Type','text/html; charset=utf-8');
             res.end(html);
             res.flush();
