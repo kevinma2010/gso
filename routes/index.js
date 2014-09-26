@@ -78,6 +78,10 @@ router.get('/search', function (req, res, next) {
         result = {},
         path_prefix = __dirname + '/../views/partials/';
 
+        result.locals = {
+            r_prefix : config.r_prefix
+        };
+
         result.qs = {//用户查询参数
             q: q,
             start: start,
@@ -124,11 +128,10 @@ router.get('/search', function (req, res, next) {
                 end: end
             };
 
-            partials.pagination = {
-                isRender: true,//表示要渲染分页view
-                page: page
-            };
+            partials.pagination['page'] = page;
         }
+
+        partials.pagination['isRender'] = true;//表示要渲染分页view
 
         /*
         相关搜索
@@ -164,6 +167,7 @@ router.get('/search', function (req, res, next) {
                         } else {
                             var renderData = partials[_key];//渲染该段view需要使用的数据
                             if (renderData.isRender) {//判断是否要渲染
+                                renderData.locals = result.locals;
                                 renderData.qs = result.qs;
                                 renderData.state = result.state;
                                 result[_key] = ejs.render(tmpl, renderData);//将渲染结果增加到result中，便于所有任务完成后统一渲染页面
