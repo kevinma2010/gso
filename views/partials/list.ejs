@@ -1,0 +1,7 @@
+<%for (var i = 0, total = result.data.length; i < total; i++) {%>
+<div class="s_r shadow">
+    <a target="_blank" class="title" href="<%= result.data[i].url%>" name="r_url"><%- result.data[i].title%></a>
+    <div class="visible_url"><%- result.data[i].cite%></div>
+    <div class="min_content"><%= result.data[i].content%></div>
+</div>
+<%}%>

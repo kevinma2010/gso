@@ -68,7 +68,7 @@ router.get('/search', function (req, res, next) {
     },function (data) {
         // console.log("searched: " + data['data'].length);
         if (mobile === 1) {
-            render(res,"result_list", {result: data});
+            render(res,"partials/list", {result: data});
             return;
         }
 
