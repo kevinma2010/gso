@@ -57,6 +57,7 @@ router.get('/search', function (req, res, next) {
     var userAgent = req.headers['user-agent'];
     if (!q) {
         res.redirect("/");
+        return;
     }
     q = decodeURI(q);
     start = parseInt(start);
