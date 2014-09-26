@@ -17,7 +17,7 @@
       <div class="wrapper">
           <div class="search-box">
               <div class="glogo">
-                <div nowrap="" style="color:#777;font-size:16px;font-weight:bold;position:relative;left:218px;top:70px">谷搜客</div>
+                <div nowrap="" class="tname">谷搜客</div>
               </div>
               <form class="s_box" method="get" action="/search" onsubmit="return document.getElementById('id_s_text').value==''?false:true;">
                   <input id="id_s_text" class="s_text" name="q" type="text"  autocomplete="off" placeholder="世界因你而美好, 加油~"/>
@@ -25,38 +25,37 @@
               </form>
           </div>
       </div>
-      
+      <%if (!isMobile) {%>
      <div id="footcnt">
-  <div class="_dQc _E2" id="fbar">
-    <div class="fbar">
-        <span id="fsr">
-            <a class="_Gs unline">
-                Copyright&nbsp;&copy;&nbsp;GuSouK.com
-            </a>
-            <a class="_eA" href="javascript:void(0);" onclick="setAsDefault()">
-                <strong>设置为默认搜索引擎</strong>
-            </a>
-            <!-- <a class="_Gs" href="">
-                使用Google.co.jp
-            </a> -->
-        </span>
-        <span id="fsl">
-            <a class="_eA" href="http://mlongbo.com/aboutgso/" target="_blank" title="我需要你的帮助">
-                <strong>捐助</strong>
-            </a>
-            <a class="_Gs" href="mailto:mlongbo@gmail.com?subject=[GuSou]-" target="_blank" title="快给我写信提建议啦">
-                <strong>给我发邮件</strong>
-            </a>
-            <a class="_Gs" href="/feedback" target="_blank" title="踊跃发言啦">
-                <strong>提建议</strong>
-            </a>
-            <a class="_Gs" href="http://www.zhihu.com/question/20161362" target="_blank">
-                如何用好Google搜索引擎
-            </a>
-        </span>
+      <div class="_dQc _E2" id="fbar">
+        <div class="fbar">
+            <span id="fsr">
+                <a class="_Gs unline">
+                    Copyright&nbsp;&copy;&nbsp;GuSouK.com
+                </a>
+                <a class="_eA" href="javascript:void(0);" onclick="setAsDefault()">
+                    <strong>设置为默认搜索引擎</strong>
+                </a>
+                <!-- <a class="_Gs" href="">
+                    使用Google.co.jp
+                </a> -->
+            </span>
+            <span id="fsl">
+                <a class="_eA" href="http://mlongbo.com/aboutgso/" target="_blank" title="我需要你的帮助">
+                    <strong>捐助</strong>
+                </a>
+                <a class="_Gs" href="mailto:mlongbo@gmail.com?subject=[GuSou]-" target="_blank" title="快给我写信提建议啦">
+                    <strong>给我发邮件</strong>
+                </a>
+                <a class="_Gs" href="/feedback" target="_blank" title="踊跃发言啦">
+                    <strong>提建议</strong>
+                </a>
+                <a class="_Gs" href="http://www.zhihu.com/question/20161362" target="_blank">
+                    如何用好Google搜索引擎
+                </a>
+            </span>
+        </div>
     </div>
-</div>
-
 </div>
 
   <!-- FOOTER
@@ -78,6 +77,7 @@
        };
     })();
     </script>
+    <%}%>
     <script type="text/javascript" src="<%= r_prefix %>/javascripts/wordcheck.js?=v'"></script>
     <!--<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
   <!--这是我自己的网站统计   http://gso.mlongbo.com    请替换或注释掉-->

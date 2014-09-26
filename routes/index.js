@@ -1,6 +1,7 @@
 var express = require('express');
 var minify = require('html-minifier').minify;
 var gsearch = require('../lib/gsearch');
+var mobile = require('../lib/mobile');
 var router = express.Router();
 var ejs = require('ejs')
     , fs = require('fs')
@@ -8,7 +9,10 @@ var ejs = require('ejs')
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    render(res,'index', {});  // res.render('index', { title: 'Google Search' });
+    var userAgent = req.headers['user-agent'];
+    render(res,'index', {
+        isMobile: mobile.isMobile(userAgent)
+    });  // res.render('index', { title: 'Google Search' });
 });
 
 router.get('/refactor', function(req, res) {
