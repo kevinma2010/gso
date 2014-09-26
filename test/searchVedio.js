@@ -1,4 +1,4 @@
-var request = require("request");
+var request = require("../lib/request");
 var $ = require('jQuery');
 
 var options = {
@@ -6,10 +6,8 @@ var options = {
 };
 
 request(options, function (err, res, body) {
-	if (!err && res.statusCode==200) {
-		 // console.log(body);
 		var doc = $(body);
-		var sources_html = doc.find("div.source.source_one").html();
+		// var sources_html = doc.find("div.source.source_one").html();
 		var sources = doc.find("div.source.source_one span a");
 		if (sources) {
 			console.log(sources.length);
@@ -20,6 +18,5 @@ request(options, function (err, res, body) {
 				console.log(link.attr("href"));
 			}
 		}
-	 	console.log(sources_html);
-	}
+	 	// console.log(sources_html);
 });
