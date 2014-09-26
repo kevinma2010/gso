@@ -1,5 +1,5 @@
 
-var gsearch = require('./lib/gsearch');
+var gsearch = require('../lib/gsearch');
 
 var start = new Date().getTime();
 console.log(start);
