@@ -1,38 +1,61 @@
 
 @media
 only screen and (max-width: 760px) {
-    body {
+    .gray-body {
         background: none repeat scroll 0 0 #EEEEEE;
+        /*position: fixed;*/
+        /*z-index: 0;*/
+        right: 0;
+        left: 0;
+        top: 0;
+    }
+
+    a:active {
+        text-decoration: none;
     }
 
     .search-box{
         width: 100%;
         padding-right: 0px;
+        margin-top: 110px;
+        position: fixed;
+        /*z-index: 0;*/
+        right: 0;
+        left: 0;
+        top: 0;
     }
     .search-box .glogo{
-        background-size:269px 95px;
-        height:95px;
-        width:269px;
-        margin:0 auto;
+        background-image: url(/images/mlogo2x_3.png);
+        background-repeat:  no-repeat;
+        background-size:183px 64px;
+        height:64px;
+        width:183px;
+        margin:0 auto 20px;
+    }
+    .search-box .glogo .tname {
+        font-size:12px;
+        left:148px;
+        top:48px;
     }
     .search-box .s_box {
-        padding: 10px 2px 0px 10px;
+        padding: 0px 2px 0px 10px;
         height: 50px;
         width: 100%;
     }
 
     .search-box .s_text {
-        width: 70%;
-        line-height: 35px;
-        height: 35px;
-        font-size: 18px;
+        width: 77%;
+        line-height: 38px;
+        height: 38px;
+        font-size: 17px;
         padding-left: 0px;
     }
 
     .search-box .m-button {
         padding: 0px;
-        margin:  0px;
-        height: 38px;
+        margin:  0px 2px 0px 0px;
+        height: 42px;
+        width: 60px;
     }
 
     .header-bar{
@@ -50,8 +73,10 @@ only screen and (max-width: 760px) {
     }
 
     .form_box .s_text{
-        height:30px;
-        width:73%;
+        height: 40px;
+        line-height: 40px;
+        width:77%;
+        font-size: 16px;
         /*width: 140px;*/
         /*width: 233px;*/
     }
@@ -65,12 +90,12 @@ only screen and (max-width: 760px) {
 
     .form_box .s_submit{
         margin-left: 0px;
-        width: 55px;
-        height: 39px;
+        width: 52px;
+        height: 44px;
     }
 
     .content {
-        margin: 70px 7px 7px;
+        margin: 75px 7px 7px;
     }
 
     .search_result .s_r {
@@ -90,6 +115,7 @@ only screen and (max-width: 760px) {
 
     .s_r .min_content{
         line-height: 1.7;
+        font-size: 14px;
     }
 
     .search_result{
@@ -130,6 +156,37 @@ only screen and (max-width: 760px) {
     }
     /*相关搜索隐藏*/
     #extrares {
-        display: none;
+        /*display: none;*/
+        margin-left:0px;
+        font-family: arial,sans-serif;
+        width:95%;
+        margin-top: 8px;
+        padding-bottom: 8px;
+        /*border-top:1px solid #ededed;*/
+        background-color: white;
+    }
+
+    #extrares ._e4b a{
+        font-size: 15px
+    }
+
+    #extrares h3 {
+        border-bottom:1px solid #ededed;
+        padding-bottom: 11px;
+        margin-bottom: 9px;
+    }
+
+    .nextTip {
+        font-size: 11px;
+        color: #777777;
+        margin: 5px;
+    }
+
+    .none-result {
+        margin-left: 10px
+    }
+
+    .none-result ul{
+        margin-left: 0
     }
 }

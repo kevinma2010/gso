@@ -5,19 +5,19 @@
       <meta charset="utf-8"/>
       <meta name="description" content="谷搜客基于Google搜索,为喜爱谷歌搜索的朋友们免费提供高速稳定的搜索服务。搜索结果通过Google.com实时抓取，欢迎您在日常生活学习中使用谷搜客查询资料。" />
       <meta name="keywords" content="谷歌 谷搜客 google 谷歌不能访问 gusouk" />
-      <link rel="search" type="application/opensearchdescription+xml" href="<%= r_prefix %>/opensearch.xml" title="谷搜客" />
-      <link rel="shortcut icon" type="image/x-icon" href="<%= r_prefix %>/images/favicon.ico" />
-      <link rel="bookmark" type="image/x-icon"  href="<%= r_prefix %>/images/favicon.ico" />
-      <link rel="icon" href="<%= r_prefix %>/images/favicon.ico">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel='stylesheet' href='<%= r_prefix %>/stylesheets/style.css' />
       <link rel='stylesheet' href='<%= r_prefix %>/stylesheets/style-responsive.css' />
+      <link rel="shortcut icon" type="image/x-icon" href="<%= r_prefix %>/images/favicon.ico" />
+      <link rel="icon" href="<%= r_prefix %>/images/favicon.ico">
+      <link rel="bookmark" type="image/x-icon"  href="<%= r_prefix %>/images/favicon.ico" />
+      <link rel="search" type="application/opensearchdescription+xml" href="<%= r_prefix %>/opensearch.xml" title="谷搜客" />
   </head>
   <body>
       <div class="wrapper">
           <div class="search-box">
               <div class="glogo">
-                <div nowrap="" style="color:#777;font-size:16px;font-weight:bold;position:relative;left:218px;top:70px">谷搜客</div>
+                <div nowrap="" class="tname">谷搜客</div>
               </div>
               <form class="s_box" method="get" action="/search" onsubmit="return document.getElementById('id_s_text').value==''?false:true;">
                   <input id="id_s_text" class="s_text" name="q" type="text"  autocomplete="off" placeholder="世界因你而美好, 加油~"/>
@@ -25,48 +25,37 @@
               </form>
           </div>
       </div>
-      
+      <%if (!isMobile) {%>
      <div id="footcnt">
-  <style>
-.fmulti{}._dQc{bottom:0;left:0;position:absolute;right:0}._GR{background:#f2f2f2;left:0;right:0;-webkit-text-size-adjust:none}.fbar p{display:inline}.fbar a,#fsettl{text-decoration:none;white-space:nowrap}.fbar ._Gs{padding:0 0 0 27px !important;margin:0 !important}.fbar ._eA{padding:0 !important;margin:0 !important}#fbarcnt{display:block}._E2 a:hover{text-decoration:underline}._HR img{margin-right:4px}._HR a,._GR #swml a{text-decoration:none}.fmulti{text-align:center}.fmulti #fsr{display:block;float:none}.fmulti #fuser{display:block;float:none}#fuserm{line-height:25px}#fsr{float:right;white-space:nowrap}#fsl{white-space:nowrap}#fsett{background:#fff;border:1px solid #999;bottom:30px;padding:10px 0;position:absolute;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);text-align:left;z-index:100}#fsett a{display:block;line-height:44px;padding:0 20px;text-decoration:none;white-space:nowrap}._E2 #fsettl:hover{text-decoration:underline}._E2 #fsett a:hover{text-decoration:underline}._mk{color:#777}._Nh{color:#222;font-size:14px;font-weight:normal;-webkit-tap-highlight-color:rgba(0,0,0,0)}._Nh:hover,._Nh:active{color:#444}._Mo{display:inline-block;position:relative}._ri,._Wk{height:13px;width:8px}._ri:before,._Wk:before{border:8px solid rgba(255,255,255,0);border-radius:8px;content:'';position:absolute}._ri:before{border-left:8px solid #777;left:1px}._Wk:before{border-right:8px solid #777;left:-9px}._ri:after,._Wk:after{border:12px solid rgba(255,255,255,0);content:'';position:absolute;top:-4px}._ri:after{border-left:10px solid #f6f6f6;left:-4px}._Wk:after{border-right:10px solid #f6f6f6;left:-10px}._sN ._ri:after{border-left:10px solid white}._sN ._Wk:after{border-right:10px solid white}._Nh{padding:8px 16px;margin-right:10px}._mk{margin:40px 0}._dD{margin-right:10px}._nW{margin-left:135px}#fbar{background:#f2f2f2;border-top:1px solid #e4e4e4;line-height:40px;min-width:980px}._xac{margin-left:135px}.fbar p,.fbar a,#fsettl,#fsett a{color:#777}.fbar a:hover,#fsett a:hover{color:#333}.fbar{font-size:small}#fuser{float:right}
-  </style>
-  <style>
-#fsl{margin-left:30px}#fsr{margin-right:30px}.fmulti #fsl{margin-left:0}.fmulti #fsr{margin-right:0}
-
-  a.unline:hover {
-    text-decoration: none;
-  }
-  </style>
-  <div class="_dQc _E2" id="fbar">
-    <div class="fbar">
-        <span id="fsr">
-            <a class="_Gs unline">
-                Copyright&nbsp;&copy;&nbsp;GuSouK.com
-            </a>
-            <a class="_eA" href="javascript:void(0);" onclick="setAsDefault()">
-                <strong>设置为默认搜索引擎</strong>
-            </a>
-            <!-- <a class="_Gs" href="">
-                使用Google.co.jp
-            </a> -->
-        </span>
-        <span id="fsl">
-            <a class="_eA" href="http://mlongbo.com/aboutgso/" target="_blank" title="我需要你的帮助">
-                <strong>捐助</strong>
-            </a>
-            <a class="_Gs" href="mailto:mlongbo@gmail.com?subject=[GuSou]-" target="_blank" title="快给我写信提建议啦">
-                <strong>给我发邮件</strong>
-            </a>
-            <a class="_Gs" href="/feedback" target="_blank" title="踊跃发言啦">
-                <strong>提建议</strong>
-            </a>
-            <a class="_Gs" href="http://www.zhihu.com/question/20161362" target="_blank">
-                如何用好Google搜索引擎
-            </a>
-        </span>
+      <div class="_dQc _E2" id="fbar">
+        <div class="fbar">
+            <span id="fsr">
+                <a class="_Gs unline">
+                    Copyright&nbsp;&copy;&nbsp;GuSouK.com
+                </a>
+                <a class="_eA" href="javascript:void(0);" onclick="setAsDefault()">
+                    <strong>设置为默认搜索引擎</strong>
+                </a>
+                <!-- <a class="_Gs" href="">
+                    使用Google.co.jp
+                </a> -->
+            </span>
+            <span id="fsl">
+                <a class="_eA" href="http://mlongbo.com/aboutgso/" target="_blank" title="我需要你的帮助">
+                    <strong>捐助</strong>
+                </a>
+                <a class="_Gs" href="mailto:mlongbo@gmail.com?subject=[GuSou]-" target="_blank" title="快给我写信提建议啦">
+                    <strong>给我发邮件</strong>
+                </a>
+                <a class="_Gs" href="/feedback" target="_blank" title="踊跃发言啦">
+                    <strong>提建议</strong>
+                </a>
+                <a class="_Gs" href="http://www.zhihu.com/question/20161362" target="_blank">
+                    如何用好Google搜索引擎
+                </a>
+            </span>
+        </div>
     </div>
-</div>
-
 </div>
 
   <!-- FOOTER
@@ -88,6 +77,7 @@
        };
     })();
     </script>
+    <%}%>
     <script type="text/javascript" src="<%= r_prefix %>/javascripts/wordcheck.js?=v'"></script>
     <!--<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
   <!--这是我自己的网站统计   http://gso.mlongbo.com    请替换或注释掉-->
