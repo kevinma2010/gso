@@ -164,4 +164,12 @@ only screen and (max-width: 760px) {
         color: #777777;
         margin: 5px;
     }
+
+    .none-result {
+        margin-left: 10px
+    }
+
+    .none-result ul{
+        margin-left: 0
+    }
 }

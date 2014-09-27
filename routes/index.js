@@ -110,7 +110,7 @@ router.get('/search', function (req, res, next) {
         /*
         计算分页
          */
-         if (!data.isMobile) {
+         if (!data.isMobile && result.state.hasResult) {
             var i = start/10+1;
 
             var num = [];
@@ -138,12 +138,12 @@ router.get('/search', function (req, res, next) {
             partials.pagination['page'] = page;
         }
 
-        partials.pagination['isRender'] = true;//表示要渲染分页view
+        partials.pagination['isRender'] = result.state.hasResult;//根据是否查询到结果决定是否渲染分页view
 
         /*
         相关搜索
          */
-        if (!data.isMobile && data.extrares.has) {
+        if (!data.isMobile && data.extrares.has && result.state.hasResult) {
             partials.extrares = {
                 isRender: true,//表示要渲染相关搜索view
                 title: data.extrares.title,
@@ -168,7 +168,17 @@ router.get('/search', function (req, res, next) {
         for (var key in partials) {//循环增加渲染任务
             (function (_key) {
                 tasks.push(function () {
-                    fs.readFile(path_prefix+_key+'.ejs', 'utf8', function (err, tmpl) {
+                    var fileName = _key;
+                    // console.log(fileName);
+                    if (fileName === 'content' && !result.state.hasResult) {
+                        fileName = "noneTip";
+                        if (data.isMobile) {
+                            result.qs.noneQ = result.qs.q.substring(0,36)+"...";
+                        } else {
+                            result.qs.noneQ = result.qs.q;
+                        }
+                    }
+                    fs.readFile(path_prefix+fileName+'.ejs', 'utf8', function (err, tmpl) {
                         if (err) {
                            renderErr(_key);//文件读取错误,500
                         } else {

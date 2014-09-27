@@ -574,3 +574,12 @@ a.cur:hover{
 a.unline:hover {
     text-decoration: none
 }
+
+.none-result {
+	padding-top: 40px
+}
+
+.none-result ul{
+	margin-left:1.3em;
+	margin-bottom:2em
+}
