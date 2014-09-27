@@ -143,13 +143,16 @@ router.get('/search', function (req, res, next) {
         /*
         相关搜索
          */
-        if (!data.isMobile && data.extrares.has && result.state.hasResult) {
+        if (data.extrares.has && result.state.hasResult) {
             partials.extrares = {
                 isRender: true,//表示要渲染相关搜索view
                 title: data.extrares.title,
                 list: data.extrares.arr
             };
+
+            partials.extrares['title'] = data.isMobile?"相关搜索":partials.extrares.title;
         }
+
         /*
         底部
          */

@@ -95,7 +95,7 @@ only screen and (max-width: 760px) {
     }
 
     .content {
-        margin: 70px 7px 7px;
+        margin: 75px 7px 7px;
     }
 
     .search_result .s_r {
@@ -156,7 +156,24 @@ only screen and (max-width: 760px) {
     }
     /*相关搜索隐藏*/
     #extrares {
-        display: none;
+        /*display: none;*/
+        margin-left:0px;
+        font-family: arial,sans-serif;
+        width:95%;
+        margin-top: 8px;
+        padding-bottom: 8px;
+        /*border-top:1px solid #ededed;*/
+        background-color: white;
+    }
+
+    #extrares ._e4b a{
+        font-size: 15px
+    }
+
+    #extrares h3 {
+        border-bottom:1px solid #ededed;
+        padding-bottom: 11px;
+        margin-bottom: 9px;
     }
 
     .nextTip {
