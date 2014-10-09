@@ -10,7 +10,9 @@ var ejs = require('ejs')
 /* GET home page. */
 router.get('/', function(req, res) {
     var userAgent = req.headers['user-agent'];
+    var encrypted = (req.protocol || 'http')==='https';
     render(res,'index', {
+        encrypted: encrypted,
         isMobile: mobile.isMobile(userAgent)
     });  // res.render('index', { title: 'Google Search' });
 });
@@ -59,6 +61,7 @@ router.get('/search', function (req, res, next) {
     var start = req.query.start || 0;
     var mobile = req.query.mobile || 0;
     var userAgent = req.headers['user-agent'];
+    var encrypted = (req.protocol || 'http')==='https';
     if (!q) {
         res.redirect("/");
         return;
@@ -96,7 +99,8 @@ router.get('/search', function (req, res, next) {
         };
 
         result.state = {//一些条件，用于页面中做判断
-            isMobile: data.isMobile,//是否为移动端
+            isMobile: data.isMobile,//是否为移动端,
+            encrypted: encrypted,
             hasResult: data['data'].length>0//是否有搜索结果
         };
 
