@@ -84,7 +84,9 @@
     })();
     </script>
     <%}%>
+    <%if (!encrypted) {%>
     <script type="text/javascript" src="<%= r_prefix %>/javascripts/wordcheck.js?=v'"></script>
+    <%}%>
     <!--<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
   <!--这是我自己的网站统计   http://gso.mlongbo.com    请替换或注释掉-->
    <!--//gascript <script>
