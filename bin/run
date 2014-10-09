@@ -9,3 +9,15 @@ app.locals['r_prefix'] = config.r_prefix;
 var server = app.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + server.address().port);
 });
+
+var https = require('https')
+    ,fs = require("fs");
+
+var options = {
+    key: fs.readFileSync('/root/gso_ssl/server.key'),
+    cert: fs.readFileSync('/root/gso_ssl/server.crt')
+};
+
+https.createServer(options, app).listen(5557, function () {
+    console.log('Https server listening on port ' + 5557);
+});
