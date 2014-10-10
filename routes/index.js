@@ -89,7 +89,7 @@ router.get('/search', function (req, res, next) {
         path_prefix = __dirname + '/../views/partials/';
 
         result.locals = {
-            r_prefix : config.r_prefix
+            r_prefix : encrypted?config.ssl.r_prefix : config.r_prefix
         };
 
         result.qs = {//用户查询参数
@@ -217,7 +217,7 @@ router.get('/search', function (req, res, next) {
 
 function render (res,view,data) {
     // console.log(view);
-    data.r_prefix = config.r_prefix;
+    data.r_prefix = data.encrypted? config.ssl.r_prefix : config.r_prefix;
     fs.readFile(__dirname + '/../views/'+view+'.ejs', 'utf8', function (err,tmpl) {
         if (err) {
            renderErr(view);
