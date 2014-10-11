@@ -2,6 +2,9 @@ gso
 ===
 这是一个用NodeJs编写的Google搜索服务，原理是拿着用户的关键词去Google服务器搜索，然后将返回的结果响应给用户。
 
+关于证书的说明：
+文件列表中提供的证书仅为测试使用，在生产环境下需替换为你自己的证书
+
 安装：
 
 `git clone https://github.com/lenbo-ma/gso.git`
