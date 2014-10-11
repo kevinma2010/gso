@@ -13,11 +13,11 @@ config = {
     g_url: 'https://www.google.com.hk',
     r_prefix: "",
     ssl: {
-        enable: true,
+        enable: false,//设置https是否启用
         port: 5556,
-        r_prefix: "",
-        key: path.join(__dirname, 'server.key'),
-        cert: path.join(__dirname, 'server.crt')
+        r_prefix: "", //https下的资源前缀
+        key: path.join(__dirname, 'test_server.key'),
+        cert: path.join(__dirname, 'test_server.crt')
     }
 };
 
