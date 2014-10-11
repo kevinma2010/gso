@@ -52,7 +52,7 @@
 </div>
 <%- footer%>
 
-    <script src="//cdn.bootcss.com/headroom/0.5.0/headroom.min.js"></script>
+    <script src="<%= r_prefix %>/javascripts/vendor/headroom.min.js"></script>
    <script type="text/javascript">
         (function (Headroom) {
             var myElement = document.querySelector("#header_bar");
@@ -80,7 +80,7 @@
    </script>
 
 <% if(state.isMobile) {%>
-<script src="//cdn.bootcss.com/zepto/1.1.4/zepto.min.js"></script>
+<script src="<%= r_prefix %>/javascripts/vendor/zepto.min.js"></script>
 <script type="application/javascript">
     (function () {
         var start = 0;
@@ -106,7 +106,7 @@
     })();
 </script>
 <%}%>
-    <%if (!encrypted) {%>
+    <%if (!state.encrypted) {%>
     <script type="text/javascript" src="<%= r_prefix %>/javascripts/wordcheck.js?=v'"></script>
     <%}%>
 <!--这是我自己的网站统计   http://gso.mlongbo.com    请替换掉-->
