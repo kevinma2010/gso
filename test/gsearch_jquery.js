@@ -75,6 +75,7 @@ gsearch.prototype.checkMobile = function () {
  * 解析html数据
  **/
 gsearch.prototype.parseResponse = function (body) {
+    console.time("gsearch_jquery");
     var arr = [];
     var doc = $(body);
     var search = doc.find("#search").find("li.g");
@@ -132,6 +133,7 @@ gsearch.prototype.parseResponse = function (body) {
         extrares.arr = _brs_cols;
         // console.log(extrares);
     }
+	console.timeEnd("gsearch_jquery");
     extrares.has = hasExtrares;
     
     this.result['extrares'] = extrares;
