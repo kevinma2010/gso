@@ -6,6 +6,20 @@ var cheerio = require('cheerio');
 var config = require('../config');
 var mobile = require('../lib/mobile');
 
+var content_language_matrix = [
+    /*所有语言*/ '',
+    /*简体中文*/ 'lang_zh-CN',
+    /*繁体中文*/ 'lang_zh-TW',
+    /*所有中文*/ 'lang_zh-CN|lang_zh-TW',
+    /*英文*/     'lang_en',
+    /*韩文*/     'lang_ko',
+    /*日文*/     'lang_ja',
+    /*法文*/     'lang_fr',
+    /*德文*/     'lang_de',
+    /*西班牙*/   'lang_es',
+    /*意大利*/   'lang_it',
+];
+
 var gsearch = function (options, cb) {
 //    console.log('new gsearch...');
     options = options || {};
@@ -14,43 +28,7 @@ var gsearch = function (options, cb) {
     this.callback = cb || function(s){};
     this.userAgent = options.userAgent || config.userAgent;
     if (options.lr) {//搜索内容语言,不是界面语言
-        switch (options.lr) {
-            case '0'://所有语言
-                this.lr = '';
-                break;
-            case '1'://简体中文
-                this.lr = 'lang_zh-CN';
-                break;
-            case '2'://繁体中文
-                this.lr = 'lang_zh-TW';
-                break;
-            case '3'://所有中文
-                this.lr = 'langzh-CN|langzh-TW';
-                break;
-            case '4'://英文
-                this.lr = 'lang_en';
-                break;
-            case '5'://韩文
-                this.lr = 'lang_ko';
-                break;
-            case '6'://日文
-                this.lr = 'lang_ja';
-                break;
-            case '7'://法文
-                this.lr = 'lang_fr';
-                break;
-            case '8'://德文
-                this.lr = 'lang_de';
-                break;
-            case '9'://西班牙
-                this.lr = 'lang_es';
-                break;
-            case '10'://意大利
-                this.lr = 'lang_it';
-                break;
-            default:
-                this.lr = '';
-        }   
+        this.lr = isNaN(options.lr) ? '' : content_language_matrix[parseInt(options.lr)] || '';
     }
     this.result = {};
     // console.log(this.result);
