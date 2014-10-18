@@ -36,6 +36,7 @@ Run:
 6. 实现https功能(关键词加密);
 7. 优化手机端使用体验;
 8. 使用cheeio替代jquery解析;
+9. 启用Application Cache;
 
 todo：
 
