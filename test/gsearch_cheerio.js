@@ -158,9 +158,34 @@ gsearch.prototype.request = function () {
 //    console.log('open request...');
     request(options, function (err, res, body) {
         if (!err) {
+            self.parseCookies(res);
             self.render(body);
         }
     });
+};
+
+gsearch.prototype.parseCookies = function (res) {
+    var cookieUtil = require('cookie');
+    var cookies = res.headers['set-cookie'];
+    var cookieArr = [];
+    if (cookies && cookies.length > 0) {
+        for (var i = 0; i < cookies.length; i++) {
+            var cookieItem = cookieUtil.parse(cookies[i]);
+            if (cookieItem.domain) {
+                delete cookieItem.domain;
+            }
+            if (cookieItem.path) {
+                cookieItem.path = '/';
+            }
+
+            var tempArr = [];
+            for (var key in cookieItem) {
+                tempArr.push(key+'='+cookieItem[key]);
+            }
+            cookieArr.push(tempArr.join('; '));
+        };
+    }
+    console.log(cookieArr);
 };
 
 module.exports = function (options,cb) {

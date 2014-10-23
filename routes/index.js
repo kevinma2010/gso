@@ -61,6 +61,7 @@ router.get('/search', function (req, res, next) {
     var start = req.query.start || 0;
     var mobile = req.query.mobile || 0;
     var userAgent = req.headers['user-agent'];
+    var cookies = req.headers['cookie'];
     var encrypted = (req.protocol || 'http')==='https';
     if (!q) {
         res.redirect("/");
@@ -72,7 +73,8 @@ router.get('/search', function (req, res, next) {
     gsearch({
         q: q,
         start: start,
-        userAgent: userAgent
+        userAgent: userAgent,
+        cookies: cookies
     },function (data) {
         // console.log("searched: " + data['data'].length);
         if (mobile === 1) {
@@ -87,7 +89,9 @@ router.get('/search', function (req, res, next) {
         tasks = [],
         result = {},
         path_prefix = __dirname + '/../views/partials/';
-
+        if (data.cookies) {
+            result.cookies = data.cookies;
+        }
         result.locals = {
             r_prefix : encrypted?config.ssl.r_prefix : config.r_prefix
         };
@@ -224,6 +228,9 @@ function render (res,view,data) {
         } else {
             var html = ejs.render(tmpl, data);
             html = minify(html,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true});
+            if (data.cookies && data.cookies.length > 0) {
+                res.set('Set-Cookie', data.cookies);
+            }
             res.set('Content-Type','text/html; charset=utf-8');
             res.end(html);
             res.flush();
