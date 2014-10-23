@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# 2014-10-22:v1
+# 2014-10-22:v2
 
 /stylesheets/style.css
 /stylesheets/style-responsive.css
@@ -40,4 +40,3 @@ http://gusou.qiniudn.com/images/nav_logo.png
 NETWORK:
 https://www.google-analytics.com/
 http://www.google-analytics.com/
-/search/
