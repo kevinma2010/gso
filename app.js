@@ -21,6 +21,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(function (req, res, next) {
+    res.setHeader('X-Powered-By', 'Longbo Ma');
+    res.setHeader('Donate-Me', 'mlongbo@gmail.com (This is a alipay account)');
+    res.setHeader('HomePage', 'http://mlongbo.com');
+    res.setHeader('GitHub', 'https://github.com/lenbo-ma')
+    next();
+});
 app.use('/', routes);
 
 /// catch 404 and forward to error handler
