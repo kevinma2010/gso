@@ -23,7 +23,13 @@ router.get('/refactor', function(req, res) {
 
 /* GET Feedback page. */
 router.get('/feedback', function(req, res) {
-    render(res,'feedback', {}); // res.render('index', { title: 'Google Search' });
+    // render(res,'feedback', {}); 
+    res.render('feedback', { title: 'Google Search' }, function (err, html) {
+        console.log(html);
+        res.set('Content-Type','text/html; charset=utf-8');
+        res.end(html);
+        res.flush();
+    });
 });
 
 /* GET Feedback page. */
@@ -47,7 +53,7 @@ router.get('/warn', function(req, res) {
 });
 
 router.get('/url', function (req,res,next) {
-    var url = req.query.to;
+    var url = req.query.to || req.query.q;
     if (!url) {
         next();
         return;
