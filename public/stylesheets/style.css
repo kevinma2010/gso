@@ -100,7 +100,7 @@ a:hover {
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
-    cursor: default;
+    cursor: pointer;
     margin-right: 10px;
     border: 1px solid #70b661;
     color: #fff;
