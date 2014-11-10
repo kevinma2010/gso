@@ -8,7 +8,7 @@ var compression = require('compression');
 
 var routes = require('./routes/index');
 
-var config = require('../config');
+var config = require('./config');
 
 var app = express();
 app.use(compression());
