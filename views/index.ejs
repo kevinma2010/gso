@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" manifest="app.appcache">
+<html lang="zh-CN">
   <head>
       <title>谷搜客 - 基于Google的实时搜索服务</title>
       <meta charset="utf-8"/>
@@ -12,7 +12,7 @@
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="author" content="Longbo Ma,mlongbo@gmail.com China">
       <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-      <link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
+      <link rel="stylesheet" type="text/css" href="stylesheets/vendor/jquery.autocomplete.css" />
       <link rel='stylesheet' href='<%= r_prefix %>/stylesheets/style.css' />
       <link rel='stylesheet' href='<%= r_prefix %>/stylesheets/style-responsive.css' />
       <link rel="shortcut icon" type="image/x-icon" href="<%= r_prefix %>/images/favicon.ico" />
@@ -90,7 +90,7 @@
     <%}%>
          <!-- jQuery  -->
         <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-        <script type='text/javascript' src='js/vendor/jquery.autocomplete.js'></script>
+        <script type='text/javascript' src='javascripts/vendor/jquery.autocomplete.js'></script>
         <script type="text/javascript">
           $("#id_s_text").autocomplete('http://210.242.125.108/complete/search?client=firefox',{
             width: 509,
