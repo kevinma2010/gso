@@ -12,6 +12,7 @@
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="author" content="Longbo Ma,mlongbo@gmail.com China">
       <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+      <link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
       <link rel='stylesheet' href='<%= r_prefix %>/stylesheets/style.css' />
       <link rel='stylesheet' href='<%= r_prefix %>/stylesheets/style-responsive.css' />
       <link rel="shortcut icon" type="image/x-icon" href="<%= r_prefix %>/images/favicon.ico" />
@@ -87,6 +88,30 @@
     <%if (!encrypted) {%>
     <script type="text/javascript" src="<%= r_prefix %>/javascripts/wordcheck.js?=v"></script>
     <%}%>
+         <!-- jQuery  -->
+        <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+        <script type='text/javascript' src='js/vendor/jquery.autocomplete.js'></script>
+        <script type="text/javascript">
+          $("#id_s_text").autocomplete('http://210.242.125.108/complete/search?client=firefox',{
+            width: 509,
+            dataType: "jsonp",
+            parse: function (data) {
+              var arr = [];
+              if (data && data.length>=2) {
+                var rows = data[1];
+                for (var i = 0; i < rows.length; i++) {
+                  var row = rows[i]
+                  arr.push({
+                    data: [row,row],
+                    value: row,
+                    result: row
+                  });
+                };
+              }
+              return arr;
+            }
+          });
+        </script>
     <!--<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
   <!--这是我自己的网站统计   http://gso.mlongbo.com    请替换或注释掉-->
    <!--//gascript <script>
