@@ -29,9 +29,11 @@ app.use(function (req, res, next) {
     res.setHeader('HomePage', 'http://mlongbo.com');
     res.setHeader('GitHub', 'https://github.com/lenbo-ma')
 
-    res.constant = {};
     var encrypted = (req.protocol || 'http')==='https';
-    res.constant.r_prefix = encrypted ? config.ssl.r_prefix : config.r_prefix;
+    app.locals['constant'] = {
+        encrypted: encrypted,
+        r_prefix: encrypted ? config.ssl.r_prefix : config.r_prefix
+    };
     next();
 });
 app.use('/', routes);

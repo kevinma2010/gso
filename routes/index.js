@@ -9,12 +9,7 @@ var ejs = require('ejs')
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    var userAgent = req.headers['user-agent'];
-    var encrypted = (req.protocol || 'http')==='https';
-    render(res,'index', {
-        encrypted: encrypted,
-        isMobile: mobile.isMobile(userAgent)
-    });  // res.render('index', { title: 'Google Search' });
+    res.render('index', {});
 });
 
 router.get('/refactor', function(req, res) {
@@ -23,33 +18,22 @@ router.get('/refactor', function(req, res) {
 
 /* GET Feedback page. */
 router.get('/feedback', function(req, res) {
-    // render(res,'feedback', {}); 
-    res.render('feedback', { title: 'Google Search' }, function (err, html) {
-        console.log(html);
-        res.set('Content-Type','text/html; charset=utf-8');
-        res.end(html);
-        res.flush();
-    });
+    res.render('feedback', {});
 });
 
 /* GET Feedback page. */
 router.get('/issues', function(req, res) {
-    render(res,'issues', {});
-});
-
-/* GET 404 page */
-router.get('/notfound', function (req, res) {
-    render(res,'404',{});
+    res.render('feedback', {});
 });
 
 /* GET 500 page */
 router.get('/error', function (req, res) {
-    render(res,'500',{});
+    res.render('500', {});
 });
 
 /* GET sensitive word page. */
 router.get('/warn', function(req, res) {
-    render(res,'sensitivity', {}); // res.render('sensitivity', { title: 'Google Search' });
+    res.render('sensitivity', {});
 });
 
 router.get('/url', function (req,res,next) {
@@ -62,6 +46,81 @@ router.get('/url', function (req,res,next) {
     res.redirect(url);
 });
 
+router.get('/search2', function (req, res, next) {
+    var q = req.query.q;
+    var start = req.query.start || 0;
+    var userAgent = req.headers['user-agent'];
+    var cookies = req.headers['cookie'];
+    var encrypted = (req.protocol || 'http')==='https';
+    if (!q) {
+        res.redirect("/");
+        return;
+    }
+    q = decodeURI(q);
+    start = parseInt(start);
+    gsearch({
+        q: q,
+        start: start,
+        userAgent: userAgent,
+        cookies: cookies
+    },function (data) {
+        result = {};
+        if (data.cookies) {
+            result.cookies = data.cookies;
+        }
+
+        result.qs = {//用户查询参数
+            q: q,
+            start: start,
+            encodeQ: encodeURI(q)//url编码后的查询关键词
+        };
+
+        result.state = {//一些条件，用于页面中做判断
+            hasResult: data['data'].length>0//是否有搜索结果
+        };
+
+        /*
+        计算分页
+         */
+         if (result.state.hasResult) {
+            var i = start/10+1;
+
+            var num = [];
+            var s,end,index = 0;
+            if (i-5 <= 0) {
+                s = 0;
+                end = 10;
+            } else {
+                s = i-6;
+                end=s+10;
+            }
+
+            for (var j = s, total = end; j < total; j++) {
+                num[index++] = j*10;
+            }
+
+            var page = {
+                pre: start-10,//上一页
+                num: num,
+                next: start+10,//下一页
+                start: s,
+                end: end
+            };
+
+            result['page'] = page;
+        }
+
+        /*
+        相关搜索
+         */
+        result.extrares = data.extrares;
+
+        result.list = data['data'];
+        result.resultStats = data.resultStats//搜索用时文字
+
+        res.render("result", result);
+    });
+});
 router.get('/search', function (req, res, next) {
     var q = req.query.q;
     var start = req.query.start || 0;

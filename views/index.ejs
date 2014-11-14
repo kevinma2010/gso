@@ -43,7 +43,7 @@
                <div class="glogo">
                   <div nowrap="" class="tname">谷搜客</div>
                 </div>
-                <form class="s_box" method="get" action="/search" onsubmit="return document.getElementById('id_s_text').value==''?false:true;">
+                <form class="s_box" method="get" action="/search2" onsubmit="return document.getElementById('id_s_text').value==''?false:true;">
                     <input id="id_s_text" class="s_text" name="q" type="text" tabindex="1"  autocomplete="off" placeholder="" autofocus onkeyup="plugin.autocomplate()"/>
                     <!-- <input id="id_s_text" class="s_text" name="q" type="text" tabindex="1"  autocomplete="off" placeholder="" autofocus/> -->
                     <input class="m-button" value="搜索一下" type="submit" tabindex="2" />
@@ -115,7 +115,7 @@
       <script type="text/javascript">
         plugin.loadBaiduShare();
       </script>
-    <%if (!encrypted) {%>
+    <%if (!constant.encrypted) {%>
     <script type="text/javascript" src="/javascripts/wordcheck.js"></script>
     <%}%>
   <!--这是我自己的网站统计   http://gso.mlongbo.com    请替换或注释掉-->

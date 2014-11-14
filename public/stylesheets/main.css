@@ -284,6 +284,29 @@ ul.help-tools {
 .help-tools li a.set_btn i:hover {
     border-color: #c9481c;
 }
+
+/*顶部headroom区域*/
+.headroom {
+    transition: transform 200ms linear;
+    -moz-transition: transform 200ms linear;/* Firefox 4 */
+    -webkit-transition: transform 200ms linear;/* Safari 和 Chrome */
+    -o-transition: transform 200ms linear; /* Opera */
+}
+.headroom-pinned {
+    transform: translateY(0%);
+    -ms-transform: translateY(0%);     /* IE 9 */
+    -moz-transform: translateY(0%);   /* Firefox */
+    -webkit-transform: translateY(0%); /* Safari 和 Chrome */
+    -o-transform: translateY(0%); /* Opera */
+}
+.headroom-unpinned {
+    transform: translateY(-100%);
+    -ms-transform: translateY(-100%);     /* IE 9 */
+    -moz-transform: translateY(-100%);   /* Firefox */
+    -webkit-transform: translateY(-100%); /* Safari 和 Chrome */
+    -o-transform: translateY(-100%); /* Opera */
+}
+
 /*輸入框自動完成*/
 .search__autocomplete{
     left: 0;
@@ -577,8 +600,8 @@ a.label:focus {
   z-index: 2;
   color: #fff;
   cursor: default;
-  background-color: #428bca;
-  border-color: #428bca;
+  background-color: #70b661;
+  border-color: #70b661;
 }
 .pagination > .disabled > span,
 .pagination > .disabled > span:hover,

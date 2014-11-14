@@ -12,9 +12,6 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="stylesheet" type="text/css" href="stylesheets/vendor/jquery.autocomplete.css" />
     <link rel='stylesheet' href="<%= r_prefix %>/stylesheets/style.css"/>
-    <% if(state.isMobile) {%>
-    <link rel="stylesheet" href="<%= r_prefix %>/stylesheets/style-responsive.css"/>
-    <%}%>
     <link rel="shortcut icon" type="image/x-icon" href="<%= r_prefix %>/images/favicon.ico" />
     <link rel="icon" href="<%= r_prefix %>/images/favicon.ico">
     <link rel="bookmark" type="image/x-icon"  href="<%= r_prefix %>/images/favicon.ico" />
@@ -53,7 +50,7 @@
 </div>
 <%- footer%>
 
-    <script src="<%= r_prefix %>/javascripts/vendor/headroom.min.js"></script>
+   <script src="/javascripts/vendor/headroom.min.js"></script>
    <script type="text/javascript">
         (function (Headroom) {
             var myElement = document.querySelector("#header_bar");
@@ -67,73 +64,10 @@
             // 初始化
             headroom.init(); 
         })(Headroom);
-
-        (function () {
-         this.setAsDefault = function () {
-            if (("ActiveXObject" in window) && window.external && ('AddSearchProvider' in window.external)) {
-                window.external.AddSearchProvider('<%= r_prefix %>/opensearch.xml');
-            } else {
-                window.open('http://mlongbo.com/set_as_default_search_engine/');
-            }
-            return false;
-         };
-      })();
    </script>
-
-<% if(state.isMobile) {%>
-<script src="<%= r_prefix %>/javascripts/vendor/zepto.min.js"></script>
-<script type="application/javascript">
-    (function () {
-        var start = 0;
-        var q = $("#search_txt_id").val();
-        var isLoad = false;
-        $("#mobile_next_page").click(function () {
-            if (isLoad) {
-                return false;
-            }
-            var self = $(this);
-            start+=10;
-            self.find('img').show();
-            self.find('span').hide();
-            $.ajax({
-                url: '/search?mobile=1&q='+q+'&start='+start,
-                success: function (res) {
-                    $('#search_result').append(res);
-                    self.find('img').hide();
-                    self.find('span').show();
-                }
-            });
-        });
-    })();
-</script>
-<%}%>
-    <%if (!state.encrypted) {%>
-    <script type="text/javascript" src="<%= r_prefix %>/javascripts/wordcheck.js?=v'"></script>
+    <%if (!constant.encrypted) {%>
+    <script type="text/javascript" src="/javascripts/wordcheck.js"></script>
     <%}%>
-         <!-- jQuery  -->
-        <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-        <script type='text/javascript' src='javascripts/vendor/jquery.autocomplete.js'></script>
-        <script type="text/javascript">
-          $("#search_txt_id").autocomplete('http://210.242.125.108/complete/search?client=firefox',{
-            width: 509,
-            dataType: "jsonp",
-            parse: function (data) {
-              var arr = [];
-              if (data && data.length>=2) {
-                var rows = data[1];
-                for (var i = 0; i < rows.length; i++) {
-                  var row = rows[i]
-                  arr.push({
-                    data: [row,row],
-                    value: row,
-                    result: row
-                  });
-                };
-              }
-              return arr;
-            }
-          });
-        </script>
 <!--这是我自己的网站统计   http://gso.mlongbo.com    请替换掉-->
 <!--//gascript <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -145,10 +79,5 @@
     ga('send', 'pageview');
 
 </script> //gascript-->
-    <script type="text/javascript">
-      console.info("谷搜客基于Google搜索,为喜爱谷歌搜索的朋友们免费提供高速稳定的搜索服务。搜索结果通过Google.com实时抓取，欢迎您在日常生活学习中使用谷搜客查询资料。");
-      console.info("如果你觉得谷搜客对你有帮助，请资助(支付宝账号: mlongbo@gmail.com)我一下，资金将用于支持我开发及购买服务器资源。^_^");
-      console.info("希望能够让更多的获取知识，各自加油！");
-    </script>
 </body>
 </html>

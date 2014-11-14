@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head> 
+    <title><%= qs.q %> - 谷搜客</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="description" content="谷搜客基于Google搜索,为喜爱谷歌搜索的朋友们免费提供高速稳定的搜索服务。搜索结果通过Google.com实时抓取，欢迎您在日常生活学习中使用谷搜客查询资料。" />
+    <meta name="keywords" content="谷歌 谷搜客 google 谷歌不能访问 gusouk" />
+    <meta name="apple-mobile-web-app-title" content="谷搜客">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="author" content="Longbo Ma,mlongbo@gmail.com China">
+    <link rel="stylesheet" href="/stylesheets/normalize.css">
+    <link rel="stylesheet" href="/stylesheets/pure-min.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+    <!--[if lt IE 9]>
+    <style>
+        .headroom-pinned {
+            top: 0;
+        }
+        .headroom-unpinned {
+            top: -100px;
+        }
+    </style>
+    <![endif]-->
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="bookmark" type="image/x-icon"  href="/images/favicon.ico" />
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="谷搜客" />
+    <script src="/javascripts/vendor/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <header class="pure-g header-bar" id="header_bar">
+        <div class="pure-u-1-12" >
+             <div class="logo">
+                <a href="/"><img width="167" height="373" src="/images/nav_logo.png"></a>
+            </div>
+         </div>
+        <div class="pure-u-11-12">
+            <div class="form_box">
+                <form action="/search2">
+                    <input id="id_s_text" class="s_text" name="q" type="text" tabindex="1"  autocomplete="off" placeholder="" onkeyup="plugin.autocomplate()" value="<%= qs.q %>" />
+                  <input class="m-button" value="搜&nbsp;&nbsp;索" type="submit" tabindex="2" />
+                </form>
+                  <div class="search__autocomplete" style="position: absolute; display: none;">
+                      <div class="acp-wrap">
+                      </div>
+                  </div>
+            </div>
+        </div>
+    </header>
+    <div class="pure-g content">
+        <div class="pure-u-1-12">
+             <!-- <p>Thirds1</p> -->
+         </div>
+        <div class="pure-u-1-3">
+               <div class="result_stats" id="result_stats">
+                <%- resultStats%>
+               </div>
+               <div class="search_result" id="search_result">
+           <%for (var i = 0, total = list.length; i < total; i++) {%>
+                <div class="s_r shadow">
+                    <a target="_blank" class="title" href="<%= list[i].url%>" name="r_url"><%- list[i].title%></a>
+                    <div class="visible_url"><%- list[i].cite%></div>
+                    <span class="min_content"><%- list[i].content%></span>
+                </div>
+            <%}%>
+            <% if (extrares.has) { %>
+                <div id="extrares" style="padding:0 8px 8px" class="shadow">
+                    <div style="clear:both;overflow:hidden" id="brs">
+                        <h3 class="med" style="text-align:left"><%- extrares.title%></h3>
+                    <%for (var i = 0, total = extrares.arr.length; i < total; i++) {%>
+                        <div class="brs_col">
+                        <%for (var j = 0, total2 = extrares.arr[i].length; j < total2; j++) {%>
+                            <p class="_e4b">
+                                <a href="<%= extrares.arr[i][j]['url']%>"><%- extrares.arr[i][j]['content']%></a>
+                            </p>
+                        <%}%>
+                        </div>
+                    <%}%>
+                    </div>
+                </div>
+            <% } %>
+                <div class="navcnt">
+                   <ul class="pagination">
+                    <%if (qs.start > 0) {%>
+                        <li><a href="/search2?q=<%= qs.encodeQ%>&start=<%= page.pre%>">上一页</a></li>
+                    <%}%>
+                    <% for (var i = page.start,index=0, total = page.end; i <total; i++) {%>
+                        <%if (qs.start == i*10) {%>
+                            <li class="active"><a><%= page.num[index++]/10+1%></a></li>
+                        <%} else {%>
+                            <li><a href="/search2?q=<%= qs.encodeQ%>&start=<%= page.num[index]%>"><%= page.num[index++]/10+1%></a></li>
+                        <%}%>
+                    <%}%>
+                        <li><a href="/search2?q=<%= qs.encodeQ%>&start=<%= page.next%>">下一页</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="pure-u-7-12">
+             <!-- <p>Thirds1</p> -->
+         </div>
+    </div>
+    <div class="pure-g fbarcnt">
+        <div class="pure-u-1-12" style="padding: 9px 0;">
+            &nbsp;
+        </div>
+        <div class="pure-u-11-12">
+            <footer class="fbar">
+                <span class="fsr">
+                    <a class="_eA">
+                        2014&nbsp;Copyright&nbsp;&copy;&nbsp;GuSouK.com
+                    </a>
+                </span>
+                <span class="fsl">
+                    <a class="_eA" href="mailto:mlongbo@gmail.com?subject=[GuSou]-" target="_blank" title="快给我写信提建议啦">
+                        <strong>联系我</strong>
+                    </a>
+                    <a class="_Gs" href="https://github.com/lenbo-ma/gso/issues" target="_blank" title="踊跃发言啦">
+                        <strong>问题与建议</strong>
+                    </a>
+                    <a class="_Gs" href="http://www.zhihu.com/question/20161362" target="_blank">
+                        如何用好Google搜索引擎
+                    </a>
+                </span>
+            </footer>
+        </div>
+    </div>
+
+    <script src="/javascripts/vendor/headroom.min.js"></script>
+    <script type="text/javascript">
+        (function (Headroom) {
+            var myElement = document.querySelector("#header_bar");
+            // 创建 Headroom 对象，将页面元素传递进去
+            var headroom  = new Headroom(myElement, {
+                classes : {
+                  pinned : 'headroom-pinned',
+                  unpinned : 'headroom-unpinned'
+                }
+            });
+            // 初始化
+            headroom.init(); 
+        })(Headroom);
+
+        (function () {
+         this.setAsDefault = function () {
+            if (("ActiveXObject" in window) && window.external && ('AddSearchProvider' in window.external)) {
+                window.external.AddSearchProvider('/opensearch.xml');
+            } else {
+                window.open('http://mlongbo.com/set_as_default_search_engine/');
+            }
+            return false;
+         };
+      })();
+   </script>
+
+    <!-- jQuery 
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script> -->
+    <script>window.jQuery || document.write('<script src="/javascripts/vendor/jquery.min.js"><\/script>')</script>
+    <script src="/javascripts/main.js"></script>
+    <script src="/javascripts/plugins.js"></script>
+<%if (!constant.encrypted) {%>
+    <script type="text/javascript" src="/javascripts/wordcheck.js"></script>
+<%}%>
+<!--这是我自己的网站统计   http://gso.mlongbo.com    请替换掉-->
+<!--//gascript <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-42596364-2', 'auto');
+    ga('send', 'pageview');
+
+</script> //gascript-->
+</body>
+</html>
