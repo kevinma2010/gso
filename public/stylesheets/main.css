@@ -172,6 +172,9 @@ a,a:hover {
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
 }
+.result .s_text {
+    width: 580px;
+}
 .s_text:hover {
     -moz-border-bottom-colors: none;
     -moz-border-image: none;
@@ -324,7 +327,9 @@ ul.help-tools {
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     background-color: #fff;
 }
-
+.search__autocomplete.result {
+    width: 589px;
+}
 .acp-wrap {
     font-size: 0.9em;
     display: block;

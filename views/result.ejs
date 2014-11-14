@@ -49,12 +49,12 @@
             </div>
          </div>
         <div class="pure-u-11-12">
-            <div class="form_box">
+            <div class="form_box result">
                 <form action="/search">
                     <input id="id_s_text" class="s_text" name="q" type="text" tabindex="1"  autocomplete="off" placeholder="" onkeyup="plugin.autocomplate()" value="<%= qs.q %>" />
                   <input class="m-button" value="搜&nbsp;&nbsp;索" type="submit" tabindex="2" />
                 </form>
-                  <div class="search__autocomplete" style="position: absolute; display: none;">
+                  <div class="search__autocomplete result" style="position: absolute; display: none;">
                       <div class="acp-wrap">
                       </div>
                   </div>
@@ -65,7 +65,7 @@
         <div class="pure-u-1-12">
              <!-- <p>Thirds1</p> -->
          </div>
-        <div class="pure-u-1-3">
+        <div class="pure-u-5-12">
                <div class="result_stats" id="result_stats">
                 <%- resultStats%>
                </div>
@@ -110,7 +110,7 @@
                 </div>
             </div>
         </div>
-        <div class="pure-u-7-12">
+        <div class="pure-u-1-2">
              <!-- <p>Thirds1</p> -->
          </div>
     </div>
