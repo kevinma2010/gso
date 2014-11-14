@@ -85,7 +85,7 @@ var plugin = plugin || {};
     var _ac = {
         wrap: $(".acp-wrap"),
         req: null,
-        url_prefix: 'http://210.242.125.108',
+        url_prefix: '//wen.lu',
         lastTime: null,
         entered: false,
         cache: {},
