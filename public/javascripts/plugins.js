@@ -109,12 +109,24 @@ var plugin = plugin || {};
                 _ac.render(_ac.cache[q]);
                 return;
             }
+            _ac.req = $.ajax({
+                url: _ac.url_prefix+'/complete/search?client=firefox&q='+q,
+                type: 'post',
+                contentType: "application/json; charset=utf-8",
+                dataType: 'jsonp',
+                success: function (resD) {
+                    if (resD && resD.length >= 2) {
+                        _ac.cache[resD[0]] = resD[1];
+                        _ac.render(resD[1]);
+                    }
+                }
+            });/*
             _ac.req = $.getJSON(_ac.url_prefix+'/complete/search?client=firefox&q='+q+'&callback=?', function (resD) {
                 if (resD && resD.length >= 2) {
                     _ac.cache[resD[0]] = resD[1];
                     _ac.render(resD[1]);
                 }
-            });
+            });*/
         },
         render: function (arr) {
             var r = [];
