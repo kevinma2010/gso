@@ -50,7 +50,7 @@
          </div>
         <div class="pure-u-11-12">
             <div class="form_box">
-                <form action="/search2">
+                <form action="/search">
                     <input id="id_s_text" class="s_text" name="q" type="text" tabindex="1"  autocomplete="off" placeholder="" onkeyup="plugin.autocomplate()" value="<%= qs.q %>" />
                   <input class="m-button" value="搜&nbsp;&nbsp;索" type="submit" tabindex="2" />
                 </form>
@@ -96,16 +96,16 @@
                 <div class="navcnt">
                    <ul class="pagination">
                     <%if (qs.start > 0) {%>
-                        <li><a href="/search2?q=<%= qs.encodeQ%>&start=<%= page.pre%>">上一页</a></li>
+                        <li><a href="/search?q=<%= qs.encodeQ%>&start=<%= page.pre%>">上一页</a></li>
                     <%}%>
                     <% for (var i = page.start,index=0, total = page.end; i <total; i++) {%>
                         <%if (qs.start == i*10) {%>
                             <li class="active"><a><%= page.num[index++]/10+1%></a></li>
                         <%} else {%>
-                            <li><a href="/search2?q=<%= qs.encodeQ%>&start=<%= page.num[index]%>"><%= page.num[index++]/10+1%></a></li>
+                            <li><a href="/search?q=<%= qs.encodeQ%>&start=<%= page.num[index]%>"><%= page.num[index++]/10+1%></a></li>
                         <%}%>
                     <%}%>
-                        <li><a href="/search2?q=<%= qs.encodeQ%>&start=<%= page.next%>">下一页</a></li>
+                        <li><a href="/search?q=<%= qs.encodeQ%>&start=<%= page.next%>">下一页</a></li>
                     </ul>
                 </div>
             </div>

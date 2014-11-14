@@ -46,7 +46,7 @@ router.get('/url', function (req,res,next) {
     res.redirect(url);
 });
 
-router.get('/search2', function (req, res, next) {
+router.get('/search', function (req, res, next) {
     var q = req.query.q;
     var start = req.query.start || 0;
     var userAgent = req.headers['user-agent'];
