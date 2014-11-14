@@ -76,26 +76,25 @@ var plugin = plugin || {};
         } else if (keyCode === keys.ESC) {
             plugin.common.swithDisplay(".search__autocomplete");
         } else if (keyCode === keys.ENTER) {
-            /*var hoverItem = $(".acp-wrap .acp.hover");
-            if (hoverItem && hoverItem.length !== 0) {
-                var text = hoverItem.eq(0).text();
-                plugin.common.swithDisplay(".search__autocomplete");
-                $("#id_s_text").val(text);
-                return;
-            }*/
+            _ac.entered = true;
         }
-        setTimeout(_ac.request, 200);
+        setTimeout(_ac.request, 400);
         // _ac.request();
     };
 
     var _ac = {
         wrap: $(".acp-wrap"),
         req: null,
+        url_prefix: 'http://210.242.125.108',
         lastTime: null,
+        entered: false,
         cache: {},
         request: function () {
             if (_ac.req) {
                 _ac.req.abort();
+            }
+            if (_ac.entered) {
+                return;
             }
             var q = $("#id_s_text").val();
             if (!q) {
@@ -109,7 +108,7 @@ var plugin = plugin || {};
                 _ac.render(_ac.cache[q]);
                 return;
             }
-            _ac.req = $.getJSON('http://210.242.125.108/complete/search?client=firefox&q='+q+'&callback=?', function (resD) {
+            _ac.req = $.getJSON(_ac.url_prefix+'/complete/search?client=firefox&q='+q+'&callback=?', function (resD) {
                 if (resD && resD.length >= 2) {
                     _ac.cache[resD[0]] = resD[1];
                     _ac.render(resD[1]);
@@ -194,12 +193,27 @@ var plugin = plugin || {};
                 "bdPic": "",
                 "bdSign": "off",
                 "bdStyle": "1",
-                "bdCustomStyle": "/stylesheets/bdshare.css" //a.css不存在，该项仅仅是阻止百度分享使用默认的css文件后改变了分享项样式
+                "bdCustomStyle": "/stylesheets/bdshare.css" 
             },
             "share": {}
         };
         with(document) 0[(getElementsByTagName('head')[0] || body)
         .appendChild(createElement('script'))
         .src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~ (-new Date() / 36e5)];
+    };
+})();
+
+(function () {
+    plugin.headroom = function (selector) {
+        var myElement = document.querySelector(selector);
+        // 创建 Headroom 对象，将页面元素传递进去
+        var headroom  = new Headroom(myElement, {
+            classes : {
+              pinned : 'headroom-pinned',
+              unpinned : 'headroom-unpinned'
+            }
+        });
+        // 初始化
+        headroom.init(); 
     };
 })();

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="zh-CN"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="zh-CN"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang="zh-CN"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head> 
     <title><%= qs.q %> - 谷搜客</title>
     <meta charset="utf-8"/>
@@ -67,59 +67,46 @@
          </div>
         <div class="pure-u-1-3">
                <div class="result_stats" id="result_stats">
-                <%- resultStats%>
+                
                </div>
                <div class="search_result" id="search_result">
-           <%for (var i = 0, total = list.length; i < total; i++) {%>
-                <div class="s_r shadow">
-                    <a target="_blank" class="title" href="<%= list[i].url%>" name="r_url"><%- list[i].title%></a>
-                    <div class="visible_url"><%- list[i].cite%></div>
-                    <span class="min_content"><%- list[i].content%></span>
-                </div>
-            <%}%>
-            <% if (extrares.has) { %>
-                <div id="extrares" style="padding:0 8px 8px" class="shadow">
-                    <div style="clear:both;overflow:hidden" id="brs">
-                        <h3 class="med" style="text-align:left"><%- extrares.title%></h3>
-                    <%for (var i = 0, total = extrares.arr.length; i < total; i++) {%>
-                        <div class="brs_col">
-                        <%for (var j = 0, total2 = extrares.arr[i].length; j < total2; j++) {%>
-                            <p class="_e4b">
-                                <a href="<%= extrares.arr[i][j]['url']%>"><%- extrares.arr[i][j]['content']%></a>
+                    <div class="s_r shadow">
+                        <div class="med none-result">
+                            <p>
+                                找不到和您的查询
+                                <br>
+                                "<em>
+                                <%= qs.noneQ%>
+                                </em>"
+                                <br>
+                                相符的内容或信息。
                             </p>
-                        <%}%>
+                            <p style="margin-top:1em">
+                                建议：
+                            </p>
+                            <ul>
+                                <li>
+                                    请检查输入字词有无错误。
+                                </li>
+                                <li>
+                                    请尝试其他的查询词
+                                </li>
+                                <li>
+                                    请改用较常见的字词。
+                                </li>
+                                <li>
+                                    请减少查询字词的数量。
+                                </li>
+                            </ul>
                         </div>
-                    <%}%>
                     </div>
-                </div>
-            <% } %>
-                <div class="navcnt">
-                   <ul class="pagination">
-                    <%if (qs.start > 0) {%>
-                        <li><a href="/search2?q=<%= qs.encodeQ%>&start=<%= page.pre%>">上一页</a></li>
-                    <%}%>
-                    <% for (var i = page.start,index=0, total = page.end; i <total; i++) {%>
-                        <%if (qs.start == i*10) {%>
-                            <li class="active"><a><%= page.num[index++]/10+1%></a></li>
-                        <%} else {%>
-                            <li><a href="/search2?q=<%= qs.encodeQ%>&start=<%= page.num[index]%>"><%= page.num[index++]/10+1%></a></li>
-                        <%}%>
-                    <%}%>
-                        <li><a href="/search2?q=<%= qs.encodeQ%>&start=<%= page.next%>">下一页</a></li>
-                    </ul>
-                </div>
             </div>
         </div>
         <div class="pure-u-7-12">
              <!-- <p>Thirds1</p> -->
          </div>
     </div>
-    <div class="pure-g fbarcnt">
-        <div class="pure-u-1-12" style="padding: 9px 0;">
-            &nbsp;
-        </div>
-        <div class="pure-u-11-12">
-            <footer class="fbar">
+            <footer class="fbar" style="padding-left: 6.3333%;">
                 <span class="fsr">
                     <a class="_eA">
                         2014&nbsp;Copyright&nbsp;&copy;&nbsp;GuSouK.com
@@ -140,8 +127,6 @@
                     </a>
                 </span>
             </footer>
-        </div>
-    </div>
 
 
     <!-- jQuery 

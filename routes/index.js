@@ -64,226 +64,69 @@ router.get('/search2', function (req, res, next) {
         userAgent: userAgent,
         cookies: cookies
     },function (data) {
-        result = {};
-        if (data.cookies) {
-            result.cookies = data.cookies;
-        }
-
+        var result = {};
         result.qs = {//用户查询参数
             q: q,
             start: start,
             encodeQ: encodeURI(q)//url编码后的查询关键词
         };
-
-        result.state = {//一些条件，用于页面中做判断
-            hasResult: data['data'].length>0//是否有搜索结果
-        };
-
-        /*
-        计算分页
-         */
-         if (result.state.hasResult) {
-            var i = start/10+1;
-
-            var num = [];
-            var s,end,index = 0;
-            if (i-5 <= 0) {
-                s = 0;
-                end = 10;
-            } else {
-                s = i-6;
-                end=s+10;
-            }
-
-            for (var j = s, total = end; j < total; j++) {
-                num[index++] = j*10;
-            }
-
-            var page = {
-                pre: start-10,//上一页
-                num: num,
-                next: start+10,//下一页
-                start: s,
-                end: end
-            };
-
-            result['page'] = page;
+        //设置cookie
+        if (data.cookies && data.cookies.length > 0) {
+            res.set('Set-Cookie', data.cookies);
         }
+        res.set('Content-Type','text/html; charset=utf-8');
 
-        /*
-        相关搜索
-         */
+        //如果没有查询结果，则响应无结果提示界面
+        if (data['data'].length <= 0) {
+            result.qs.noneQ = result.qs.q.substring(0,100)+"...";
+            res.render("none", result);
+            return;
+        }
+        //计算分页
+         result['page'] = pagination(start);
+
+        //相关搜索
         result.extrares = data.extrares;
-
+        //结果数组
         result.list = data['data'];
-        result.resultStats = data.resultStats//搜索用时文字
+        //搜索用时文字
+        result.resultStats = data.resultStats;
 
         res.render("result", result);
     });
 });
-router.get('/search', function (req, res, next) {
-    var q = req.query.q;
-    var start = req.query.start || 0;
-    var mobile = req.query.mobile || 0;
-    var userAgent = req.headers['user-agent'];
-    var cookies = req.headers['cookie'];
-    var encrypted = (req.protocol || 'http')==='https';
-    if (!q) {
-        res.redirect("/");
-        return;
-    }
-    q = decodeURI(q);
-    start = parseInt(start);
-    mobile = parseInt(mobile);
-    gsearch({
-        q: q,
-        start: start,
-        userAgent: userAgent,
-        cookies: cookies
-    },function (data) {
-        // console.log("searched: " + data['data'].length);
-        if (mobile === 1) {
-            render(res,"partials/list", {
-                result: data,
-                curr: start/10+1
-            });
-            return;
+
+/**
+ * 计算分页
+ * @param  {[type]} start [description]
+ * @return {[type]}       [description]
+ */
+function pagination (start) {
+        var i = start/10+1;
+        var num = [];
+        var s,end,index = 0;
+        if (i-5 <= 0) {
+            s = 0;
+            end = 10;
+        } else {
+            s = i-6;
+            end=s+10;
         }
 
-        var completed = 0, 
-        tasks = [],
-        result = {},
-        path_prefix = __dirname + '/../views/partials/';
-        if (data.cookies) {
-            result.cookies = data.cookies;
+        for (var j = s, total = end; j < total; j++) {
+            num[index++] = j*10;
         }
-        result.locals = {
-            r_prefix : encrypted?config.ssl.r_prefix : config.r_prefix
+
+        var page = {
+            pre: start-10,//上一页
+            num: num,
+            next: start+10,//下一页
+            start: s,
+            end: end
         };
 
-        result.qs = {//用户查询参数
-            q: q,
-            start: start,
-            encodeQ: encodeURI(q)//url编码后的查询关键词
-        };
-
-        result.state = {//一些条件，用于页面中做判断
-            isMobile: data.isMobile,//是否为移动端,
-            encrypted: encrypted,
-            hasResult: data['data'].length>0//是否有搜索结果
-        };
-
-        var partials = {//views
-            content: {},//搜索结果view
-            footer: {},//底部view
-            extrares: {},//相关搜索view
-            pagination: {}//分页view
-        };
-
-        /*
-        计算分页
-         */
-         if (!data.isMobile && result.state.hasResult) {
-            var i = start/10+1;
-
-            var num = [];
-            var s,end,index = 0;
-            if (i-5 <= 0) {
-                s = 0;
-                end = 10;
-            } else {
-                s = i-6;
-                end=s+10;
-            }
-
-            for (var j = s, total = end; j < total; j++) {
-                num[index++] = j*10;
-            }
-
-            var page = {
-                pre: start-10,//上一页
-                num: num,
-                next: start+10,//下一页
-                start: s,
-                end: end
-            };
-
-            partials.pagination['page'] = page;
-        }
-
-        partials.pagination['isRender'] = result.state.hasResult;//根据是否查询到结果决定是否渲染分页view
-
-        /*
-        相关搜索
-         */
-        if (data.extrares.has && result.state.hasResult) {
-            partials.extrares = {
-                isRender: true,//表示要渲染相关搜索view
-                title: data.extrares.title,
-                list: data.extrares.arr
-            };
-
-            partials.extrares['title'] = data.isMobile?"相关搜索":partials.extrares.title;
-        }
-
-        /*
-        底部
-         */
-        if (!data.isMobile) {
-            partials.footer = {
-                isRender: true//表示要渲染底部view
-            };
-        }
-
-        partials.content = {//搜索结果view
-            isRender: true,
-            list: data['data'],
-            resultStats: data.resultStats//搜索用时文字
-        };
-
-        for (var key in partials) {//循环增加渲染任务
-            (function (_key) {
-                tasks.push(function () {
-                    var fileName = _key;
-                    // console.log(fileName);
-                    if (fileName === 'content' && !result.state.hasResult) {
-                        fileName = "noneTip";
-                        if (data.isMobile) {
-                            result.qs.noneQ = result.qs.q.substring(0,36)+"...";
-                        } else {
-                            result.qs.noneQ = result.qs.q;
-                        }
-                    }
-                    fs.readFile(path_prefix+fileName+'.ejs', 'utf8', function (err, tmpl) {
-                        if (err) {
-                           renderErr(_key);//文件读取错误,500
-                        } else {
-                            var renderData = partials[_key];//渲染该段view需要使用的数据
-                            if (renderData.isRender) {//判断是否要渲染
-                                renderData.locals = result.locals;
-                                renderData.qs = result.qs;
-                                renderData.state = result.state;
-                                result[_key] = ejs.render(tmpl, renderData);//将渲染结果增加到result中，便于所有任务完成后统一渲染页面
-                            } else {
-                                result[_key] = "";
-                            }
-                            // console.log(_key);
-                            if (++completed >= tasks.length) {//判断所有渲染任务是否完成
-                                render(res,'partials/result',result);
-                            }
-                        }
-                    });
-                });
-            })(key);
-        }
-
-        for (var n = 0; n < tasks.length; n++) {//执行并行渲染任务
-            tasks[n]();
-        }
-
-    });
-});
-
+        return page;
+}
 function render (res,view,data) {
     // console.log(view);
     data.r_prefix = data.encrypted? config.ssl.r_prefix : config.r_prefix;
