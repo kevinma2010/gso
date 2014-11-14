@@ -1,0 +1,205 @@
+// Avoid `console` errors in browsers that lack a console.
+var plugin = plugin || {};
+(function() {
+    var method;
+    var noop = function () {};
+    var methods = [
+        'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
+        'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
+        'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
+        'timeStamp', 'trace', 'warn'
+    ];
+    var length = methods.length;
+    var console = (window.console = window.console || {});
+
+    while (length--) {
+        method = methods[length];
+
+        // Only stub undefined methods.
+        if (!console[method]) {
+            console[method] = noop;
+        }
+    }
+}());
+
+(function () {
+    plugin.common = {
+        /**
+         * 切换元素显示
+         * @param ele 元素id
+         * @param val 指定的display属性值
+         */
+        swithDisplay: function (ele,val) {
+            if (!ele) {
+                return;
+            }
+            ele = $(ele);
+            if (!ele.css('display') && val) {
+                ele.css('display') = val;
+            } else if (ele.css('display') === 'block') {
+                ele.css('display', val || "none");
+            } else if (ele.css('display') === 'none') {
+                ele.css('display',val || "block");
+            }
+        }
+    };
+})();
+// Place any jQuery/helper plugins in here.
+// autocomplate
+(function () {
+    var keys = {
+        UP : 38,
+        DOWN : 40,
+        LEFT : 37,
+        RIGHT : 39,
+        ENTER : 13,
+        ESC : 27,
+        BACKSPACE : 8,
+        TAB : 9,
+        SHIFT : 16,
+        CTRL : 17,
+        ALT : 18,
+        INSERT : 45,
+        DELETE : 46,
+        PAGEUP : 33,
+        PAGEDOWN : 34
+    };
+
+    plugin.autocomplate = function () {
+        var keyCode = event.keyCode;
+        if (keyCode === keys.DOWN) {
+            _ac.swithFocus('DOWN');
+            return false;
+        } else if (keyCode === keys.UP) {
+            _ac.swithFocus('UP');
+            return false;
+        } else if (keyCode === keys.ESC) {
+            plugin.common.swithDisplay(".search__autocomplete");
+        } else if (keyCode === keys.ENTER) {
+            /*var hoverItem = $(".acp-wrap .acp.hover");
+            if (hoverItem && hoverItem.length !== 0) {
+                var text = hoverItem.eq(0).text();
+                plugin.common.swithDisplay(".search__autocomplete");
+                $("#id_s_text").val(text);
+                return;
+            }*/
+        }
+        setTimeout(_ac.request, 200);
+        // _ac.request();
+    };
+
+    var _ac = {
+        wrap: $(".acp-wrap"),
+        req: null,
+        lastTime: null,
+        cache: {},
+        request: function () {
+            if (_ac.req) {
+                _ac.req.abort();
+            }
+            var q = $("#id_s_text").val();
+            if (!q) {
+                plugin.common.swithDisplay(".search__autocomplete", "none");
+                return;
+            }
+            /*
+            使用内存缓存
+             */
+            if (_ac.cache[q]) {
+                _ac.render(_ac.cache[q]);
+                return;
+            }
+            _ac.req = $.getJSON('http://210.242.125.108/complete/search?client=firefox&q='+q+'&callback=?', function (resD) {
+                if (resD && resD.length >= 2) {
+                    _ac.cache[resD[0]] = resD[1];
+                    _ac.render(resD[1]);
+                }
+            });
+        },
+        render: function (arr) {
+            var r = [];
+            if (arr.length === 0) {
+                return;
+            }
+            for (var i = 0; i < arr.length; i++) {
+                r.push('<div class="acp" data-index="'+i+'">'+arr[i]+'</div>');
+            };
+            r = r.join('');
+            $('div.acp-wrap').html(r)
+            _ac.bindMou();
+            _ac.bindMov();
+            _ac.bindClick();
+            plugin.common.swithDisplay(".search__autocomplete", "block");
+        },
+        /**
+         * 使指定项选中焦点
+         **/
+        focusItem: function (index) {
+            _ac.wrap.find(".acp.hover").removeClass("hover");
+            var currVal = _ac.wrap.find(".acp").eq(index).addClass("hover").text();
+            $("#id_s_text").val(currVal);
+        },
+        /**
+         * 切换焦点
+         **/
+        swithFocus: function (type) {
+            var isUp = type === 'UP';
+            var hoverItem = _ac.wrap.find(".acp.hover");
+            var listSize = _ac.wrap.find(".acp").length;
+            if (hoverItem && hoverItem.length !== 0) {
+                var currIndex = hoverItem.eq(0).attr("data-index");
+                hoverItem.removeClass("hover");
+                currIndex = parseInt(currIndex);
+                if ((isUp? --currIndex : ++currIndex) === (isUp? -1 : listSize)) {
+                    _ac.focusItem(isUp? listSize-1 : 0);
+                } else {
+                    _ac.focusItem(currIndex);
+                }
+            } else {
+                _ac.focusItem(isUp? listSize-1:0);
+            }
+        },
+        bindMov: function () {
+            _ac.wrap.find(".acp").bind("mouseover",function () {
+                _ac.wrap.find(".acp.hover").removeClass("hover");
+                $(this).addClass("hover");
+            });
+        },
+        bindMou: function () {
+            _ac.wrap.find(".acp").bind("mouseout",function () {
+                $(this).removeClass("hover");
+            });
+        },
+        bindClick: function () {
+            _ac.wrap.find(".acp").bind("click",function () {
+                var text = _ac.wrap.find(".acp.hover").eq(0).text();
+                plugin.common.swithDisplay(".search__autocomplete");
+                $("#id_s_text").val(text).focus();
+            });
+        }
+    };
+})();
+
+(function () {
+    plugin.loadBaiduShare = function () {
+        window._bd_share_config = {
+            "common": {
+                "bdSnsKey": {},
+                "bdText": "谷搜客基于Google搜索,为喜爱谷歌搜索的朋友们免费提供高速稳定的搜索服务。"
+                    +"搜索结果通过Google.com实时抓取，推荐你在日常生活学习中使用谷搜客查询资料",
+                "bdUrl": "https://gusouk.com",
+                "bdMini": "0",
+                "bdDesc": "",
+                "bdMiniList": [],
+                "bdPic": "",
+                "bdSign": "off",
+                "bdStyle": "1",
+                "bdCustomStyle": "/stylesheets/bdshare.css" //a.css不存在，该项仅仅是阻止百度分享使用默认的css文件后改变了分享项样式
+            },
+            "share": {}
+        };
+        with(document) 0[(getElementsByTagName('head')[0] || body)
+        .appendChild(createElement('script'))
+        .src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~ (-new Date() / 36e5)];
+    };
+})();
