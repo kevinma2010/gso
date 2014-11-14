@@ -77,6 +77,7 @@ var plugin = plugin || {};
             plugin.common.swithDisplay(".search__autocomplete");
         } else if (keyCode === keys.ENTER) {
             _ac.entered = true;
+            plugin.common.swithDisplay(".search__autocomplete", "none");
         }
         setTimeout(_ac.request, 400);
         // _ac.request();
