@@ -123,7 +123,8 @@ a,a:hover {
 
 .search-box{
     position: relative;
-    margin:12% auto 0;
+    padding-top: 11%;
+    margin:0 auto 0;
     width: 640px;
     /*padding-right: 10px;*/
 }
@@ -133,7 +134,10 @@ a,a:hover {
     background-size:269px 95px;
     height:95px;
     width:269px;
-    margin:0 auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 26.8%;
+    /*margin:0 auto;*/
 }
 .search-box .glogo .tname {
     color:#777;
@@ -144,7 +148,7 @@ a,a:hover {
     top:70px;
 }
 .search-box .s_box {
-    margin: 50px auto 0px; 
+    margin: 35px auto 0px; 
     padding-left: 35px;
     /*padding: 50px 35px;*/
     /*height: 50px;*/
@@ -250,7 +254,7 @@ a,a:hover {
 }
 
 ul.help-tools {
-    margin: 10% auto 0px; 
+    margin: 8% auto 0px; 
     padding-left: 215px;
     list-style: none;
 }
