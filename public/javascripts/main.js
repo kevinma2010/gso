@@ -1,8 +1,16 @@
 (function () {
     var common;
     this.setAsDefault = function () {
-      if (("ActiveXObject" in window) && window.external && ('AddSearchProvider' in window.external)) {
-          window.external.AddSearchProvider('https://gusouk.com/opensearch.xml');
+      var _external = window.external;
+      if (_external && ('AddSearchProvider' in _external) && ('IsSearchProviderInstalled' in _external)) {
+            var isInstalled = 0;
+            try {
+               isInstalled = _external.IsSearchProviderInstalled('https://gusouk.com');
+            } catch (err) {
+              isInstalled = 0;
+            }
+            console.log("isInstalled: " + isInstalled);
+          _external.AddSearchProvider('https://gusouk.com/opensearch.xml');
       } else {
           window.open('http://mlongbo.com/set_as_default_search_engine/');
       }
