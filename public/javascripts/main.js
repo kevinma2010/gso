@@ -2,7 +2,7 @@
     var common;
     this.setAsDefault = function () {
       if (("ActiveXObject" in window) && window.external && ('AddSearchProvider' in window.external)) {
-          window.external.AddSearchProvider('<%= r_prefix %>/opensearch.xml');
+          window.external.AddSearchProvider('https://gusouk.com/opensearch.xml');
       } else {
           window.open('http://mlongbo.com/set_as_default_search_engine/');
       }
