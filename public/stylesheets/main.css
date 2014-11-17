@@ -783,12 +783,29 @@ a.label:focus {
 .search_result .s_r{
     margin-bottom:23px;
 }
-.s_r .title{
+.s_r h3 a{
     color: #1A0DAB;
+}
+.s_r h3.title{
+    color: #1A0DAB;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    display: block;
+    overflow: hidden;
     font-size: 18px !important;
     line-height: 1;
 }
-.s_r .title:hover{
+
+.s_r span._ogd {
+    margin: 0 3px 0 0;
+    font-size: x-small;
+    font-weight: bold;
+    cursor: auto;
+    float: left;
+}
+
+.s_r .title a:hover{
     text-decoration: underline;
 }
 .s_r .title em{
