@@ -15,16 +15,16 @@
       <meta name="apple-mobile-web-app-title" content="谷搜客">
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="author" content="Longbo Ma,mlongbo@gmail.com China">
-      <link rel="stylesheet" href="/stylesheets/normalize.css">
-      <link rel="stylesheet" href="/stylesheets/pure-min.css">
-      <link rel="stylesheet" href="/stylesheets/main.css">
-      <link rel="stylesheet" href="/stylesheets/bdshare.css">
-      <link rel="stylesheet" href="/stylesheets/font-awesome.min.css">
+      <link rel="stylesheet" href="<%= constant.r_prefix%>/stylesheets/normalize.css">
+      <link rel="stylesheet" href="<%= constant.r_prefix%>/stylesheets/pure-min.css">
+      <link rel="stylesheet" href="<%= constant.r_prefix%>/stylesheets/main.css">
+      <link rel="stylesheet" href="<%= constant.r_prefix%>/stylesheets/bdshare.css">
+      <link rel="stylesheet" href="<%= constant.r_prefix%>/stylesheets/font-awesome.min.css">
       <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
       <link rel="icon" href="/images/favicon.ico">
       <link rel="bookmark" type="image/x-icon"  href="/images/favicon.ico" />
       <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="谷搜客" />
-      <script src="/javascripts/vendor/modernizr-2.6.2.min.js"></script>
+      <script src="<%= constant.r_prefix%>/javascripts/vendor/modernizr-2.6.2.min.js"></script>
   </head>
   <body>
       <!--[if lt IE 7]>
@@ -113,14 +113,14 @@
       </footer>
        <!-- jQuery 
       <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script> -->
-      <script>window.jQuery || document.write('<script src="/javascripts/vendor/jquery.min.js"><\/script>')</script>
-      <script src="/javascripts/main.js"></script>
-      <script src="/javascripts/plugins.js"></script>
+      <script>window.jQuery || document.write('<script src="<%= constant.r_prefix%>/javascripts/vendor/jquery.min.js"><\/script>')</script>
+      <script src="<%= constant.r_prefix%>/javascripts/main.js"></script>
+      <script src="<%= constant.r_prefix%>/javascripts/plugins.js"></script>
       <script type="text/javascript">
         plugin.loadBaiduShare();
       </script>
     <%if (!constant.encrypted) {%>
-    <script type="text/javascript" src="/javascripts/wordcheck.js"></script>
+    <script type="text/javascript" src="<%= constant.r_prefix%>/javascripts/wordcheck.js"></script>
     <%}%>
   <!--这是我自己的网站统计   http://gso.mlongbo.com    请替换或注释掉-->
  <script>
