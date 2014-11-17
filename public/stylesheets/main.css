@@ -754,10 +754,12 @@ a.label:focus {
 }
 .form_box{
     display:inline-block;
+    width: 690px;
+    min-width: 688px;
     margin-top: 5px;
 }
 .form_box .search__autocomplete {
-    left: 8.3333%;
+    left: 115px;
     margin-left: 0;
 }
 .content{
