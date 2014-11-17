@@ -677,7 +677,7 @@ a.label:focus {
     border-top: 1px solid #e4e4e4;
 }
 .fbarcnt .fbar {
-    left: 8.3333%;
+    left: 117px;
 }
 .fbarcnt .fbar .fsl {
     margin-left: 0;
@@ -732,12 +732,11 @@ a.label:focus {
     padding-top:17px;
     /*padding-bottom:17px;*/
 }
-
 .logo{
     display:inline-block;
     /*margin: 0 auto;*/
-    padding-left:8px;
-    /*padding-right:12px;*/
+    padding-left:10px;
+    padding-right:10px;
     float: left;
 }
 .logo a{
@@ -763,6 +762,7 @@ a.label:focus {
 }
 .content{
     margin-top: 80px;
+    padding-left: 117px;
 }
 
 .result_stats{
@@ -775,7 +775,8 @@ a.label:focus {
 
 .search_result{
     font-family: arial,sans-serif;
-    width:100%;
+    width:592px;
+    max-width: 644px;
 }
 .search_result .s_r{
     margin-bottom:23px;

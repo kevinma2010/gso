@@ -65,8 +65,9 @@ var plugin = plugin || {};
         PAGEDOWN : 34
     };
 
-    plugin.autocomplate = function () {
-        var keyCode = event.keyCode;
+    plugin.autocomplate = function (e) {
+        e = e || event;
+        var keyCode = e.keyCode;
         if (keyCode === keys.DOWN) {
             _ac.swithFocus('DOWN');
             return false;
@@ -79,7 +80,7 @@ var plugin = plugin || {};
             _ac.entered = true;
             plugin.common.swithDisplay(".search__autocomplete", "none");
         }
-        setTimeout(_ac.request, 400);
+        setTimeout(_ac.request, 200);
         // _ac.request();
     };
 

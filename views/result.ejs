@@ -42,16 +42,13 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <header class="pure-g header-bar" id="header_bar">
-        <div class="pure-u-1-12" >
+    <header class="header-bar" id="header_bar">
              <div class="logo">
                 <a href="/"><img width="167" height="373" src="/images/nav_logo.png"></a>
             </div>
-         </div>
-        <div class="pure-u-11-12">
             <div class="form_box result">
                 <form action="/search">
-                    <input id="id_s_text" class="s_text" name="q" type="text" tabindex="1"  autocomplete="off" placeholder="" onkeyup="plugin.autocomplate()" value="<%= qs.q %>" />
+                    <input id="id_s_text" class="s_text" name="q" type="text" tabindex="1"  autocomplete="off" placeholder="" onkeyup="plugin.autocomplate(event)" value="<%= qs.q %>" />
                   <input class="m-button" value="搜&nbsp;&nbsp;索" type="submit" tabindex="2" />
                 </form>
                   <div class="search__autocomplete result" style="position: absolute; display: none;">
@@ -59,13 +56,9 @@
                       </div>
                   </div>
             </div>
-        </div>
     </header>
-    <div class="pure-g content">
-        <div class="pure-u-1-12">
-             <!-- <p>Thirds1</p> -->
-         </div>
-        <div class="pure-u-5-12">
+    <div class="content">
+        <div class="">
                <div class="result_stats" id="result_stats">
                 <%- resultStats%>
                </div>
@@ -110,15 +103,15 @@
                 </div>
             </div>
         </div>
-        <div class="pure-u-1-2">
+        <div class="">
              <!-- <p>Thirds1</p> -->
          </div>
     </div>
-    <div class="pure-g fbarcnt">
-        <div class="pure-u-1-12" style="padding: 9px 0;">
+    <div class="fbarcnt">
+        <div class="" style="padding: 9px 0;">
             &nbsp;
         </div>
-        <div class="pure-u-11-12">
+        <div class="">
             <footer class="fbar">
                 <span class="fsr">
                     <a class="_eA">
