@@ -1,6 +1,6 @@
 module.exports = function (grunt) {
 
-	var static_dir = 'build/';
+	var static_dir = 'public/';
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		copy: {
@@ -9,6 +9,11 @@ module.exports = function (grunt) {
 					{
 						expand: true, 
 						src: ['public/images/**'], 
+						dest: static_dir
+					},
+					{
+						expand: true, 
+						src: ['public/fonts/**'], 
 						dest: static_dir
 					},
 					{

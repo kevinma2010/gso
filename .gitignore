@@ -27,6 +27,8 @@ node_modules
 bower_components
 app/bower_components
 public/bower_components
+public/public
+public/static
 
 # other
 *.iml
