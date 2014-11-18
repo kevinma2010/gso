@@ -49,6 +49,7 @@ router.get('/url', function (req,res,next) {
 router.get('/search', function (req, res, next) {
     var q = req.query.q;
     var start = req.query.start || 0;
+    var lr = req.query.lr || '';
     var userAgent = req.headers['user-agent'];
     var cookies = req.headers['cookie'];
     var encrypted = (req.protocol || 'http')==='https';
@@ -61,6 +62,7 @@ router.get('/search', function (req, res, next) {
     gsearch({
         q: q,
         start: start,
+        lr: lr,
         userAgent: userAgent,
         cookies: cookies
     },function (data) {
@@ -68,6 +70,7 @@ router.get('/search', function (req, res, next) {
         result.qs = {//用户查询参数
             q: q,
             start: start,
+            lr: lr,
             encodeQ: encodeURI(q)//url编码后的查询关键词
         };
         //设置cookie

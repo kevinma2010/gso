@@ -246,3 +246,21 @@ var plugin = plugin || {};
         headroom.init(); 
     };
 })();
+
+(function () {
+    var tool = plugin.toolbar = {};
+
+    tool.lang = {
+        bindClick: function () {
+            $('.dropdown-menu.lang').find('a').on('click', function () {
+                var curr_index = $(this).attr('data-index');
+                var input_index = $("#opt_lang").val();
+                if (curr_index == input_index) {
+                    return false;
+                }
+                $("#opt_lang").val(curr_index);
+                document.forms[0].submit();
+            });
+        }
+    };
+})();
