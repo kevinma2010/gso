@@ -263,4 +263,18 @@ var plugin = plugin || {};
             });
         }
     };
+
+    tool.qdr = {
+        bindClick: function () {
+            $('.dropdown-menu.qdr').find('a').on('click', function () {
+                var curr_index = $(this).attr('data-index');
+                var input_index = $("#opt_qdr").val();
+                if (curr_index == input_index) {
+                    return false;
+                }
+                $("#opt_qdr").val(curr_index);
+                document.forms[0].submit();
+            });
+        }
+    };
 })();

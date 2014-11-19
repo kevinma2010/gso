@@ -50,6 +50,7 @@
                 <form action="/search">
                     <input id="id_s_text" class="s_text" name="q" type="text" tabindex="1"  autocomplete="off" placeholder="" onkeyup="plugin.autocomplate(event)" value="<%= qs.q %>" />
                     <input id="opt_lang" name="lr" type="hidden" value="<%= qs.lr%>" /> <!-- 筛选语言 -->
+                    <input id="opt_qdr" name="qdr" type="hidden" value="<%= qs.qdr%>" /> <!-- 筛选时间 -->
                   <input class="m-button" value="搜&nbsp;&nbsp;索" type="submit" tabindex="2" />
                 </form>
                   <div class="search__autocomplete result" style="position: absolute; display: none;">
@@ -133,10 +134,46 @@
                         <li><a data-index='10'>意大利</a></li>
                     <% } %>
                   </ul>
+                 <div class="hdtb_mitem hdtb_msel hdtb_imb" onclick="plugin.common.swithDisplay('.dropdown-menu.qdr');">
+                  时间<span class="caret"></span>
+                 </div><ul class="dropdown-menu qdr" style="left: 0px;">
+                    <% if (qs.qdr === '' || qs.qdr === NaN) {%>
+                        <li class="active"><a data-index=''>全部时间</a></li>
+                    <% } else {%>
+                        <li><a data-index=''>全部时间</a></li>
+                    <% } %>
+
+                    <% if (qs.qdr === 0) {%>
+                        <li class="active"><a data-index='0'>过去一小时内</a></li>
+                    <% } else {%>
+                        <li><a data-index='0'>过去一小时内</a></li>
+                    <% } %>
+
+                    <% if (qs.qdr === 1) {%>
+                         <li class="active"><a data-index='1'>过去24小时内</a></li>
+                    <% } else {%>
+                        <li><a data-index='1'>过去24小时内</a></li>
+                    <% } %>
+
+                    <% if (qs.qdr === 2) {%>
+                        <li class="active"><a data-index='2'>过去一周内</a></li>
+                    <% } else {%>
+                        <li><a data-index='2'>过去一周内</a></li>
+                    <% } %>
+
+                    <% if (qs.qdr === 3) {%>
+                        <li class="active"><a data-index='3'>过去一个月内</a></li>
+                    <% } else {%>
+                        <li><a data-index='3'>过去一个月内</a></li>
+                    <% } %>
+
+                    <% if (qs.qdr === 4) {%>
+                        <li class="active"><a data-index='4'>过去一年内</a></li>
+                    <% } else {%>
+                        <li><a data-index='4'>过去一年内</a></li>
+                    <% } %>
+                  </ul>
                  <!-- <div class="hdtb_mitem hdtb_imb">
-                  <a href="">图片</a>
-                 </div>
-                 <div class="hdtb_mitem hdtb_imb">
                   <a href="">地图</a>
                  </div>
                  <div class="hdtb_mitem hdtb_imb">
@@ -243,6 +280,7 @@
     <script type="text/javascript">
         plugin.headroom("#header_bar");
         plugin.toolbar.lang.bindClick();
+        plugin.toolbar.qdr.bindClick();
    </script>
 <!--这是我自己的网站统计   http://gso.mlongbo.com    请替换掉-->
 <script>
