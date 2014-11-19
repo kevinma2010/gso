@@ -48,7 +48,9 @@
             </div>
             <div class="form_box">
                 <form action="/search">
-                    <input id="id_s_text" class="s_text" name="q" type="text" tabindex="1"  autocomplete="off" placeholder="" onkeyup="plugin.autocomplate()" value="<%= qs.q %>" />
+                    <input id="id_s_text" class="s_text" name="q" type="text" tabindex="1"  autocomplete="off" placeholder="" onkeyup="plugin.autocomplate(event)" value="<%= qs.q %>" />
+                    <input id="opt_lang" name="lr" type="hidden" value="<%= qs.lr%>" /> <!-- 筛选语言 -->
+                    <input id="opt_qdr" name="qdr" type="hidden" value="<%= qs.qdr%>" /> <!-- 筛选时间 -->
                   <input class="m-button" value="搜&nbsp;&nbsp;索" type="submit" tabindex="2" />
                 </form>
                   <div class="search__autocomplete" style="position: absolute; display: none;">
@@ -57,8 +59,133 @@
                   </div>
             </div>
     </header>
-    <div class="content" style="margin-top:130px;">
+    <div class="content">
         <div class="">
+
+            <div id="hdtbSum" style="margin-bottom:50px;">
+                <div id="hdtb_msb">
+                 <div class="hdtb_mitem hdtb_msel hdtb_imb" onclick="plugin.common.swithDisplay('.dropdown-menu.lang');">
+                  语言<span class="caret"></span>
+                 </div>
+                 <ul class="dropdown-menu lang" style="left: -21px;">
+                    <% if (!qs.lr) {%>
+                        <li class="active"><a data-index=''>不限语言</a></li>
+                    <% } else {%>
+                        <li><a data-index=''>不限语言</a></li>
+                    <% } %>
+
+                    <% if (qs.lr == 3) {%>
+                        <li class="active"><a data-index='3'>所有中文</a></li>
+                    <% } else {%>
+                        <li><a data-index='3'>所有中文</a></li>
+                    <% } %>
+
+                    <% if (qs.lr == 1) {%>
+                         <li class="active"><a data-index='1'>简体中文</a></li>
+                    <% } else {%>
+                        <li><a data-index='1'>简体中文</a></li>
+                    <% } %>
+
+                    <% if (qs.lr == 2) {%>
+                        <li class="active"><a data-index='2'>繁体中文</a></li>
+                    <% } else {%>
+                        <li><a data-index='2'>繁体中文</a></li>
+                    <% } %>
+
+                    <% if (qs.lr == 4) {%>
+                        <li class="active"><a data-index='4'>英文</a></li>
+                    <% } else {%>
+                        <li><a data-index='4'>英文</a></li>
+                    <% } %>
+
+                    <% if (qs.lr == 5) {%>
+                        <li class="active"><a data-index='5'>韩文</a></li>
+                    <% } else {%>
+                        <li><a data-index='5'>韩文</a></li>
+                    <% } %>
+
+                    <% if (qs.lr == 6) {%>
+                        <li class="active"><a data-index='6'>日文</a></li>
+                    <% } else {%>
+                        <li><a data-index='6'>日文</a></li>
+                    <% } %>
+
+                    <% if (qs.lr == 7) {%>
+                        <li class="active"><a data-index='7'>法文</a></li>
+                    <% } else {%>
+                        <li><a data-index='7'>法文</a></li>
+                    <% } %>
+
+                    <% if (qs.lr == 8) {%>
+                        <li class="active"><a data-index='8'>德文</a></li>
+                    <% } else {%>
+                        <li><a data-index='8'>德文</a></li>
+                    <% } %>
+
+                    <% if (qs.lr == 9) {%>
+                        <li class="active"><a data-index='9'>西班牙</a></li>
+                    <% } else {%>
+                        <li><a data-index='9'>西班牙</a></li>
+                    <% } %>
+
+                    <% if (qs.lr == 10) {%>
+                        <li class="active"><a data-index='10'>意大利</a></li>
+                    <% } else {%>
+                        <li><a data-index='10'>意大利</a></li>
+                    <% } %>
+                  </ul>
+                 <div class="hdtb_mitem hdtb_msel hdtb_imb" onclick="plugin.common.swithDisplay('.dropdown-menu.qdr');">
+                  时间<span class="caret"></span>
+                 </div>
+                 <ul class="dropdown-menu qdr" style="left: 37px;">
+                    <% if (!qs.qdr) {%>
+                        <li class="active"><a data-index='0'>全部时间</a></li>
+                    <% } else {%>
+                        <li><a data-index='0'>全部时间</a></li>
+                    <% } %>
+
+                    <% if (qs.qdr === 1) {%>
+                        <li class="active"><a data-index='1'>过去一小时内</a></li>
+                    <% } else {%>
+                        <li><a data-index='1'>过去一小时内</a></li>
+                    <% } %>
+
+                    <% if (qs.qdr === 2) {%>
+                         <li class="active"><a data-index='2'>过去24小时内</a></li>
+                    <% } else {%>
+                        <li><a data-index='2'>过去24小时内</a></li>
+                    <% } %>
+
+                    <% if (qs.qdr === 3) {%>
+                        <li class="active"><a data-index='3'>过去一周内</a></li>
+                    <% } else {%>
+                        <li><a data-index='3'>过去一周内</a></li>
+                    <% } %>
+
+                    <% if (qs.qdr === 4) {%>
+                        <li class="active"><a data-index='4'>过去一个月内</a></li>
+                    <% } else {%>
+                        <li><a data-index='4'>过去一个月内</a></li>
+                    <% } %>
+
+                    <% if (qs.qdr === 5) {%>
+                        <li class="active"><a data-index='5'>过去一年内</a></li>
+                    <% } else {%>
+                        <li><a data-index='5'>过去一年内</a></li>
+                    <% } %>
+                  </ul>
+                 <!-- <div class="hdtb_mitem hdtb_imb">
+                  <a href="">地图</a>
+                 </div>
+                 <div class="hdtb_mitem hdtb_imb">
+                  <a href="">新闻</a>
+                 </div>
+                 <div class="hdtb_mitem hdtb_imb">
+                  <a href="">视频</a>
+                 </div> -->
+                </div>
+              </div>
+
                <div class="result_stats" id="result_stats">
                 
                </div>
@@ -133,6 +260,8 @@
 <%}%>
     <script type="text/javascript">
         plugin.headroom("#header_bar");
+        plugin.toolbar.lang.bindClick();
+        plugin.toolbar.qdr.bindClick();
    </script>
 <!--这是我自己的网站统计   http://gso.mlongbo.com    请替换掉-->
 <script>

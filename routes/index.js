@@ -50,8 +50,8 @@ router.get('/search', function (req, res, next) {
     var q = req.query.q;
     var start = req.query.start || 0;
     var lr = req.query.lr || '';
-    var qdr = req.query.qdr || '';
-    qdr = isNaN(qdr) ? '' : parseInt(qdr);
+    var qdr = req.query.qdr || 0;
+    qdr = isNaN(qdr) ? 0 : parseInt(qdr);
     var userAgent = req.headers['user-agent'];
     var cookies = req.headers['cookie'];
     var encrypted = (req.protocol || 'http')==='https';
@@ -70,7 +70,6 @@ router.get('/search', function (req, res, next) {
         cookies: cookies
     },function (data) {
         var result = {};
-        console.log(qdr);
         result.qs = {//用户查询参数
             q: q,
             start: start,

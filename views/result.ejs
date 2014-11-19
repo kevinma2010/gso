@@ -136,41 +136,42 @@
                   </ul>
                  <div class="hdtb_mitem hdtb_msel hdtb_imb" onclick="plugin.common.swithDisplay('.dropdown-menu.qdr');">
                   时间<span class="caret"></span>
-                 </div><ul class="dropdown-menu qdr" style="left: 0px;">
-                    <% if (qs.qdr === '' || qs.qdr === NaN) {%>
-                        <li class="active"><a data-index=''>全部时间</a></li>
+                 </div>
+                 <ul class="dropdown-menu qdr" style="left: 37px;">
+                    <% if (!qs.qdr) {%>
+                        <li class="active"><a data-index='0'>全部时间</a></li>
                     <% } else {%>
-                        <li><a data-index=''>全部时间</a></li>
-                    <% } %>
-
-                    <% if (qs.qdr === 0) {%>
-                        <li class="active"><a data-index='0'>过去一小时内</a></li>
-                    <% } else {%>
-                        <li><a data-index='0'>过去一小时内</a></li>
+                        <li><a data-index='0'>全部时间</a></li>
                     <% } %>
 
                     <% if (qs.qdr === 1) {%>
-                         <li class="active"><a data-index='1'>过去24小时内</a></li>
+                        <li class="active"><a data-index='1'>过去一小时内</a></li>
                     <% } else {%>
-                        <li><a data-index='1'>过去24小时内</a></li>
+                        <li><a data-index='1'>过去一小时内</a></li>
                     <% } %>
 
                     <% if (qs.qdr === 2) {%>
-                        <li class="active"><a data-index='2'>过去一周内</a></li>
+                         <li class="active"><a data-index='2'>过去24小时内</a></li>
                     <% } else {%>
-                        <li><a data-index='2'>过去一周内</a></li>
+                        <li><a data-index='2'>过去24小时内</a></li>
                     <% } %>
 
                     <% if (qs.qdr === 3) {%>
-                        <li class="active"><a data-index='3'>过去一个月内</a></li>
+                        <li class="active"><a data-index='3'>过去一周内</a></li>
                     <% } else {%>
-                        <li><a data-index='3'>过去一个月内</a></li>
+                        <li><a data-index='3'>过去一周内</a></li>
                     <% } %>
 
                     <% if (qs.qdr === 4) {%>
-                        <li class="active"><a data-index='4'>过去一年内</a></li>
+                        <li class="active"><a data-index='4'>过去一个月内</a></li>
                     <% } else {%>
-                        <li><a data-index='4'>过去一年内</a></li>
+                        <li><a data-index='4'>过去一个月内</a></li>
+                    <% } %>
+
+                    <% if (qs.qdr === 5) {%>
+                        <li class="active"><a data-index='5'>过去一年内</a></li>
+                    <% } else {%>
+                        <li><a data-index='5'>过去一年内</a></li>
                     <% } %>
                   </ul>
                  <!-- <div class="hdtb_mitem hdtb_imb">
