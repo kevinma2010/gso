@@ -260,6 +260,7 @@ var plugin = plugin || {};
                 var curr_index = $(this).attr('data-index');
                 var input_index = $("#opt_lang").val();
                 if (curr_index == input_index) {
+                    plugin.common.swithDisplay('.dropdown-menu.lang');
                     return false;
                 }
                 $("#opt_lang").val(curr_index);
@@ -278,6 +279,7 @@ var plugin = plugin || {};
                 var curr_index = $(this).attr('data-index');
                 var input_index = $("#opt_qdr").val();
                 if (curr_index == input_index) {
+                    plugin.common.swithDisplay('.dropdown-menu.qdr');
                     return false;
                 }
                 $("#opt_qdr").val(curr_index);
