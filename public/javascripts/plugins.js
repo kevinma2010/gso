@@ -251,6 +251,10 @@ var plugin = plugin || {};
     var tool = plugin.toolbar = {};
 
     tool.lang = {
+        swithDropMenu: function () {
+            plugin.common.swithDisplay('.dropdown-menu:not(\'.lang\')','none');
+            plugin.common.swithDisplay('.dropdown-menu.lang');
+        },
         bindClick: function () {
             $('.dropdown-menu.lang').find('a').on('click', function () {
                 var curr_index = $(this).attr('data-index');
@@ -265,6 +269,10 @@ var plugin = plugin || {};
     };
 
     tool.qdr = {
+        swithDropMenu: function () {
+            plugin.common.swithDisplay('.dropdown-menu:not(\'.qdr\')','none');
+            plugin.common.swithDisplay('.dropdown-menu.qdr');
+        },
         bindClick: function () {
             $('.dropdown-menu.qdr').find('a').on('click', function () {
                 var curr_index = $(this).attr('data-index');
