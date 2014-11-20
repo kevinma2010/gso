@@ -240,6 +240,9 @@ var plugin = plugin || {};
             classes : {
               pinned : 'headroom-pinned',
               unpinned : 'headroom-unpinned'
+            },
+            onUnpin: function () {
+                plugin.common.swithDisplay(".search__autocomplete",'none');
             }
         });
         // 初始化
