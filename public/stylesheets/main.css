@@ -326,7 +326,7 @@ ul.help-tools {
     border-radius: 0 0 2px 2px;
     margin-top: 0px;
     margin-left: 35px;
-    z-index: 25;
+    z-index: 1100;
     text-align: left;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     background-color: #fff;
@@ -728,7 +728,7 @@ a.label:focus {
     background: none repeat scroll 0 0 #f1f1f1;;
     background-image: -webkit-gradient(radial,100 36,0,100 -40,120,from(#fafafa),to(#f1f1f1));
     border-bottom: 1px solid #e5e5e5;
-    height: 58px;
+    height: 98px;
     padding-top:17px;
     /*padding-bottom:17px;*/
 }
@@ -763,8 +763,8 @@ a.label:focus {
     margin-left: 0;
 }
 .content{
-    margin-top: 80px;
-    padding-left: 117px;
+    margin-top: 122px;
+    padding-left: 115px;
 }
 
 .result_stats{
