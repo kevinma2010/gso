@@ -1,59 +1,63 @@
 /**
  * @author Longbo Ma
  */
-var request = require('./request');
-var cookieUtil = require('cookie');
-var cheerio = require('cheerio');
+var request = require('../lib/request');
+var $ = require('jQuery');
 var config = require('../config');
 var mobile = require('../lib/mobile');
 
-var content_language_matrix = [
-    /*所有语言*/ '',
-    /*简体中文*/ 'lang_zh-CN',
-    /*繁体中文*/ 'lang_zh-TW',
-    /*所有中文*/ 'lang_zh-CN|lang_zh-TW',
-    /*英文*/     'lang_en',
-    /*韩文*/     'lang_ko',
-    /*日文*/     'lang_ja',
-    /*法文*/     'lang_fr',
-    /*德文*/     'lang_de',
-    /*西班牙*/   'lang_es',
-    /*意大利*/   'lang_it',
-];
-
-//时间筛选选项
-var qdr = [
-    '',
-    'qdr:h', //过去一小时内
-    'qdr:d', //过去24小时内
-    'qdr:w', //过去一周内
-    'qdr:m', //过去一个月内
-    'qdr:y', //过去一年内
-];
-
 var gsearch = function (options, cb) {
+//    console.log('new gsearch...');
     options = options || {};
-    options.start = options.start || 0;
+    this.start = options.start || 0;
+    this.q = options.q;
     this.callback = cb || function(s){};
     this.userAgent = options.userAgent || config.userAgent;
-    this.cookies = options.cookies;
-    this.result = {};
-
-    var qs = this.qs = {
-        ie: 'utf-8',//输入编码
-        oe: 'utf-8',//输出编码, 否则ua被篡改为无效后会导致搜索结果乱码
-        start: options.start,
-        q: options.q,
-        hl: config.language, //界面语言
-    };
-    
     if (options.lr) {//搜索内容语言,不是界面语言
-        qs.lr = isNaN(options.lr) ? '' : content_language_matrix[parseInt(options.lr)] || '';
+        switch (options.lr) {
+            case '0'://所有语言
+                this.lr = '';
+                break;
+            case '1'://简体中文
+                this.lr = 'lang_zh-CN';
+                break;
+            case '2'://繁体中文
+                this.lr = 'lang_zh-TW';
+                break;
+            case '3'://所有中文
+                this.lr = 'langzh-CN|langzh-TW';
+                break;
+            case '4'://英文
+                this.lr = 'lang_en';
+                break;
+            case '5'://韩文
+                this.lr = 'lang_ko';
+                break;
+            case '6'://日文
+                this.lr = 'lang_ja';
+                break;
+            case '7'://法文
+                this.lr = 'lang_fr';
+                break;
+            case '8'://德文
+                this.lr = 'lang_de';
+                break;
+            case '9'://西班牙
+                this.lr = 'lang_es';
+                break;
+            case '10'://意大利
+                this.lr = 'lang_it';
+                break;
+            default:
+                this.lr = '';
+        }   
     }
-
-    if (options.tbs) {//时间筛选选项
-        qs.tbs = isNaN(options.tbs) ? '' : qdr[parseInt(options.tbs)] || '';
-    }
+    this.result = {};
+    // console.log(this.result);
+    this.config = {
+        base_url: config.g_url,
+        lang: config.language
+    };
 };
 
 /**
@@ -71,18 +75,18 @@ gsearch.prototype.checkMobile = function () {
  * 解析html数据
  **/
 gsearch.prototype.parseResponse = function (body) {
+    console.time("gsearch_jquery");
     var arr = [];
-    var $ = cheerio.load(body);
-    var search = $("#search").find("li.g");
-    var resultStats = $("#resultStats").html() || "";
+    var doc = $(body);
+    var search = doc.find("#search").find("li.g");
+    var resultStats = doc.find("#resultStats").html() || "";
 //    console.log(search.length);
     for (var i = 0; i < search.length; i++) {
         var sItem = $(search[i]);
         var link = sItem.find("h3.r a");
-        var url = link.attr("data-href") || link.attr("href");
+        var url = link.attr("href");
         if (url && url.indexOf('/search?') !== 0) {
             var title = link.html();
-            var filetype = sItem.find("span._ogd").html();
             var content = sItem.find("span.st").html();
             var cite = sItem.find("cite").html();
 //            console.log("title:  " + title);
@@ -95,20 +99,19 @@ gsearch.prototype.parseResponse = function (body) {
                 title: title,
                 url: url,
                 cite: cite,
-                content: content,
-                filetype: filetype
+                content: content
             });
         }
     }
 
 
     var hasExtrares = false, extrares = {};
-    var exTitle = $("#brs h3").html();
+    var exTitle = doc.find("#brs h3").html();
     if (exTitle) {
         var brs_cols, _brs_cols = [];
         hasExtrares = true;
         extrares.title = exTitle;
-        brs_cols = $("div.brs_col");
+        brs_cols = doc.find("div.brs_col");
 
         for (var i = 0; i < brs_cols.length; i++) {
             var _cols = $(brs_cols[i]).find('a');
@@ -130,6 +133,7 @@ gsearch.prototype.parseResponse = function (body) {
         extrares.arr = _brs_cols;
         // console.log(extrares);
     }
+	console.timeEnd("gsearch_jquery");
     extrares.has = hasExtrares;
     
     this.result['extrares'] = extrares;
@@ -147,60 +151,38 @@ gsearch.prototype.render = function (body) {
  **/
 gsearch.prototype.request = function () {
     var self = this;
-    if (!this.qs.q) {
+    if (!this.q) {
         this.callback([]);
         return;
     }
     this.checkMobile();
+    var qs = {
+        start: this.start,
+        q: this.q,
+        hl: this.config.lang//界面语言
+    };
+    
+    if (this.lr) {//查询结果语言
+        qs.lr = this.lr;
+    }
     
     var headers = {
         'accept-language': 'zh-CN,zh;q=0.8,zh-TW;q=0.6',
         'user-agent': this.userAgent,
-        'referer': config.g_url
+        'referer': this.config.base_url
     };
 
-    if (this.cookies) {
-        headers['cookie'] = this.cookies;
-    }
-
-    // console.log(headers);
     var options = {
-        url: config.g_url+'/search',
+        url: this.config.base_url+'/search',
         headers: headers,
-        qs: this.qs
+        qs: qs
     };
-    // console.log(this.qs);
 //    console.log('open request...');
     request(options, function (err, res, body) {
         if (!err) {
-            self.parseCookies(res);
             self.render(body);
         }
     });
-};
-
-gsearch.prototype.parseCookies = function (res) {
-    var cookies = res.headers['set-cookie'];
-    var cookieArr = [];
-    if (cookies && cookies.length > 0) {
-        for (var i = 0; i < cookies.length; i++) {
-            var cookieItem = cookieUtil.parse(cookies[i]);
-            if (cookieItem.domain) {
-                delete cookieItem.domain;
-            }
-            if (cookieItem.path) {
-                cookieItem.path = '/';
-            }
-
-            var tempArr = [];
-            for (var key in cookieItem) {
-                tempArr.push(key+'='+cookieItem[key]);
-            }
-            cookieArr.push(tempArr.join('; '));
-        };
-        console.log(cookieArr);
-        this.result.cookies = cookieArr;
-    }
 };
 
 module.exports = function (options,cb) {

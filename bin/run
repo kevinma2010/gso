@@ -2,10 +2,22 @@
 var app = require('../app'),
     config = require('../config');
 
-app.set('port', process.env.PORT || config.port);
+// app.locals['r_prefix'] = config.r_prefix;
 
-app.locals['r_prefix'] = config.r_prefix;
-
-var server = app.listen(app.get('port'), function() {
+var server = app.listen(config.port, function() {
   console.log('Express server listening on port ' + server.address().port);
 });
+
+if (config.ssl.enable) {
+    var https = require('https')
+        ,fs = require("fs");
+    
+    var options = {
+        key: fs.readFileSync(config.ssl.key),
+        cert: fs.readFileSync(config.ssl.cert)
+    };
+    
+    https.createServer(options, app).listen(config.ssl.port, function () {
+        console.log('Https server listening on port ' + config.ssl.port);
+    });
+}

@@ -1,12 +1,14 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('static-favicon');
+// var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compression = require('compression');
 
 var routes = require('./routes/index');
+
+var config = require('./config');
 
 var app = express();
 app.use(compression());
@@ -21,6 +23,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(function (req, res, next) {
+    res.setHeader('X-Powered-By', 'Longbo Ma');
+    res.setHeader('Donate-Me', 'mlongbo@gmail.com (This is a alipay account)');
+    res.setHeader('HomePage', 'http://mlongbo.com');
+    res.setHeader('GitHub', 'https://github.com/lenbo-ma')
+
+    var encrypted = (req.protocol || 'http')==='https';
+    app.locals['constant'] = {
+        encrypted: encrypted,
+        r_prefix: encrypted ? config.ssl.r_prefix : config.r_prefix
+    };
+    next();
+});
 app.use('/', routes);
 
 /// catch 404 and forward to error handler

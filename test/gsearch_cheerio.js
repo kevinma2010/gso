@@ -1,8 +1,7 @@
 /**
  * @author Longbo Ma
  */
-var request = require('./request');
-var cookieUtil = require('cookie');
+var request = require('../lib/request');
 var cheerio = require('cheerio');
 var config = require('../config');
 var mobile = require('../lib/mobile');
@@ -21,39 +20,22 @@ var content_language_matrix = [
     /*意大利*/   'lang_it',
 ];
 
-//时间筛选选项
-var qdr = [
-    '',
-    'qdr:h', //过去一小时内
-    'qdr:d', //过去24小时内
-    'qdr:w', //过去一周内
-    'qdr:m', //过去一个月内
-    'qdr:y', //过去一年内
-];
-
 var gsearch = function (options, cb) {
+//    console.log('new gsearch...');
     options = options || {};
-    options.start = options.start || 0;
+    this.start = options.start || 0;
+    this.q = options.q;
     this.callback = cb || function(s){};
     this.userAgent = options.userAgent || config.userAgent;
-    this.cookies = options.cookies;
-    this.result = {};
-
-    var qs = this.qs = {
-        ie: 'utf-8',//输入编码
-        oe: 'utf-8',//输出编码, 否则ua被篡改为无效后会导致搜索结果乱码
-        start: options.start,
-        q: options.q,
-        hl: config.language, //界面语言
-    };
-    
     if (options.lr) {//搜索内容语言,不是界面语言
-        qs.lr = isNaN(options.lr) ? '' : content_language_matrix[parseInt(options.lr)] || '';
+        this.lr = isNaN(options.lr) ? '' : content_language_matrix[parseInt(options.lr)] || '';
     }
-
-    if (options.tbs) {//时间筛选选项
-        qs.tbs = isNaN(options.tbs) ? '' : qdr[parseInt(options.tbs)] || '';
-    }
+    this.result = {};
+    // console.log(this.result);
+    this.config = {
+        base_url: config.g_url,
+        lang: config.language
+    };
 };
 
 /**
@@ -71,6 +53,7 @@ gsearch.prototype.checkMobile = function () {
  * 解析html数据
  **/
 gsearch.prototype.parseResponse = function (body) {
+    console.time("gsearch_cheerio");
     var arr = [];
     var $ = cheerio.load(body);
     var search = $("#search").find("li.g");
@@ -79,10 +62,9 @@ gsearch.prototype.parseResponse = function (body) {
     for (var i = 0; i < search.length; i++) {
         var sItem = $(search[i]);
         var link = sItem.find("h3.r a");
-        var url = link.attr("data-href") || link.attr("href");
+        var url = link.attr("href");
         if (url && url.indexOf('/search?') !== 0) {
             var title = link.html();
-            var filetype = sItem.find("span._ogd").html();
             var content = sItem.find("span.st").html();
             var cite = sItem.find("cite").html();
 //            console.log("title:  " + title);
@@ -95,8 +77,7 @@ gsearch.prototype.parseResponse = function (body) {
                 title: title,
                 url: url,
                 cite: cite,
-                content: content,
-                filetype: filetype
+                content: content
             });
         }
     }
@@ -130,6 +111,7 @@ gsearch.prototype.parseResponse = function (body) {
         extrares.arr = _brs_cols;
         // console.log(extrares);
     }
+	console.timeEnd("gsearch_cheerio");
     extrares.has = hasExtrares;
     
     this.result['extrares'] = extrares;
@@ -147,29 +129,32 @@ gsearch.prototype.render = function (body) {
  **/
 gsearch.prototype.request = function () {
     var self = this;
-    if (!this.qs.q) {
+    if (!this.q) {
         this.callback([]);
         return;
     }
     this.checkMobile();
+    var qs = {
+        start: this.start,
+        q: this.q,
+        hl: this.config.lang//界面语言
+    };
+    
+    if (this.lr) {//查询结果语言
+        qs.lr = this.lr;
+    }
     
     var headers = {
         'accept-language': 'zh-CN,zh;q=0.8,zh-TW;q=0.6',
         'user-agent': this.userAgent,
-        'referer': config.g_url
+        'referer': this.config.base_url
     };
 
-    if (this.cookies) {
-        headers['cookie'] = this.cookies;
-    }
-
-    // console.log(headers);
     var options = {
-        url: config.g_url+'/search',
+        url: this.config.base_url+'/search',
         headers: headers,
-        qs: this.qs
+        qs: qs
     };
-    // console.log(this.qs);
 //    console.log('open request...');
     request(options, function (err, res, body) {
         if (!err) {
@@ -180,6 +165,7 @@ gsearch.prototype.request = function () {
 };
 
 gsearch.prototype.parseCookies = function (res) {
+    var cookieUtil = require('cookie');
     var cookies = res.headers['set-cookie'];
     var cookieArr = [];
     if (cookies && cookies.length > 0) {
@@ -198,9 +184,8 @@ gsearch.prototype.parseCookies = function (res) {
             }
             cookieArr.push(tempArr.join('; '));
         };
-        console.log(cookieArr);
-        this.result.cookies = cookieArr;
     }
+    console.log(cookieArr);
 };
 
 module.exports = function (options,cb) {

@@ -1,87 +1,129 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-  <head>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="zh-CN"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="zh-CN"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="zh-CN"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN"> <!--<![endif]-->
+    <head>
       <title>谷搜客 - 基于Google的实时搜索服务</title>
       <meta charset="utf-8"/>
+      <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="Cache-Control" content="no-siteapp" />
       <meta name="description" content="谷搜客基于Google搜索,为喜爱谷歌搜索的朋友们免费提供高速稳定的搜索服务。搜索结果通过Google.com实时抓取，欢迎您在日常生活学习中使用谷搜客查询资料。" />
       <meta name="keywords" content="谷歌 谷搜客 google 谷歌不能访问 gusouk" />
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel='stylesheet' href='<%= r_prefix %>/stylesheets/style.css' />
-      <link rel='stylesheet' href='<%= r_prefix %>/stylesheets/style-responsive.css' />
-      <link rel="shortcut icon" type="image/x-icon" href="<%= r_prefix %>/images/favicon.ico" />
-      <link rel="icon" href="<%= r_prefix %>/images/favicon.ico">
-      <link rel="bookmark" type="image/x-icon"  href="<%= r_prefix %>/images/favicon.ico" />
-      <link rel="search" type="application/opensearchdescription+xml" href="<%= r_prefix %>/opensearch.xml" title="谷搜客" />
+      <meta name="apple-mobile-web-app-title" content="谷搜客">
+      <meta name="apple-mobile-web-app-capable" content="yes" />
+      <meta name="author" content="Longbo Ma,mlongbo@gmail.com China">
+      <link rel="stylesheet" href="<%= constant.r_prefix%>/stylesheets/normalize.css">
+      <link rel="stylesheet" href="<%= constant.r_prefix%>/stylesheets/pure-min.css">
+      <link rel="stylesheet" href="<%= constant.r_prefix%>/stylesheets/main.css">
+      <link rel="stylesheet" href="<%= constant.r_prefix%>/stylesheets/bdshare.css">
+      <link rel="stylesheet" href="<%= constant.r_prefix%>/stylesheets/font-awesome.min.css">
+      <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+      <link rel="icon" href="/images/favicon.ico">
+      <link rel="bookmark" type="image/x-icon"  href="/images/favicon.ico" />
+      <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="谷搜客" />
+      <script src="<%= constant.r_prefix%>/javascripts/vendor/modernizr-2.6.2.min.js"></script>
   </head>
   <body>
-      <div class="wrapper">
-          <div class="search-box">
-              <div class="glogo">
-                <div nowrap="" class="tname">谷搜客</div>
-              </div>
-              <form class="s_box" method="get" action="/search" onsubmit="return document.getElementById('id_s_text').value==''?false:true;">
-                  <input id="id_s_text" class="s_text" name="q" type="text"  autocomplete="off" placeholder="世界因你而美好, 加油~"/>
-                  <input class="s_submit m-button" value="搜一下" type="submit" />
-              </form>
+      <!--[if lt IE 7]>
+          <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+      <![endif]-->
+
+      <!-- Add your site or application content here -->
+      
+      <header>
+          
+      </header>
+      <div class="pure-g-r">
+          <div class="pure-u-3-10">
+               <!-- <p>Thirds1</p> -->
           </div>
+          <div class="pure-u-7-10 search-box">
+               <div class="glogo">
+                  <div nowrap="" class="tname">谷搜客</div>
+                </div>
+                <form class="s_box" method="get" action="/search" onsubmit="return document.getElementById('id_s_text').value==''?false:true;">
+                    <input id="id_s_text" class="s_text" name="q" type="text" tabindex="1"  autocomplete="off" placeholder="" autofocus onkeyup="plugin.autocomplate(event)"/>
+                    <!-- <input id="id_s_text" class="s_text" name="q" type="text" tabindex="1"  autocomplete="off" placeholder="" autofocus/> -->
+                    <input class="m-button" value="搜索一下" type="submit" tabindex="2" />
+                </form>
+                <div class="search__autocomplete" style="position: absolute; display: none;">
+                    <div class="acp-wrap">
+                    </div>
+                </div>
+                <div class="help-tips">
+                  <h4>一念靜心 花開遍世界 </h4>         
+                </div>
+                <ul class="help-tools">
+                  <li style="padding-left:20px;">
+                      <a class="set_btn" tabindex="3" onclick="setAsDefault()">
+                          <i class="border-round fa fa-plus fa-lg"></i>
+                          <span>设为默认
+                            <span>搜索引擎</span>
+                          </span>
+                      </a>
+                  </li>
+                  <li style="padding-left:120px;">
+                      <div id="share-popover" class="popover top" style="top: 90%;left: 268px; width: 174px; display:none;">
+                        <div class="arrow"></div>
+                        <h3 class="popover-title">分享给朋友们</h3>
+                        <div class="popover-content">
+                            <div class="home-share">
+                                <a title="分享到新浪微博" class="bds_tsina" data-cmd="tsina"></a>
+                                <!-- <a title="分享到微信" class="bds_weixin" data-cmd="weixin"></a> -->
+                                <a title="分享到QQ好友" class="bds_sqq" data-cmd="sqq"></a>
+                                <a title="分享到豆瓣网" class="bds_douban" data-cmd="douban"></a>
+                                <a title="分享到腾讯微博" class="bds_tqq" data-cmd="tqq"></a>
+                            </div>
+                        </div>
+                      </div>
+                      <a class="set_btn" tabindex="5" onclick="swithPopver('share-popover');">
+                          <i class="border-round fa fa-share fa-lg"></i>
+                          <span>帮忙分享</span>
+                      </a>
+                  </li>
+                </ul>
+          </div> <!--
+          <div class="pure-u-1-5">
+               <p>Thirds1</p>
+          </div> -->
       </div>
-      <%if (!isMobile) {%>
-     <div id="footcnt">
-      <div class="_dQc _E2" id="fbar">
-        <div class="fbar">
-            <span id="fsr">
-                <a class="_Gs unline">
-                    Copyright&nbsp;&copy;&nbsp;GuSouK.com
-                </a>
-                <a class="_eA" href="javascript:void(0);" onclick="setAsDefault()">
-                    <strong>设置为默认搜索引擎</strong>
-                </a>
-                <!-- <a class="_Gs" href="">
-                    使用Google.co.jp
-                </a> -->
-            </span>
-            <span id="fsl">
-                <a class="_eA" href="http://mlongbo.com/aboutgso/" target="_blank" title="我需要你的帮助">
-                    <strong>捐助</strong>
-                </a>
-                <a class="_Gs" href="mailto:mlongbo@gmail.com?subject=[GuSou]-" target="_blank" title="快给我写信提建议啦">
-                    <strong>给我发邮件</strong>
-                </a>
-                <a class="_Gs" href="/feedback" target="_blank" title="踊跃发言啦">
-                    <strong>提建议</strong>
-                </a>
-                <a class="_Gs" href="http://www.zhihu.com/question/20161362" target="_blank">
-                    如何用好Google搜索引擎
-                </a>
-            </span>
-        </div>
-    </div>
-</div>
-
-  <!-- FOOTER
-    <footer class="footer ">
-        <p>Powered By Lenbo Ma</p>
-    </footer>-->
-
-    <script type="text/javascript">
-    (function () {
-       document.getElementsByTagName('input')[0].focus();
-
-       this.setAsDefault = function () {
-          if (("ActiveXObject" in window) && window.external && ('AddSearchProvider' in window.external)) {
-              window.external.AddSearchProvider('<%= r_prefix %>/opensearch.xml');
-          } else {
-              window.open('http://mlongbo.com/set_as_default_search_engine/');
-          }
-          return false;
-       };
-    })();
-    </script>
+      <footer class="fbar">
+          <span class="fsr">
+              <a class="_eA">
+                  2014&nbsp;Copyright&nbsp;&copy;&nbsp;GuSouK.com
+              </a>
+          </span>
+          <span class="fsl">
+              <a class="_eA" href="mailto:mlongbo@gmail.com?subject=[GuSou]-" target="_blank" title="快给我写信提建议啦">
+                  <strong>联系我</strong>
+              </a>
+              <a class="_Gs" href="https://github.com/lenbo-ma/gso/issues" target="_blank" title="踊跃发言啦">
+                  <strong>问题与建议</strong>
+              </a>
+              <a class="_Gs" href="http://www.zhihu.com/question/20161362" target="_blank">
+                  如何用好Google搜索引擎
+              </a>
+              <a class="_Gs" href="http://jq.qq.com/?_wv=1027&k=PaD5gT" target="_blank">
+                  QQ群: 338257594
+              </a>
+          </span>
+      </footer>
+       <!-- jQuery 
+      <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script> -->
+      <script>window.jQuery || document.write('<script src="<%= constant.r_prefix%>/javascripts/vendor/jquery.min.js"><\/script>')</script>
+      <script src="<%= constant.r_prefix%>/javascripts/main.js"></script>
+      <script src="<%= constant.r_prefix%>/javascripts/plugins.js"></script>
+      <script type="text/javascript">
+        plugin.loadBaiduShare();
+      </script>
+    <%if (!constant.encrypted) {%>
+    <script type="text/javascript" src="<%= constant.r_prefix%>/javascripts/wordcheck.js"></script>
     <%}%>
-    <script type="text/javascript" src="<%= r_prefix %>/javascripts/wordcheck.js?=v'"></script>
-    <!--<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
   <!--这是我自己的网站统计   http://gso.mlongbo.com    请替换或注释掉-->
-   <!--//gascript <script>
+ <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -89,11 +131,6 @@
 
     ga('create', 'UA-42596364-3', 'auto');
     ga('send', 'pageview');
-  </script> //gascript-->
-  <script type="text/javascript">
-      console.info("谷搜客基于Google搜索,为喜爱谷歌搜索的朋友们免费提供高速稳定的搜索服务。搜索结果通过Google.com实时抓取，欢迎您在日常生活学习中使用谷搜客查询资料。");
-      console.info("如果你觉得谷搜客对你有帮助，请资助(支付宝账号: mlongbo@gmail.com)我一下，资金将用于支持我开发及购买服务器资源。^_^");
-      console.info("希望能够让更多的获取知识，各自加油！");
-    </script>
+  </script>
   </body>
 </html>
