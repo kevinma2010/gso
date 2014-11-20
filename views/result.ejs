@@ -43,26 +43,24 @@
 
     <!-- Add your site or application content here -->
     <header class="header-bar" id="header_bar">
-             <div class="logo">
-                <a href="/"><img width="167" height="373" src="/images/nav_logo.png"></a>
-            </div>
-            <div class="form_box result">
-                <form action="/search">
-                    <input id="id_s_text" class="s_text" name="q" type="text" tabindex="1"  autocomplete="off" placeholder="" onkeyup="plugin.autocomplate(event)" value="<%= qs.q %>" />
-                    <input id="opt_lang" name="lr" type="hidden" value="<%= qs.lr%>" /> <!-- 筛选语言 -->
-                    <input id="opt_qdr" name="qdr" type="hidden" value="<%= qs.qdr%>" /> <!-- 筛选时间 -->
-                  <input class="m-button" value="搜&nbsp;&nbsp;索" type="submit" tabindex="2" />
-                </form>
-                  <div class="search__autocomplete result" style="position: absolute; display: none;">
-                      <div class="acp-wrap">
+            <div style="width: 100%">
+                <div class="logo">
+                    <a href="/"><img width="167" height="373" src="/images/nav_logo.png"></a>
+                </div>
+                <div class="form_box result">
+                    <form action="/search">
+                        <input id="id_s_text" class="s_text" name="q" type="text" tabindex="1"  autocomplete="off" placeholder="" onkeyup="plugin.autocomplate(event)" value="<%= qs.q %>" />
+                        <input id="opt_lang" name="lr" type="hidden" value="<%= qs.lr%>" /> <!-- 筛选语言 -->
+                        <input id="opt_qdr" name="qdr" type="hidden" value="<%= qs.qdr%>" /> <!-- 筛选时间 -->
+                      <input class="m-button" value="搜&nbsp;&nbsp;索" type="submit" tabindex="2" />
+                    </form>
+                      <div class="search__autocomplete result" style="position: absolute; display: none;">
+                          <div class="acp-wrap">
+                          </div>
                       </div>
-                  </div>
+                </div>
             </div>
-    </header>
-    <div class="content">
-        <div class="">
-
-            <div id="hdtbSum">
+            <div id="hdtbSum" style="padding-left: 115px;margin-top:15px;">
                 <div id="hdtb_msb">
                  <div class="hdtb_mitem hdtb_msel hdtb_imb" onclick="plugin.toolbar.lang.swithDropMenu();">
                   语言<span class="caret"></span>
@@ -185,6 +183,10 @@
                  </div> -->
                 </div>
               </div>
+
+    </header>
+    <div class="content">
+        <div class="">
 
                <div class="result_stats" id="result_stats">
                 <%- resultStats%>
