@@ -1139,9 +1139,6 @@ a.label:focus {
    ========================================================================== */
 @media
 only screen and (max-width: 760px) {
-    .hiden-mobile {
-        display: none;
-    }
 }
 @media only screen and (min-width: 35em) {
     /* Style adjustments for viewports that meet the condition */
