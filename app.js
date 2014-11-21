@@ -5,7 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compression = require('compression');
-var minify = require('html-minifier').minify;
 
 var routes = require('./routes/index');
 
@@ -37,26 +36,6 @@ app.use(function (req, res, next) {
     };
     next();
 });
-
-if (app.get('env') === 'production') {
-    // html minify
-    app.use(function (req, res, next) {
-        res._render = res.render;
-
-        res.render = function(view, options, fn){
-            var self = this;
-            var req = this.req;
-            fn = fn || function(err, str){
-                if (err) return req.next(err);
-                self.send(minify(str,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true}));
-              };
-            // render
-            self._render(view, options, fn);
-        };
-        next();
-    });
-}
-
 app.use('/', routes);
 
 /// catch 404 and forward to error handler
