@@ -37,6 +37,7 @@ app.use(function (req, res, next) {
     };
     next();
 });
+
 if (app.get('env') === 'production') {
     // html minify
     app.use(function (req, res, next) {
