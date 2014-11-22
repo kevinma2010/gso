@@ -98,7 +98,7 @@ router.get('/search', function (req, res, next) {
         result.list = data['data'];
         //搜索用时文字
         result.resultStats = data.resultStats;
-
+        result.constants = require('../lib/constant');
         res.render("result", result);
     });
 });

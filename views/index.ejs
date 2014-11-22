@@ -16,7 +16,6 @@
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="author" content="Longbo Ma,mlongbo@gmail.com China">
       <link rel="stylesheet" href="<%= constant.r_prefix%>/stylesheets/normalize.css">
-      <link rel="stylesheet" href="<%= constant.r_prefix%>/stylesheets/pure-min.css">
       <link rel="stylesheet" href="<%= constant.r_prefix%>/stylesheets/main.css">
       <link rel="stylesheet" href="<%= constant.r_prefix%>/stylesheets/bdshare.css">
       <link rel="stylesheet" href="<%= constant.r_prefix%>/stylesheets/font-awesome.css">
@@ -34,13 +33,8 @@
       <!-- Add your site or application content here -->
       
       <header>
-          
       </header>
-      <div class="pure-g-r">
-          <div class="pure-u-3-10">
-               <!-- <p>Thirds1</p> -->
-          </div>
-          <div class="pure-u-7-10 search-box">
+          <div class="search-box">
                <div class="glogo">
                   <div nowrap="" class="tname">谷搜客</div>
                 </div>
@@ -85,32 +79,8 @@
                       </a>
                   </li>
                 </ul>
-          </div> <!--
-          <div class="pure-u-1-5">
-               <p>Thirds1</p>
-          </div> -->
-      </div>
-      <footer class="fbar">
-          <span class="fsr">
-              <a class="_eA">
-                  2014&nbsp;Copyright&nbsp;&copy;&nbsp;GuSouK.com
-              </a>
-          </span>
-          <span class="fsl">
-              <a class="_eA" href="mailto:mlongbo@gmail.com?subject=[GuSou]-" target="_blank" title="快给我写信提建议啦">
-                  <strong>联系我</strong>
-              </a>
-              <a class="_Gs" href="https://github.com/lenbo-ma/gso/issues" target="_blank" title="踊跃发言啦">
-                  <strong>问题与建议</strong>
-              </a>
-              <a class="_Gs" href="http://www.zhihu.com/question/20161362" target="_blank">
-                  如何用好Google搜索引擎
-              </a>
-              <a class="_Gs" href="http://jq.qq.com/?_wv=1027&k=PaD5gT" target="_blank">
-                  QQ群: 338257594
-              </a>
-          </span>
-      </footer>
+          </div>
+      <%- include partials/footer%>
        <!-- jQuery 
       <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script> -->
       <script>window.jQuery || document.write('<script src="<%= constant.r_prefix%>/javascripts/vendor/jquery.min.js"><\/script>')</script>

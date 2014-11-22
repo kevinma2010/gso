@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="zh-CN"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="zh-CN"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang="zh-CN"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head> 
     <title><%= qs.q %> - 谷搜客</title>
     <meta charset="utf-8"/>
@@ -66,111 +66,25 @@
                   语言<span class="caret"></span>
                  </div>
                  <ul class="dropdown-menu lang" style="left: -21px;">
-                    <% if (!qs.lr) {%>
-                        <li class="active"><a data-index=''>不限语言</a></li>
+                <% for (var i = 0, total = constants.lrArr.length; i < total; i++) {%>
+                    <% if (qs.lr == i) {%>
+                        <li class="active"><a data-index='<%=i%>'><%= constants.lrNames[i]%></a></li>
                     <% } else {%>
-                        <li><a data-index=''>不限语言</a></li>
+                        <li><a data-index='<%=i%>'><%= constants.lrNames[i]%></a></li>
                     <% } %>
-
-                    <% if (qs.lr == 3) {%>
-                        <li class="active"><a data-index='3'>所有中文</a></li>
-                    <% } else {%>
-                        <li><a data-index='3'>所有中文</a></li>
-                    <% } %>
-
-                    <% if (qs.lr == 1) {%>
-                         <li class="active"><a data-index='1'>简体中文</a></li>
-                    <% } else {%>
-                        <li><a data-index='1'>简体中文</a></li>
-                    <% } %>
-
-                    <% if (qs.lr == 2) {%>
-                        <li class="active"><a data-index='2'>繁体中文</a></li>
-                    <% } else {%>
-                        <li><a data-index='2'>繁体中文</a></li>
-                    <% } %>
-
-                    <% if (qs.lr == 4) {%>
-                        <li class="active"><a data-index='4'>英文</a></li>
-                    <% } else {%>
-                        <li><a data-index='4'>英文</a></li>
-                    <% } %>
-
-                    <% if (qs.lr == 5) {%>
-                        <li class="active"><a data-index='5'>韩文</a></li>
-                    <% } else {%>
-                        <li><a data-index='5'>韩文</a></li>
-                    <% } %>
-
-                    <% if (qs.lr == 6) {%>
-                        <li class="active"><a data-index='6'>日文</a></li>
-                    <% } else {%>
-                        <li><a data-index='6'>日文</a></li>
-                    <% } %>
-
-                    <% if (qs.lr == 7) {%>
-                        <li class="active"><a data-index='7'>法文</a></li>
-                    <% } else {%>
-                        <li><a data-index='7'>法文</a></li>
-                    <% } %>
-
-                    <% if (qs.lr == 8) {%>
-                        <li class="active"><a data-index='8'>德文</a></li>
-                    <% } else {%>
-                        <li><a data-index='8'>德文</a></li>
-                    <% } %>
-
-                    <% if (qs.lr == 9) {%>
-                        <li class="active"><a data-index='9'>西班牙</a></li>
-                    <% } else {%>
-                        <li><a data-index='9'>西班牙</a></li>
-                    <% } %>
-
-                    <% if (qs.lr == 10) {%>
-                        <li class="active"><a data-index='10'>意大利</a></li>
-                    <% } else {%>
-                        <li><a data-index='10'>意大利</a></li>
-                    <% } %>
+                <% } %>
                   </ul>
                  <div class="hdtb_mitem hdtb_msel hdtb_imb" onclick="plugin.toolbar.qdr.swithDropMenu();">
                   时间<span class="caret"></span>
                  </div>
                  <ul class="dropdown-menu qdr" style="left: 37px;">
-                    <% if (!qs.qdr) {%>
-                        <li class="active"><a data-index='0'>全部时间</a></li>
+                <% for (var i = 0, total = constants.qdrArr.length; i < total; i++) {%>
+                    <% if (qs.qdr == i) {%>
+                        <li class="active"><a data-index='<%=i%>'><%= constants.qdrNames[i]%></a></li>
                     <% } else {%>
-                        <li><a data-index='0'>全部时间</a></li>
+                        <li><a data-index='<%=i%>'><%= constants.qdrNames[i]%></a></li>
                     <% } %>
-
-                    <% if (qs.qdr === 1) {%>
-                        <li class="active"><a data-index='1'>过去一小时内</a></li>
-                    <% } else {%>
-                        <li><a data-index='1'>过去一小时内</a></li>
-                    <% } %>
-
-                    <% if (qs.qdr === 2) {%>
-                         <li class="active"><a data-index='2'>过去24小时内</a></li>
-                    <% } else {%>
-                        <li><a data-index='2'>过去24小时内</a></li>
-                    <% } %>
-
-                    <% if (qs.qdr === 3) {%>
-                        <li class="active"><a data-index='3'>过去一周内</a></li>
-                    <% } else {%>
-                        <li><a data-index='3'>过去一周内</a></li>
-                    <% } %>
-
-                    <% if (qs.qdr === 4) {%>
-                        <li class="active"><a data-index='4'>过去一个月内</a></li>
-                    <% } else {%>
-                        <li><a data-index='4'>过去一个月内</a></li>
-                    <% } %>
-
-                    <% if (qs.qdr === 5) {%>
-                        <li class="active"><a data-index='5'>过去一年内</a></li>
-                    <% } else {%>
-                        <li><a data-index='5'>过去一年内</a></li>
-                    <% } %>
+                <% } %>
                   </ul>
                  <!-- <div class="hdtb_mitem hdtb_imb">
                   <a href="">地图</a>
@@ -223,16 +137,16 @@
                 <div class="navcnt">
                    <ul class="pagination">
                     <%if (qs.start > 0) {%>
-                        <li><a href="/search?q=<%= qs.encodeQ%>&start=<%= page.pre%>">上一页</a></li>
+                        <li><a href="/search?q=<%= qs.encodeQ%>&start=<%= page.pre%>&lr=<%=qs.lr%>&qdr=<%=qs.qdr%>">上一页</a></li>
                     <%}%>
                     <% for (var i = page.start,index=0, total = page.end; i <total; i++) {%>
                         <%if (qs.start == i*10) {%>
                             <li class="active"><a><%= page.num[index++]/10+1%></a></li>
                         <%} else {%>
-                            <li><a href="/search?q=<%= qs.encodeQ%>&start=<%= page.num[index]%>"><%= page.num[index++]/10+1%></a></li>
+                            <li><a href="/search?q=<%= qs.encodeQ%>&start=<%= page.num[index]%>&lr=<%=qs.lr%>&qdr=<%=qs.qdr%>"><%= page.num[index++]/10+1%></a></li>
                         <%}%>
                     <%}%>
-                        <li><a href="/search?q=<%= qs.encodeQ%>&start=<%= page.next%>">下一页</a></li>
+                        <li><a href="/search?q=<%= qs.encodeQ%>&start=<%= page.next%>&lr=<%=qs.lr%>&qdr=<%=qs.qdr%>">下一页</a></li>
                     </ul>
                 </div>
             </div>
@@ -246,27 +160,7 @@
             &nbsp;
         </div>
         <div class="">
-            <footer class="fbar">
-                <span class="fsr">
-                    <a class="_eA">
-                        2014&nbsp;Copyright&nbsp;&copy;&nbsp;GuSouK.com
-                    </a>
-                </span>
-                <span class="fsl">
-                    <a class="_eA" href="mailto:mlongbo@gmail.com?subject=[GuSou]-" target="_blank" title="快给我写信提建议啦">
-                        <strong>联系我</strong>
-                    </a>
-                    <a class="_Gs" href="https://github.com/lenbo-ma/gso/issues" target="_blank" title="踊跃发言啦">
-                        <strong>问题与建议</strong>
-                    </a>
-                    <a class="_Gs" href="http://www.zhihu.com/question/20161362" target="_blank">
-                        如何用好Google搜索引擎
-                    </a>
-                    <a class="_Gs" href="http://jq.qq.com/?_wv=1027&k=PaD5gT" target="_blank">
-                      QQ群: 338257594
-                    </a>
-                </span>
-            </footer>
+            <%- include partials/footer%>
         </div>
     </div>
 
