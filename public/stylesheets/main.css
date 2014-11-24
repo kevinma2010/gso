@@ -936,6 +936,9 @@ a.label:focus {
 .s_r .title a:hover{
     text-decoration: underline;
 }
+.s_r .title a:visited {
+    color: #609;
+}
 .s_r .title em{
     color:#dd4b39;
     font-style:normal;
