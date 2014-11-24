@@ -2,6 +2,7 @@ var express = require('express');
 var minify = require('html-minifier').minify;
 var gsearch = require('../lib/gsearch');
 var mobile = require('../lib/mobile');
+var random = require('../lib/random');
 var router = express.Router();
 var ejs = require('ejs')
     , fs = require('fs')
@@ -9,7 +10,9 @@ var ejs = require('ejs')
 
 /* GET home page. */
 router.get('/', function(req, res) {
-    res.render('index', {});
+    res.render('index', {
+        word: random.getWord()
+    });
 });
 
 router.get('/refactor', function(req, res) {

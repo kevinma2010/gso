@@ -134,10 +134,10 @@ a,a:hover {
     background-size:269px 95px;
     height:95px;
     width:269px;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 26.8%;
-    /*margin:0 auto;*/
+    /*margin-top: 0;*/
+    /*margin-bottom: 0;*/
+    /*margin-left: 26.8%;*/
+    margin:0 auto;
 }
 .search-box .glogo .tname {
     color:#777;
@@ -149,10 +149,10 @@ a,a:hover {
 }
 .search-box .s_box {
     margin: 35px auto 0px; 
-    padding-left: 35px;
+    /*padding-left: 35px;*/
     /*padding: 50px 35px;*/
     /*height: 50px;*/
-    /*width: 640px;*/
+    width: 605px;
 }
 
 .s_text{
@@ -245,8 +245,10 @@ a,a:hover {
 
 .help-tips {
     color: #777;
-    margin: 20px auto 0px;
-    padding-left: 228px;
+    margin: 25px auto 0px;
+    /*padding-left: 228px;*/
+    text-align: center;
+    width: 400px;
 }
 
 .help-tips h4 {
