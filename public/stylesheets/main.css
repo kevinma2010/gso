@@ -93,8 +93,7 @@ textarea {
    Author's custom styles
    ========================================================================== */
 body, div, p, td,a {
-    /*font-family: arial,sans-serif;*/
-    font-family: "Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+    font-family: arial,sans-serif;
 }
 
 a,a:hover {
