@@ -80,14 +80,14 @@ var plugin = plugin || {};
             _ac.entered = true;
             plugin.common.swithDisplay(".search__autocomplete", "none");
         }
-        setTimeout(_ac.request, 200);
+        setTimeout(_ac.request, 100);
         // _ac.request();
     };
 
     var _ac = {
         wrap: $(".acp-wrap"),
         req: null,
-        url_prefix: '//wen.lu',
+        url_prefix: '//awk.so',
         lastTime: null,
         entered: false,
         cache: {},
