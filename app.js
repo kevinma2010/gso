@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compression = require('compression');
+var minify = require('html-minifier').minify;
 
 var routes = require('./routes/index');
 
@@ -29,11 +30,33 @@ app.use(function (req, res, next) {
     res.setHeader('HomePage', 'http://mlongbo.com');
     res.setHeader('GitHub', 'https://github.com/lenbo-ma')
 
-    res.constant = {};
     var encrypted = (req.protocol || 'http')==='https';
-    res.constant.r_prefix = encrypted ? config.ssl.r_prefix : config.r_prefix;
+    app.locals['constant'] = {
+        encrypted: encrypted,
+        r_prefix: encrypted ? config.ssl.r_prefix : config.r_prefix
+    };
     next();
 });
+
+if (app.get('env') === 'production') {
+    // html minify
+    app.use(function (req, res, next) {
+        res._render = res.render;
+
+        res.render = function(view, options, fn){
+            var self = this;
+            var req = this.req;
+            fn = fn || function(err, str){
+                if (err) return req.next(err);
+                self.send(minify(str,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true}));
+              };
+            // render
+            self._render(view, options, fn);
+        };
+        next();
+    });
+}
+
 app.use('/', routes);
 
 /// catch 404 and forward to error handler

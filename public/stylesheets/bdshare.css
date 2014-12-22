@@ -1,0 +1,50 @@
+
+/*分享*/
+
+.home-share {
+    width: 100%;
+    height: 100%;
+    color: #999;
+    font-size: 12px;
+}
+
+.home-share a {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    margin-left: 10px;
+    background-image: url(../images/share.png);
+    background-repeat:no-repeat;
+    cursor: pointer;
+    margin-bottom: 8px;
+    opacity: 0.8;
+    position: relative;
+    float:left;
+}
+
+.home-share a:hover {
+    opacity: 1
+}
+
+.home-share .bds_qzone {
+    background-position: 0 -65px;
+}
+
+.home-share .bds_tsina {
+    background-position: 0 0;
+}
+.home-share .bds_weixin {
+    background-position: 0 -32px;
+}
+.home-share .bds_tqq {
+    background-position: 0 -163px
+}
+.home-share .bds_sqq {
+    background-position: 0 -98px
+}
+.home-share .bds_renren {
+    background-position: 0 -131px
+}
+.home-share .bds_douban {
+    background-position: 0 -196px
+}
