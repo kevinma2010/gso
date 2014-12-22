@@ -6,7 +6,7 @@ var path = require("path"),
     config;
 
 config = {
-    port: 5555,
+    port: process.env.PORT || 5555,
     language: 'zh_CN',//生产环境下使用zh_CN
     userAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 ' +
         '(KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36',
