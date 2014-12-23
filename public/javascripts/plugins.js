@@ -243,6 +243,8 @@ var plugin = plugin || {};
             },
             onUnpin: function () {
                 plugin.common.swithDisplay(".search__autocomplete",'none');
+                plugin.common.swithDisplay('.dropdown-menu.lang', 'none');
+                plugin.common.swithDisplay('.dropdown-menu.qdr', 'none');
             }
         });
         // 初始化
