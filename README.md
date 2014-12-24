@@ -3,6 +3,8 @@ gso(Google So)
 
 这是一个用Node.JS编写的Google搜索服务，原理是拿着用户的关键词去Google服务器搜索，然后将返回的结果响应给用户。
 
+[可用服务列表](https://github.com/lenbo-ma/gso/wiki/%E5%8F%AF%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%88%97%E8%A1%A8)
+
 关于证书的说明：文件列表中提供的证书仅为测试使用，在生产环境下需替换为你自己的证书
 
 ----
@@ -56,5 +58,3 @@ npm install --production
 5. [ ] 优化错误日志记录;
 6. [ ] 支持视频元信息检索(同时检索可播放来源)
 7. [ ] 增加在线代理功能(代理搜索结果中出现的部分被屏蔽的网站)；
-
-[可用服务列表](https://github.com/lenbo-ma/gso/wiki/%E5%8F%AF%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%88%97%E8%A1%A8)
