@@ -70,6 +70,7 @@ router.get('/search', function (req, res, next) {
             qdr: qdr,
             encodeQ: encodeURI(q)//url编码后的查询关键词
         };
+        result.constants = require('../lib/constant');
         //设置cookie
         if (data.cookies && data.cookies.length > 0) {
             res.set('Set-Cookie', data.cookies);
@@ -91,7 +92,6 @@ router.get('/search', function (req, res, next) {
         result.list = data['data'];
         //搜索用时文字
         result.resultStats = data.resultStats;
-        result.constants = require('../lib/constant');
         res.render("result", result);
     });
 });
