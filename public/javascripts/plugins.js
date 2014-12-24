@@ -197,45 +197,6 @@ var plugin = plugin || {};
 })();
 
 (function () {
-    plugin.loadBaiduShare = function () {
-        /*window._bd_share_config = {
-            "common": {
-                "bdSnsKey": {},
-                "bdText": "谷搜客基于Google搜索,为喜爱谷歌搜索的朋友们免费提供高速稳定的搜索服务。"
-                    +"搜索结果通过Google.com实时抓取，推荐你在日常生活学习中使用谷搜客查询资料",
-                "bdUrl": "https://gusouk.com",
-                "bdMini": "0",
-                "bdDesc": "",
-                "bdMiniList": [],
-                "bdPic": "",
-                "bdSign": "off",
-                "bdStyle": "1",
-                "bdCustomStyle": "/stylesheets/bdshare.css" 
-            },
-            "share": {}
-        };
-        with(document) 0[(getElementsByTagName('head')[0] || body)
-        .appendChild(createElement('script'))
-        .src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~ (-new Date() / 36e5)];*/
-        var url = "https://gusouk.com";
-        var text = "谷搜客基于Google搜索,为喜爱谷歌搜索的朋友们免费提供高速稳定的搜索服务。"
-                    +"搜索结果通过Google.com实时抓取，推荐你在日常生活学习中使用谷搜客查询资料";
-        $("a.bds_tsina").on('click',function () {
-            window.open("http://service.weibo.com/share/share.php?url="+url+"&title="+text+"&appkey=1343713053&searchPic=false");
-        });
-        $("a.bds_sqq").on('click',function () {
-            window.open("http://connect.qq.com/widget/shareqq/index.html?url="+url+"&title="+text+"&desc=&summary=&site=baidu");
-        });
-        $("a.bds_douban").on('click',function () {
-            window.open("http://www.douban.com/share/service?href="+url+"&name="+text+"&text=");
-        });
-        $("a.bds_tqq").on('click',function () {
-            window.open("http://share.v.t.qq.com/index.php?c=share&a=index&url="+url+"&title="+text+"&appkey=801cf76d3cfc44ada52ec13114e84a96");
-        });
-    };
-})();
-
-(function () {
     plugin.headroom = function (selector) {
         var myElement = document.querySelector(selector);
         // 创建 Headroom 对象，将页面元素传递进去

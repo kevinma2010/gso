@@ -17,8 +17,6 @@
       <meta name="author" content="Longbo Ma,mlongbo@gmail.com China">
       <link rel="stylesheet" href="<%= constant.r_prefix%>/stylesheets/normalize.css">
       <link rel="stylesheet" href="<%= constant.r_prefix%>/stylesheets/main.css">
-      <link rel="stylesheet" href="<%= constant.r_prefix%>/stylesheets/bdshare.css">
-      <link rel="stylesheet" href="<%= constant.r_prefix%>/stylesheets/font-awesome.css">
       <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
       <link rel="icon" href="/images/favicon.ico">
       <link rel="bookmark" type="image/x-icon"  href="/images/favicon.ico" />
@@ -47,47 +45,14 @@
                     <div class="acp-wrap">
                     </div>
                 </div>
-                <div class="help-tips">
-                  <h4><%- word%></h4>         
-                </div>
-                <ul class="help-tools">
-                  <li style="padding-left:20px;">
-                      <a class="set_btn" tabindex="3" onclick="setAsDefault()">
-                          <i class="border-round fa fa-plus fa-lg"></i>
-                          <span>设为默认
-                            <span>搜索引擎</span>
-                          </span>
-                      </a>
-                  </li>
-                  <li style="padding-left:120px;">
-                      <div id="share-popover" class="popover top" style="top: 90%;left: 268px; width: 174px; display:none;">
-                        <div class="arrow"></div>
-                        <h3 class="popover-title">分享给朋友们</h3>
-                        <div class="popover-content">
-                            <div class="home-share">
-                                <a title="分享到新浪微博" class="bds_tsina" data-cmd="tsina"></a>
-                                <!-- <a title="分享到微信" class="bds_weixin" data-cmd="weixin"></a> -->
-                                <a title="分享到QQ好友" class="bds_sqq" data-cmd="sqq"></a>
-                                <a title="分享到豆瓣网" class="bds_douban" data-cmd="douban"></a>
-                                <a title="分享到腾讯微博" class="bds_tqq" data-cmd="tqq"></a>
-                            </div>
-                        </div>
-                      </div>
-                      <a class="set_btn" tabindex="5" onclick="swithPopver('share-popover');">
-                          <i class="border-round fa fa-share fa-lg"></i>
-                          <span>帮忙分享</span>
-                      </a>
-                  </li>
-                </ul>
           </div>
-      <%- include partials/footer%>
        <!-- jQuery 
       <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script> -->
       <script>window.jQuery || document.write('<script src="<%= constant.r_prefix%>/javascripts/vendor/jquery.min.js"><\/script>')</script>
       <script src="<%= constant.r_prefix%>/javascripts/main.js"></script>
       <script src="<%= constant.r_prefix%>/javascripts/plugins.js"></script>
       <script type="text/javascript">
-        plugin.loadBaiduShare();
+        // plugin.loadBaiduShare();
       </script>
     <%if (!constant.encrypted) {%>
     <script type="text/javascript" src="<%= constant.r_prefix%>/javascripts/wordcheck.js"></script>
