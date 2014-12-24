@@ -19,16 +19,6 @@ router.get('/refactor', function(req, res) {
     render(res,'/test/style_refactor', {});  // res.render('index', { title: 'Google Search' });
 });
 
-/* GET Feedback page. */
-router.get('/feedback', function(req, res) {
-    res.render('feedback', {});
-});
-
-/* GET Feedback page. */
-router.get('/issues', function(req, res) {
-    res.render('feedback', {});
-});
-
 /* GET 500 page */
 router.get('/error', function (req, res) {
     res.render('500', {});
@@ -56,7 +46,7 @@ router.get('/search', function (req, res, next) {
     var qdr = req.query.qdr || 0;
     qdr = isNaN(qdr) ? 0 : parseInt(qdr);
     var userAgent = req.headers['user-agent'];
-    var cookies = req.headers['cookie'];
+    var cookies = req.cookies;
     var encrypted = (req.protocol || 'http')==='https';
     if (!q) {
         res.redirect("/");
