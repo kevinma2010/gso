@@ -27,6 +27,9 @@ npm install --production
 或使用[pm2](https://github.com/Unitech/pm2)启动
 `pm2 start ./bin/run -i max`
 
+### 统计脚本
+
+将脚本粘贴到views/partials/statistics.ejs文件中即可
 
 
 ## 完成记录
