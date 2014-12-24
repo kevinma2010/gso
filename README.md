@@ -33,7 +33,7 @@ npm install --production
 
 ### 首页随机文字设置
 
-将文字粘贴到data/words.txt中，每句以一个空行分割, 支持html代码(如<br>)
+将文字粘贴到data/words.txt中，每句以一个空行分割, 支持html代码
 
 ## 完成记录
 1. 增加“相关搜索”功能;
