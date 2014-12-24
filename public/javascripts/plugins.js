@@ -65,8 +65,11 @@ var plugin = plugin || {};
         PAGEDOWN : 34
     };
 
-    plugin.autocomplate = function (e) {
-        e = e || event;
+    plugin.autocomplate = function () {
+        if (arguments[1]) {
+            _ac.url_prefix = arguments[1];
+        }
+        var e = arguments[0] || event;
         var keyCode = e.keyCode;
         if (keyCode === keys.DOWN) {
             _ac.swithFocus('DOWN');
