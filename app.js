@@ -9,7 +9,7 @@ var minify = require('html-minifier').minify;
 
 var routes = require('./routes/index');
 
-var config = require('./config');
+var config = require('./conf/config');
 
 var app = express();
 app.use(compression());

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 var app = require('../app'),
-    config = require('../config');
+    config = require('../conf/config');
 
 // app.locals['r_prefix'] = config.r_prefix;
 

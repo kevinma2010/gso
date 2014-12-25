@@ -6,7 +6,7 @@ var random = require('../lib/random');
 var router = express.Router();
 var ejs = require('ejs')
     , fs = require('fs')
-    ,config = require('../config');
+    ,config = require('../conf/config');
 
 /* GET home page. */
 router.get('/', function(req, res) {
