@@ -29,13 +29,15 @@ npm install --production
 或使用[pm2](https://github.com/Unitech/pm2)启动
 `pm2 start ./bin/run -i max`
 
+## 自定义设置
 ### 统计脚本
-
 将脚本粘贴到views/partials/statistics.ejs文件中即可
 
-### 首页随机文字设置
-
+### 首页随机文字
 将文字粘贴到data/words.txt中，每句以一个空行分割, 支持html代码
+
+### 设置多个Google IP防止被屏蔽
+将可用的IP放入conf/ip.txt文件中,每个ip以一个回车换行分割.
 
 ## 完成记录
 1. 增加“相关搜索”功能;
