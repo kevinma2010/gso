@@ -47,7 +47,6 @@ router.get('/search', function (req, res, next) {
     qdr = isNaN(qdr) ? 0 : parseInt(qdr);
     var userAgent = req.headers['user-agent'];
     var cookies = req.cookies;
-    var encrypted = (req.protocol || 'http')==='https';
     if (!q) {
         res.redirect("/");
         return;
@@ -127,29 +126,7 @@ function pagination (start) {
 
         return page;
 }
-function render (res,view,data) {
-    // console.log(view);
-    data.r_prefix = data.encrypted? config.ssl.r_prefix : config.r_prefix;
-    fs.readFile(__dirname + '/../views/'+view+'.ejs', 'utf8', function (err,tmpl) {
-        if (err) {
-           renderErr(view);
-        } else {
-            var html = ejs.render(tmpl, data);
-            html = minify(html,{removeComments: true,collapseWhitespace: true,minifyJS:true, minifyCSS:true});
-            if (data.cookies && data.cookies.length > 0) {
-                res.set('Set-Cookie', data.cookies);
-            }
-            res.set('Content-Type','text/html; charset=utf-8');
-            res.end(html);
-            res.flush();
-        }
-    }); 
-}
 
-function renderErr (res, viewName) {
-    console.error("read "+viewName+".ejs failed......");
-    res.status(500);
-    res.render('500');
-}
+
 
 module.exports = router;
