@@ -28,7 +28,10 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-          <p>这是一个用Node.JS编写的Google搜索服务，原理是拿着用户的关键词去Google服务器搜索，然后将返回的结果响应给用户。</p>
+          <h1>
+<a id="gsogoogle-so" class="anchor" href="#gsogoogle-so" aria-hidden="true"><span class="octicon octicon-link"></span></a>gso(Google So)</h1>
+
+<p>这是一个用Node.JS编写的Google搜索服务，原理是拿着用户的关键词去Google服务器搜索，然后将返回的结果响应给用户。</p>
 
 <p><a href="https://github.com/lenbo-ma/gso/wiki/%E5%8F%AF%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%88%97%E8%A1%A8">可用服务列表</a></p>
 
@@ -58,15 +61,36 @@ npm install --production</pre></div>
 <p>或使用<a href="https://github.com/Unitech/pm2">pm2</a>启动
 <code>pm2 start ./bin/run -i max</code></p>
 
+<h2>
+<a id="自定义设置" class="anchor" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%AE%BE%E7%BD%AE" aria-hidden="true"><span class="octicon octicon-link"></span></a>自定义设置</h2>
+
 <h3>
 <a id="统计脚本" class="anchor" href="#%E7%BB%9F%E8%AE%A1%E8%84%9A%E6%9C%AC" aria-hidden="true"><span class="octicon octicon-link"></span></a>统计脚本</h3>
 
 <p>将脚本粘贴到views/partials/statistics.ejs文件中即可</p>
 
 <h3>
-<a id="首页随机文字设置" class="anchor" href="#%E9%A6%96%E9%A1%B5%E9%9A%8F%E6%9C%BA%E6%96%87%E5%AD%97%E8%AE%BE%E7%BD%AE" aria-hidden="true"><span class="octicon octicon-link"></span></a>首页随机文字设置</h3>
+<a id="首页随机文字" class="anchor" href="#%E9%A6%96%E9%A1%B5%E9%9A%8F%E6%9C%BA%E6%96%87%E5%AD%97" aria-hidden="true"><span class="octicon octicon-link"></span></a>首页随机文字</h3>
 
 <p>将文字粘贴到data/words.txt中，每句以一个空行分割, 支持html代码</p>
+
+<h3>
+<a id="设置多个google-ip防止被屏蔽" class="anchor" href="#%E8%AE%BE%E7%BD%AE%E5%A4%9A%E4%B8%AAgoogle-ip%E9%98%B2%E6%AD%A2%E8%A2%AB%E5%B1%8F%E8%94%BD" aria-hidden="true"><span class="octicon octicon-link"></span></a>设置多个Google IP防止被屏蔽</h3>
+
+<p>将可用的IP放入conf/ip.txt文件中,每个ip以一个回车换行分割.</p>
+
+<h3>
+<a id="设置http代理服务器" class="anchor" href="#%E8%AE%BE%E7%BD%AEhttp%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8" aria-hidden="true"><span class="octicon octicon-link"></span></a>设置HTTP代理服务器</h3>
+
+<p>有时,我们可能需要设置一个代理服务器,比如google的ip失效暂时无法使用或被google屏蔽的时候.
+修改conf/config.js文件, 找到proxy节点:</p>
+
+<div class="highlight highlight-javascript"><pre>proxy<span class="pl-k">:</span> { 
+      enable<span class="pl-k">:</span> <span class="pl-c1">false</span>,  <span class="pl-c">//设置是否启用</span>
+      timeout<span class="pl-k">:</span> <span class="pl-c1">5000</span>,  <span class="pl-c">//设置超时时间, enable为true时有效</span>
+      host<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>,  <span class="pl-c">//代理服务器地址</span>
+      port<span class="pl-k">:</span> <span class="pl-c1">80</span>  <span class="pl-c">//代理服务器端口</span>
+  }</pre></div>
 
 <h2>
 <a id="完成记录" class="anchor" href="#%E5%AE%8C%E6%88%90%E8%AE%B0%E5%BD%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>完成记录</h2>
@@ -83,6 +107,8 @@ npm install --production</pre></div>
 <li>搜索内容语言切换;</li>
 <li>根据时间段筛选结果;</li>
 <li>使用filetype指令搜索时，结果项前缀显示filetype;</li>
+<li>支持设置多个Google IP(2014-12-25);</li>
+<li>增加HTTP代理功能(2014-12-28);</li>
 </ol>
 
 <h2>
