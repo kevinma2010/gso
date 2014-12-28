@@ -39,6 +39,19 @@ npm install --production
 ### 设置多个Google IP防止被屏蔽
 将可用的IP放入conf/ip.txt文件中,每个ip以一个回车换行分割.
 
+## 设置HTTP代理服务器
+有时,我们可能需要设置一个代理服务器,比如google的ip失效暂时无法使用或被google屏蔽的时候.
+修改conf/config.js文件, 找到proxy节点:
+
+```javascript
+proxy: { 
+      enable: false,  //设置是否启用
+      timeout: 5000,  //设置超时时间, enable为true时有效
+      host: '',  //代理服务器地址
+      port: 80  //代理服务器端口
+  }
+```
+
 ## 完成记录
 1. 增加“相关搜索”功能;
 2. OpenSearch, 支持IE，Firefox，Chrome设置为默认搜索引擎;
