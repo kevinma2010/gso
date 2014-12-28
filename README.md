@@ -39,7 +39,7 @@ npm install --production
 ### 设置多个Google IP防止被屏蔽
 将可用的IP放入conf/ip.txt文件中,每个ip以一个回车换行分割.
 
-## 设置HTTP代理服务器
+### 设置HTTP代理服务器
 有时,我们可能需要设置一个代理服务器,比如google的ip失效暂时无法使用或被google屏蔽的时候.
 修改conf/config.js文件, 找到proxy节点:
 
