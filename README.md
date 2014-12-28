@@ -51,7 +51,8 @@ npm install --production
 9. 搜索内容语言切换;
 10. 根据时间段筛选结果;
 11. 使用filetype指令搜索时，结果项前缀显示filetype;
-12. 支持设置多个Google IP;
+12. 支持设置多个Google IP(2014-12-25);
+13. 增加HTTP代理功能(2014-12-28);
 
 ## TODO
 1. [ ] Pad显示优化，字体优化;
