@@ -60,7 +60,12 @@ router.get('/search', function (req, res, next) {
         tbs: qdr,
         userAgent: userAgent,
         cookies: cookies
-    },function (data) {
+    },function (err, data) {
+        if (err || !data) {
+            console.log(err);
+            next(err);
+            return;
+        }
         var result = {};
         result.qs = {//用户查询参数
             q: q,

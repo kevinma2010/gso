@@ -1,14 +1,10 @@
+var cheerio = require('cheerio');
 
-/*var gsearch_jquery = require('./gsearch_jquery');
+var $ = cheerio.load('<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">'+
+'<TITLE>302 Moved</TITLE></HEAD><BODY>'+
+'<H1>302 Moved</H1>'+
+'The document has moved'+
+'<A HREF="http://ipv4.google.com/sorry/IndexRedirect?continue=http://173.194.38.200/search%3Fq%3Dnginx&amp;q=CGMSBGq6eV0YhJvZpAUiGQDxp4NLNFLldZ5wa9Hjh_3FJr51m04xNaY">here</A>.'+
+'</BODY></HTML>');
 
-gsearch_jquery({q: 'java'}, function (result) {
-	
-	console.log(result.data.length);
-});*/
-
-var gsearch_cheerio = require('./gsearch_cheerio');
-
-gsearch_cheerio({q: 'java'}, function (result) {
-	
-	console.log(result.data.length);
-});
+console.log($('div.hdtb_imb').length);
