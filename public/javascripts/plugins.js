@@ -90,7 +90,7 @@ var plugin = plugin || {};
     var _ac = {
         wrap: $(".acp-wrap"),
         req: null,
-        url_prefix: '//awk.so',
+        url_prefix: '//wen.lu',
         lastTime: null,
         entered: false,
         cache: {},
