@@ -92,6 +92,29 @@ npm install --production</pre></div>
       port<span class="pl-k">:</span> <span class="pl-c1">80</span>  <span class="pl-c">//代理服务器端口</span>
   }</pre></div>
 
+<h3>
+<a id="静态文件压缩" class="anchor" href="#%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E5%8E%8B%E7%BC%A9" aria-hidden="true"><span class="octicon octicon-link"></span></a>静态文件压缩</h3>
+
+<p>clone后的代码是未压缩的，可以使用grunt工具进行压缩。</p>
+
+<h4>
+<a id="压缩jscss文件" class="anchor" href="#%E5%8E%8B%E7%BC%A9jscss%E6%96%87%E4%BB%B6" aria-hidden="true"><span class="octicon octicon-link"></span></a>压缩js，css文件</h4>
+
+<ol>
+<li>安装grunt工具: <code>npm install -g grunt-cli</code>
+</li>
+<li>在项目根目录执行<code>grunt static</code>命令</li>
+<li>修改conf/config.js中的r_prefix值为<code>/public</code>
+</li>
+</ol>
+
+<p>注：执行grunt命令前必须使用<code>npm install</code>安装依赖，而不是<code>npm install --production</code></p>
+
+<h4>
+<a id="html代码压缩" class="anchor" href="#html%E4%BB%A3%E7%A0%81%E5%8E%8B%E7%BC%A9" aria-hidden="true"><span class="octicon octicon-link"></span></a>html代码压缩</h4>
+
+<p>启动服务前设置<code>NODE_ENV</code>为<code>production</code>即可，如<code>NODE_ENV=production forever start bin/run</code></p>
+
 <h2>
 <a id="完成记录" class="anchor" href="#%E5%AE%8C%E6%88%90%E8%AE%B0%E5%BD%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>完成记录</h2>
 
