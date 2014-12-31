@@ -64,6 +64,7 @@ app.use('/', routes);
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
+    res.status(404);
     var url = req.url;
     res.render('404', {
         url : url
