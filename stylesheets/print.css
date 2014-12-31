@@ -187,14 +187,14 @@ blockquote {
 
 ul li {
   padding-left: 20px;
-  list-style: disc;
   list-style-position: inside;
+  list-style: disc;
 }
 
 ol li {
   padding-left: 3px;
-  list-style: disc;
   list-style-position: inside;
+  list-style: decimal;
 }
 
 dl dd {
