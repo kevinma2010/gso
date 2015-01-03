@@ -52,6 +52,21 @@ proxy: {
   }
 ```
 
+### 静态文件压缩
+clone后的代码是未压缩的，可以使用grunt工具进行压缩。
+
+#### 压缩js，css文件
+
+1. 安装grunt工具: `npm install -g grunt-cli`
+2. 在项目根目录执行`grunt static`命令
+3. 修改conf/config.js中的r_prefix值为`/public`
+
+注：执行grunt命令前必须使用`npm install`安装依赖，而不是`npm install --production`
+
+#### html代码压缩
+
+启动服务前设置`NODE_ENV`为`production`即可，如`NODE_ENV=production forever start bin/run`
+
 ## 完成记录
 1. 增加“相关搜索”功能;
 2. OpenSearch, 支持IE，Firefox，Chrome设置为默认搜索引擎;

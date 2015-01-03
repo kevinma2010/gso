@@ -41,7 +41,7 @@
                 </div>
                 <div class="form_box result">
                     <form action="/search">
-                        <input id="id_s_text" class="s_text" name="q" type="text" tabindex="1"  autocomplete="off" placeholder="" onkeyup="plugin.autocomplate(event,'//58.123.102.99')" value="<%= qs.q %>" />
+                        <input id="id_s_text" class="s_text" name="q" type="text" tabindex="1"  autocomplete="off" value="<%= qs.q %>" />
                         <input id="opt_lang" name="lr" type="hidden" value="<%= qs.lr%>" /> <!-- 筛选语言 -->
                         <input id="opt_qdr" name="qdr" type="hidden" value="<%= qs.qdr%>" /> <!-- 筛选时间 -->
                       <input class="m-button" value="搜&nbsp;&nbsp;索" type="submit" tabindex="2" />
@@ -170,6 +170,11 @@
         plugin.headroom("#header_bar");
         plugin.toolbar.lang.bindClick();
         plugin.toolbar.qdr.bindClick();
+        
+        var g_url = '<%= constant.autocomplate_url%>';
+        $("#id_s_text").keyup(function (event) {
+          plugin.autocomplate(event,g_url);
+        });
    </script>
   <%- include partials/statistics%>
 </body>

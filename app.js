@@ -34,6 +34,7 @@ app.use(function (req, res, next) {
     app.locals['constant'] = {
         name: config.name,
         encrypted: encrypted,
+        autocomplate_url: encrypted ? config.ssl.autocomplate_url : config.autocomplate_url,
         r_prefix: encrypted ? config.ssl.r_prefix : config.r_prefix
     };
     next();
@@ -64,6 +65,7 @@ app.use('/', routes);
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
+    res.status(404);
     var url = req.url;
     res.render('404', {
         url : url
