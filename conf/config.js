@@ -6,6 +6,7 @@ var path = require("path"),
     config;
 
 config = {
+    name: '谷搜客',
     port: process.env.PORT || 5555,
     language: 'zh_CN',//生产环境下使用zh_CN
     userAgent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 ' +

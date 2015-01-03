@@ -32,6 +32,7 @@ app.use(function (req, res, next) {
 
     var encrypted = (req.protocol || 'http')==='https';
     app.locals['constant'] = {
+        name: config.name,
         encrypted: encrypted,
         r_prefix: encrypted ? config.ssl.r_prefix : config.r_prefix
     };
