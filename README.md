@@ -18,29 +18,31 @@ cd gso
 npm install --production
 ```
 
-### 运行：
+### 运行命令：
 
-测试/调试：
+#### 测试/调试：
 `npm start` 或 `node ./bin/run`
 
-或使用[forever](https://github.com/nodejitsu/forever)启动(推荐在生产环境中使用forever管理)
+#### 生产环境
+
+* 使用[forever](https://github.com/nodejitsu/forever)启动：  
 `forever start -e err.log -o output.log ./bin/run`
 
-或使用[pm2](https://github.com/Unitech/pm2)启动
+* 使用[pm2](https://github.com/Unitech/pm2)启动：  
 `pm2 start ./bin/run -i max`
 
 ## 自定义设置
 
 ### 站点名称
 设置站点名称后会在首页logo下，浏览器标题栏中显示。
-修改conf/config.js文件, 找到name节点, 修改为自己的站点名即可:
+修改conf/config.js文件, 找到name节点, 修改为自己的站点名：
 
 ```javascript
 name: '谷搜客'
 ```
 
 ### 统计脚本
-将脚本粘贴到views/partials/statistics.ejs文件中即可
+将脚本粘贴到views/partials/statistics.ejs文件中
 
 ### 首页随机文字
 将文字粘贴到data/words.txt中，每句以一个空行分割, 支持html代码
