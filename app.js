@@ -32,7 +32,7 @@ app.use(function (req, res, next) {
 
     var encrypted = (req.protocol || 'http')==='https';
     app.locals['constant'] = {
-        name: config.name,
+        name: config.name || '谷搜客',
         encrypted: encrypted,
         autocomplate_url: encrypted ? config.ssl.autocomplate_url : config.autocomplate_url,
         r_prefix: encrypted ? config.ssl.r_prefix : config.r_prefix

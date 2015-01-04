@@ -30,6 +30,15 @@ npm install --production
 `pm2 start ./bin/run -i max`
 
 ## 自定义设置
+
+### 站点名称
+设置站点名称后会在首页logo下，浏览器标题栏中显示。
+修改conf/config.js文件, 找到name节点, 修改为自己的站点名即可:
+
+```javascript
+name: '谷搜客'
+```
+
 ### 统计脚本
 将脚本粘贴到views/partials/statistics.ejs文件中即可
 
