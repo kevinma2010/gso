@@ -101,3 +101,7 @@ clone后的代码是未压缩的，可以使用grunt工具进行压缩。
 5. [ ] 优化错误日志记录;
 6. [ ] 支持视频元信息检索(同时检索可播放来源)
 7. [ ] 增加在线代理功能(代理搜索结果中出现的部分被屏蔽的网站)；
+
+## Copyright & License
+
+Copyright (c) 2014-2015  Released under the [MIT license](LICENSE).
