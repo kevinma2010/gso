@@ -44,9 +44,6 @@ name: '谷搜客'
 ### 统计脚本
 将脚本粘贴到views/partials/statistics.ejs文件中
 
-### 首页随机文字
-将文字粘贴到data/words.txt中，每句以一个空行分割, 支持html代码
-
 ### 设置多个Google IP防止被屏蔽
 将可用的IP放入conf/ip.txt文件中,每个ip以一个回车换行分割.
 
