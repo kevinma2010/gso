@@ -1,29 +1,33 @@
-var express = require('express');
-var path = require('path');
-// var favicon = require('static-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var compression = require('compression');
-var minify = require('html-minifier').minify;
+var express = require('express'),
+    path = require('path'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    compression = require('compression'),
+    colors = require( "colors");
 
-var routes = require('./routes/index');
+var routes = require('./routes/index'),
+    config = require('./conf/config');
 
-var config = require('./config');
+var minify;
 
 var app = express();
-app.use(compression());
-
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// app.use(favicon());
-app.use(logger('dev'));
+// 访问日志记录,console打印
+if (app.get('env') === 'development') {
+    app.use(require('morgan')('dev'));
+}
+
+app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//设置自定义响应头, 希望你留下这些作者说明
 app.use(function (req, res, next) {
     res.setHeader('X-Powered-By', 'Longbo Ma');
     res.setHeader('Donate-Me', 'mlongbo@gmail.com (This is a alipay account)');
@@ -32,7 +36,9 @@ app.use(function (req, res, next) {
 
     var encrypted = (req.protocol || 'http')==='https';
     app.locals['constant'] = {
+        name: config.name || '谷搜客',
         encrypted: encrypted,
+        autocomplate_url: encrypted ? config.ssl.autocomplate_url : config.autocomplate_url,
         r_prefix: encrypted ? config.ssl.r_prefix : config.r_prefix
     };
     next();
@@ -40,6 +46,7 @@ app.use(function (req, res, next) {
 
 if (app.get('env') === 'production') {
     // html minify
+    minify = require('html-minifier').minify;
     app.use(function (req, res, next) {
         res._render = res.render;
 
@@ -61,8 +68,7 @@ app.use('/', routes);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
+    res.status(404);
     var url = req.url;
     res.render('404', {
         url : url
@@ -70,24 +76,10 @@ app.use(function(req, res, next) {
 });
 
 /// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
-        console.error(err.message);
-        res.render('500', {
-            message: err.message,
-            error: err
-        });
-    });
-}
-
-// production error handler
-// no stacktraces leaked to user
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
+    console.error(err.message.red);
+    console.error(err.stack);
     res.render('500', {
         message: err.message,
         error: {}

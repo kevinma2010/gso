@@ -4,7 +4,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head> 
-    <title><%= qs.q %> - 谷搜客</title>
+    <title><%= qs.q %> - <%= constant.name%></title>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +12,7 @@
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <meta name="description" content="谷搜客基于Google搜索,为喜爱谷歌搜索的朋友们免费提供高速稳定的搜索服务。搜索结果通过Google.com实时抓取，欢迎您在日常生活学习中使用谷搜客查询资料。" />
     <meta name="keywords" content="谷歌 谷搜客 google 谷歌不能访问 gusouk" />
-    <meta name="apple-mobile-web-app-title" content="谷搜客">
+    <meta name="apple-mobile-web-app-title" content="<%= constant.name%>">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="author" content="Longbo Ma,mlongbo@gmail.com China">
     <link rel="stylesheet" href="/stylesheets/normalize.css">
@@ -36,12 +36,6 @@
     <script src="/javascripts/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
-
-    <!--[if lt IE 7]>
-        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-    <![endif]-->
-
-    <!-- Add your site or application content here -->
     <header class="header-bar" id="header_bar">
             <div style="width: 100%">
                 <div class="logo">
@@ -49,7 +43,7 @@
                 </div>
                 <div class="form_box result">
                     <form action="/search">
-                        <input id="id_s_text" class="s_text" name="q" type="text" tabindex="1"  autocomplete="off" placeholder="" onkeyup="plugin.autocomplate(event,'//58.123.102.99')" value="<%= qs.q %>" />
+                        <input id="id_s_text" class="s_text" name="q" type="text" tabindex="1"  autocomplete="off" value="<%= qs.q %>" />
                         <input id="opt_lang" name="lr" type="hidden" value="<%= qs.lr%>" /> <!-- 筛选语言 -->
                         <input id="opt_qdr" name="qdr" type="hidden" value="<%= qs.qdr%>" /> <!-- 筛选时间 -->
                       <input class="m-button" value="搜&nbsp;&nbsp;索" type="submit" tabindex="2" />
@@ -66,111 +60,25 @@
                   语言<span class="caret"></span>
                  </div>
                  <ul class="dropdown-menu lang" style="left: -21px;">
-                    <% if (!qs.lr) {%>
-                        <li class="active"><a data-index=''>不限语言</a></li>
+                <% for (var i = 0, total = constants.lrArr.length; i < total; i++) {%>
+                    <% if (qs.lr == i) {%>
+                        <li class="active"><a data-index='<%=i%>'><%= constants.lrNames[i]%></a></li>
                     <% } else {%>
-                        <li><a data-index=''>不限语言</a></li>
+                        <li><a data-index='<%=i%>'><%= constants.lrNames[i]%></a></li>
                     <% } %>
-
-                    <% if (qs.lr == 3) {%>
-                        <li class="active"><a data-index='3'>所有中文</a></li>
-                    <% } else {%>
-                        <li><a data-index='3'>所有中文</a></li>
-                    <% } %>
-
-                    <% if (qs.lr == 1) {%>
-                         <li class="active"><a data-index='1'>简体中文</a></li>
-                    <% } else {%>
-                        <li><a data-index='1'>简体中文</a></li>
-                    <% } %>
-
-                    <% if (qs.lr == 2) {%>
-                        <li class="active"><a data-index='2'>繁体中文</a></li>
-                    <% } else {%>
-                        <li><a data-index='2'>繁体中文</a></li>
-                    <% } %>
-
-                    <% if (qs.lr == 4) {%>
-                        <li class="active"><a data-index='4'>英文</a></li>
-                    <% } else {%>
-                        <li><a data-index='4'>英文</a></li>
-                    <% } %>
-
-                    <% if (qs.lr == 5) {%>
-                        <li class="active"><a data-index='5'>韩文</a></li>
-                    <% } else {%>
-                        <li><a data-index='5'>韩文</a></li>
-                    <% } %>
-
-                    <% if (qs.lr == 6) {%>
-                        <li class="active"><a data-index='6'>日文</a></li>
-                    <% } else {%>
-                        <li><a data-index='6'>日文</a></li>
-                    <% } %>
-
-                    <% if (qs.lr == 7) {%>
-                        <li class="active"><a data-index='7'>法文</a></li>
-                    <% } else {%>
-                        <li><a data-index='7'>法文</a></li>
-                    <% } %>
-
-                    <% if (qs.lr == 8) {%>
-                        <li class="active"><a data-index='8'>德文</a></li>
-                    <% } else {%>
-                        <li><a data-index='8'>德文</a></li>
-                    <% } %>
-
-                    <% if (qs.lr == 9) {%>
-                        <li class="active"><a data-index='9'>西班牙</a></li>
-                    <% } else {%>
-                        <li><a data-index='9'>西班牙</a></li>
-                    <% } %>
-
-                    <% if (qs.lr == 10) {%>
-                        <li class="active"><a data-index='10'>意大利</a></li>
-                    <% } else {%>
-                        <li><a data-index='10'>意大利</a></li>
-                    <% } %>
+                <% } %>
                   </ul>
                  <div class="hdtb_mitem hdtb_msel hdtb_imb" onclick="plugin.toolbar.qdr.swithDropMenu();">
                   时间<span class="caret"></span>
                  </div>
                  <ul class="dropdown-menu qdr" style="left: 37px;">
-                    <% if (!qs.qdr) {%>
-                        <li class="active"><a data-index='0'>全部时间</a></li>
+                <% for (var i = 0, total = constants.qdrArr.length; i < total; i++) {%>
+                    <% if (qs.qdr == i) {%>
+                        <li class="active"><a data-index='<%=i%>'><%= constants.qdrNames[i]%></a></li>
                     <% } else {%>
-                        <li><a data-index='0'>全部时间</a></li>
+                        <li><a data-index='<%=i%>'><%= constants.qdrNames[i]%></a></li>
                     <% } %>
-
-                    <% if (qs.qdr === 1) {%>
-                        <li class="active"><a data-index='1'>过去一小时内</a></li>
-                    <% } else {%>
-                        <li><a data-index='1'>过去一小时内</a></li>
-                    <% } %>
-
-                    <% if (qs.qdr === 2) {%>
-                         <li class="active"><a data-index='2'>过去24小时内</a></li>
-                    <% } else {%>
-                        <li><a data-index='2'>过去24小时内</a></li>
-                    <% } %>
-
-                    <% if (qs.qdr === 3) {%>
-                        <li class="active"><a data-index='3'>过去一周内</a></li>
-                    <% } else {%>
-                        <li><a data-index='3'>过去一周内</a></li>
-                    <% } %>
-
-                    <% if (qs.qdr === 4) {%>
-                        <li class="active"><a data-index='4'>过去一个月内</a></li>
-                    <% } else {%>
-                        <li><a data-index='4'>过去一个月内</a></li>
-                    <% } %>
-
-                    <% if (qs.qdr === 5) {%>
-                        <li class="active"><a data-index='5'>过去一年内</a></li>
-                    <% } else {%>
-                        <li><a data-index='5'>过去一年内</a></li>
-                    <% } %>
+                <% } %>
                   </ul>
                  <!-- <div class="hdtb_mitem hdtb_imb">
                   <a href="">地图</a>
@@ -241,6 +149,11 @@
         plugin.headroom("#header_bar");
         plugin.toolbar.lang.bindClick();
         plugin.toolbar.qdr.bindClick();
+        
+        var g_url = '<%= constant.autocomplate_url%>';
+        $("#id_s_text").keyup(function (event) {
+          plugin.autocomplate(event,g_url);
+        });
    </script>
     <%- include partials/statistics%>
 </body>

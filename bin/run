@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 var app = require('../app'),
-    config = require('../config');
+    config = require('../conf/config');
+var colors = require('colors');
 
-// app.locals['r_prefix'] = config.r_prefix;
+console.log('Gso is running in '.yellow,app.get('env').yellow);
 
 var server = app.listen(config.port, function() {
-  console.log('Express server listening on port ' + server.address().port);
+  console.log('Listening on port ' + server.address().port);
 });
 
 if (config.ssl.enable) {
