@@ -42,7 +42,7 @@ router.get('/url', function (req,res,next) {
 router.get('/search', function (req, res, next) {
     var q = req.query.q;
     var start = req.query.start || 0;
-    var lr = req.query.lr || '';
+    var lr = req.query.lr || 0;
     var qdr = req.query.qdr || 0;
     qdr = isNaN(qdr) ? 0 : parseInt(qdr);
     var userAgent = req.headers['user-agent'];

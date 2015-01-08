@@ -55,7 +55,7 @@
             <div id="hdtbSum" style="padding-left: 115px;margin-top:15px;">
                 <div id="hdtb_msb">
                  <div class="hdtb_mitem hdtb_msel hdtb_imb" onclick="plugin.toolbar.lang.swithDropMenu();">
-                  语言<span class="caret"></span>
+                  <%= constants.lrNames[qs.lr]%><span class="caret"></span>
                  </div>
                  <ul class="dropdown-menu lang" style="left: -21px;">
                 <% for (var i = 0, total = constants.lrArr.length; i < total; i++) {%>
@@ -67,7 +67,7 @@
                 <% } %>
                   </ul>
                  <div class="hdtb_mitem hdtb_msel hdtb_imb" onclick="plugin.toolbar.qdr.swithDropMenu();">
-                  时间<span class="caret"></span>
+                  <%= constants.qdrNames[qs.qdr]%><span class="caret"></span>
                  </div>
                  <ul class="dropdown-menu qdr" style="left: 37px;">
                 <% for (var i = 0, total = constants.qdrArr.length; i < total; i++) {%>
