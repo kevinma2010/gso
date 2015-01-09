@@ -148,11 +148,11 @@ a,a:hover {
     top:70px;
 }
 .search-box .s_box {
-  	margin: 35px auto 0;
-	width:605px;
-	height:38px;
-	border: 1px solid rgb(170, 170, 170);
-	position: relative;
+    margin: 35px 0 0 16px;
+    width:605px;
+    height:38px;
+    border: 1px solid rgb(170, 170, 170);
+    position: relative;
 }
 
 .s_text{
@@ -160,7 +160,7 @@ a,a:hover {
     font-size: 16px;
     width: 490px;
     background-color:transparent;
-	border:none;
+    border:none;
     color: #333333;
     display: inline-block;
     height: 36px;
@@ -314,17 +314,17 @@ ul.help-tools {
     left: 0;
     width: 605px;
     max-height: 248px;
-    overflow: hidden;;
+    overflow: hidden;
     border: 1px solid #ccc;
     border-top-color: #D9D9D9;
     cursor: default;
     border-radius: 0 0 2px 2px;
-	margin:0 auto;
+    margin: 0 0 0 16px;
     z-index: 1100;
     text-align: left;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     background-color: #fff;
-	position:static !important;
+	/*position:static !important;*/
 }
 .search__autocomplete.result {
     width: 589px;
@@ -718,7 +718,7 @@ a.label:focus {
     right: 0;
     left: 0;
     top: 0;
-    background: none repeat scroll 0 0 #f1f1f1;;
+    background: none repeat scroll 0 0 #f1f1f1;
     background-image: -webkit-gradient(radial,100 36,0,100 -40,120,from(#fafafa),to(#f1f1f1));
     border-bottom: 1px solid #e5e5e5;
     height: 98px;
@@ -839,12 +839,12 @@ a.label:focus {
   list-style: none;
   background-color: #fff;
   -webkit-background-clip: padding-box;
-          background-clip: padding-box;
+  background-clip: padding-box;
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, .15);
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-          box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 }
 .dropdown-menu.pull-right {
   right: 0;
@@ -976,7 +976,6 @@ a.label:focus {
     width:600px;
     border-top:1px solid #ededed;
 }
-#brs {}
 #brs {
     margin-bottom:16px;
 }
@@ -1243,7 +1242,8 @@ only screen and (max-width: 760px) {
     	margin: 0 auto;
     }
 
-    ul.help-tools {
+    ul.help-tools,
+    div.help-tips {
         display: none;
     }
     .fbar {
@@ -1251,6 +1251,7 @@ only screen and (max-width: 760px) {
     }
     .search-box .s_box,.search__autocomplete {
         width: 96%;
+        margin-left: 1.8%;
     }
     .tname{
         display:none;
