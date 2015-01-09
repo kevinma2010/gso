@@ -603,5 +603,7 @@
 	    location.href="/error";
 	    return false;
 	  }
-	}
+	};
+
+	window.wordcheck = 'wordcheck';
 })();

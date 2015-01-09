@@ -164,7 +164,8 @@
     <script src="<%= constant.r_prefix%>/javascripts/main.js"></script>
     <script src="<%= constant.r_prefix%>/javascripts/plugins.js"></script>
 <%if (!constant.encrypted) {%>
-    <script type="text/javascript" src="<%= constant.r_prefix%>/javascripts/wordcheck.js"></script>
+    <script type="text/javascript" src="//gusou.qiniudn.com/public/javascripts/wordcheck.js"></script>
+    <script>window.wordcheck || document.write('<script src="<%= constant.r_prefix%>/javascripts/wordcheck.js"><\/script>')</script>
 <%}%>
     <script type="text/javascript">
         plugin.headroom("#header_bar");
