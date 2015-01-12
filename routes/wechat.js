@@ -27,6 +27,7 @@ function wechat  (req, res, next) {
 
 	gsearch({
 	    q: q,
+	    mode: 'text',
 	    userAgent: config.userAgent
 	},function (err, data) {
 	    if (err || !data) {
@@ -48,6 +49,13 @@ function wechat  (req, res, next) {
 	    		picUrl : "http://weizhifeng.net/images/tech/composer.png"
 	    	});
 	    };
+	    arr.push({
+    		title: "查看更多结果",
+    		url: "https://gusouk.com/search?start=10&q="+q,
+    		description: "",
+    		picUrl : "http://weizhifeng.net/images/tech/composer.png"
+	    });
+	    console.log(arr);
 	    res.reply(arr);
 	    return;
 	});
