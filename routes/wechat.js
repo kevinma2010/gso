@@ -28,6 +28,7 @@ function wechat  (req, res, next) {
 	gsearch({
 	    q: q,
 	    mode: 'text',
+	    num: 5,
 	    userAgent: config.userAgent
 	},function (err, data) {
 	    if (err || !data) {
