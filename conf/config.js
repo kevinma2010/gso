@@ -26,6 +26,12 @@ config = {
         timeout: 5000,//设置超时时间为5s, enable为true时有效
         host: '',
         port: 80
+    },
+    wechat: {
+        enable: true,
+        token: '',
+        appid: '',
+        encodingAESKey: ''
     }
 };
 
