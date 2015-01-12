@@ -28,7 +28,7 @@ config = {
         port: 80
     },
     wechat: {
-        enable: true,
+        enable: false,
         token: '',
         appid: '',
         encodingAESKey: ''
