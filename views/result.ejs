@@ -129,7 +129,7 @@
                 <div class="navcnt">
                    <ul class="pagination">
                     <%if (qs.start > 0) {%>
-                        <li><a href="/search?q=<%= qs.encodeQ%>&start=<%= page.pre%>&lr=<%=qs.lr%>&qdr=<%=qs.qdr%>">上一页</a></li>
+                        <li><a href="/search?q=<%= qs.encodeQ%>&start=<%= page.pre%>&lr=<%=qs.lr%>&qdr=<%=qs.qdr%>"><span id="prePage">上一页</span></a></li>
                     <%}%>
                     <% for (var i = page.start,index=0, total = page.end; i <total; i++) {%>
                         <%if (qs.start == i*10) {%>
@@ -138,7 +138,7 @@
                             <li><a href="/search?q=<%= qs.encodeQ%>&start=<%= page.num[index]%>&lr=<%=qs.lr%>&qdr=<%=qs.qdr%>"><%= page.num[index++]/10+1%></a></li>
                         <%}%>
                     <%}%>
-                        <li><a href="/search?q=<%= qs.encodeQ%>&start=<%= page.next%>&lr=<%=qs.lr%>&qdr=<%=qs.qdr%>">下一页</a></li>
+                        <li><a href="/search?q=<%= qs.encodeQ%>&start=<%= page.next%>&lr=<%=qs.lr%>&qdr=<%=qs.qdr%>"><span id="nextPage">下一页</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -171,6 +171,7 @@
         plugin.headroom("#header_bar");
         plugin.toolbar.lang.bindClick();
         plugin.toolbar.qdr.bindClick();
+        plugin.keys.start();
         
         var g_url = '<%= constant.autocomplate_url%>';
         $("#id_s_text").keyup(function (event) {

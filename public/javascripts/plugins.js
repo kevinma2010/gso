@@ -44,8 +44,10 @@ var plugin = plugin || {};
         }
     };
 })();
-// Place any jQuery/helper plugins in here.
-// autocomplate
+
+/**
+ * 搜索框autocomplete插件
+ */
 (function () {
     var keys = {
         UP : 38,
@@ -196,6 +198,9 @@ var plugin = plugin || {};
     };
 })();
 
+/**
+ * 分享插件
+ */
 (function () {
     plugin.loadBaiduShare = function () {
         var url = "https://gusouk.com";
@@ -216,6 +221,9 @@ var plugin = plugin || {};
     };
 })();
 
+/**
+ * 顶部区域headroom插件
+ */
 (function () {
     plugin.headroom = function (selector) {
         var myElement = document.querySelector(selector);
@@ -236,6 +244,9 @@ var plugin = plugin || {};
     };
 })();
 
+/**
+ * 条件筛选工具栏插件
+ */
 (function () {
     var tool = plugin.toolbar = {};
 
@@ -276,4 +287,38 @@ var plugin = plugin || {};
             });
         }
     };
+})();
+
+(function () {
+    var keys = {
+        LEFT : 37,
+        RIGHT : 39
+    };
+    var isTrigger = false;
+
+    function start () {
+        $(document).keyup(function (e) {
+            var keyCode = e.keyCode;
+            if (!isTrigger && (keyCode === keys.LEFT || keys.RIGHT === keyCode)) {
+                var elementId = $(document.activeElement).attr('id');
+                // console.log(elementId);
+                if (elementId === undefined || elementId !== 'id_s_text') {
+                    if (keyCode === keys.LEFT) {
+                        var $prePage = $('#prePage');
+                        if ($prePage[0]) {
+                            $prePage.click();
+                            isTrigger = true;
+                        }
+                    } else if (keyCode === keys.RIGHT) {
+                        $('#nextPage').click();
+                        isTrigger = true;
+                    }
+                }
+            }
+        });
+    }
+
+    plugin.keys = {
+        start: start
+    }
 })();
