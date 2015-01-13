@@ -177,6 +177,14 @@
         $("#id_s_text").keyup(function (event) {
           plugin.autocomplate(event,g_url);
         });
+
+         //点击空白处后隐藏弹出层
+        $(document).click(function (e) {
+          var $class = $(e.target).attr("class");
+          if ($class === undefined || $class.indexOf('hdtb_mitem') < 0) {
+            plugin.common.swithDisplay(".dropdown-menu", "none");
+          }
+        });
    </script>
   <%- include partials/statistics%>
 </body>
