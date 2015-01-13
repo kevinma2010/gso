@@ -171,13 +171,13 @@
         plugin.headroom("#header_bar");
         plugin.toolbar.lang.bindClick();
         plugin.toolbar.qdr.bindClick();
-        plugin.keys.start();
         
         var g_url = '<%= constant.autocomplate_url%>';
         $("#id_s_text").keyup(function (event) {
           plugin.autocomplate(event,g_url);
         });
 
+        plugin.keys.start();
          //点击空白处后隐藏弹出层
         $(document).click(function (e) {
           var $class = $(e.target).attr("class");
