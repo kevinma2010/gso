@@ -51,7 +51,13 @@ router.get('/search', function (req, res, next) {
         res.redirect("/");
         return;
     }
-    q = decodeURI(q);
+    try {
+        q = decodeURI(q);
+    } catch (error) {
+        console.log("decodeURI error");
+        console.log(error);
+        console.log(q);
+    }
     start = parseInt(start);
     gsearch({
         q: q,
