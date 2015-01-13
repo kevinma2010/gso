@@ -6,8 +6,6 @@ var express = require('express'),
     colors = require( "colors");
 
 var routes = require('./routes/index'),
-    wechat = require('wechat'),
-    wechatRouter = require('./routes/wechat'),
     config = require('./conf/config');
 
 var minify;
@@ -67,11 +65,6 @@ if (app.get('env') === 'production') {
 }
 
 app.use('/', routes);
-if (config.wechat.enable) {
-    app.use('/wechat', wechat(config.wechat, function (req, res, next) {
-        wechatRouter(req, res, next);
-    }));
-}
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

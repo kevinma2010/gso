@@ -17,8 +17,7 @@
     "express": "~4.2.0",
     "html-minifier": "^0.6.8",
     "morgan": "~1.0.0",
-    "request": "^2.37.0",
-    "wechat": "^1.2.1"
+    "request": "^2.37.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
